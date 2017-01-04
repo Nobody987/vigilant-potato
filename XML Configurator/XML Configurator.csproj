@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{19487716-1E25-4F25-94EC-950AC426F6D1}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XML_Configurator</RootNamespace>
+    <AssemblyName>XML Configurator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>XML_Configurator.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\get-logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Validator">
+      <HintPath>External\Validator\Validator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DataModel\transformator_object_id.cs" />
+    <Compile Include="_0201_PopupDatasource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_0201_PopupDatasource.Designer.cs">
+      <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_05_TransformatorCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_05_TransformatorCreator.Designer.cs">
+      <DependentUpon>_05_TransformatorCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_04_ConnectionCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_04_ConnectionCreator.Designer.cs">
+      <DependentUpon>_04_ConnectionCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Custom\Controls\TextBoxExtended.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Custom\Controls\TextBoxImproved.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DatabaseConnect\API_database_connector.cs" />
+    <Compile Include="DatabaseConnect\ConnectionString.cs" />
+    <Compile Include="_03_DatabaseConnector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_03_DatabaseConnector.Designer.cs">
+      <DependentUpon>_03_DatabaseConnector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatabaseConnect\ResultSet.cs" />
+    <Compile Include="DatabaseConnect\Table.cs" />
+    <Compile Include="DataModel\datasource.cs" />
+    <Compile Include="DataModel\database_table.cs" />
+    <Compile Include="DataModel\Metadata.cs" />
+    <Compile Include="DataModel\generator_object_id.cs" />
+    <Compile Include="_01_Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_01_Menu.Designer.cs">
+      <DependentUpon>_01_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_02_ObjectCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_02_ObjectCreator.Designer.cs">
+      <DependentUpon>_02_ObjectCreator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TESTForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TESTForm.Designer.cs">
+      <DependentUpon>TESTForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TestingClass.cs" />
+    <Compile Include="XMLBuilder\CommentBuilder.cs" />
+    <Compile Include="XMLBuilder\GUIBuilder.cs" />
+    <EmbeddedResource Include="_0201_PopupDatasource.resx">
+      <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_05_TransformatorCreator.resx">
+      <DependentUpon>_05_TransformatorCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_03_DatabaseConnector.resx">
+      <DependentUpon>_03_DatabaseConnector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_01_Menu.resx">
+      <DependentUpon>_01_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_02_ObjectCreator.resx">
+      <DependentUpon>_02_ObjectCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_04_ConnectionCreator.resx">
+      <DependentUpon>_04_ConnectionCreator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TESTForm.resx">
+      <DependentUpon>TESTForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\XML_Configurator.DataModel.Metadata.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\1481559520_icon-89-document-file-sql.png" />
+    <None Include="Resources\1481559585_icon-89-document-file-sql.png" />
+    <None Include="Resources\1481559786_icon-89-document-file-sql.png" />
+    <None Include="Resources\1481559947_icon-24-file-sql.png" />
+    <None Include="Resources\1481559993_icon-89-document-file-sql.png" />
+    <None Include="Resources\1481560037_icon-89-document-file-sql.png" />
+    <None Include="Resources\1481573303_Next.png" />
+    <None Include="Resources\1481641334_8.png" />
+    <None Include="Resources\1481641481_Previous.png" />
+    <Content Include="Resources\get-logo.ico" />
+    <Content Include="Include\datasource_parameters.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Resources\1475240492_khotkeys.png" />
+    <None Include="Resources\1475240448_n.png" />
+    <None Include="Resources\1475159585_document_add.png" />
+    <None Include="Resources\1474916383_folder_new.png" />
+    <None Include="Resources\1474915550_Add.png" />
+    <None Include="Resources\1474915209_Log Out.png" />
+    <None Include="Resources\1474915151_Save.png" />
+    <None Include="Resources\1474915038_system-restart.png" />
+    <None Include="Resources\1474914918_manilla-folder-new.png" />
+    <None Include="Resources\1474911115_Stock Index Down.png" />
+    <None Include="Resources\1474913677_folder_with_file.png" />
+    <None Include="Resources\1474913320_manilla-folder-saved-search.png" />
+    <None Include="Resources\1474912315_human-user-trash.png" />
+    <None Include="Resources\1474911120_Error.png" />
+    <None Include="Resources\1474911113_Stock Index Up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="External\Validator\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

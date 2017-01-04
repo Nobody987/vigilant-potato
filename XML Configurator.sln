@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 14 for Windows Desktop
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML Configurator", "XML Configurator\XML Configurator.csproj", "{19487716-1E25-4F25-94EC-950AC426F6D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XML ConfiguratorTests", "XML ConfiguratorTests\XML ConfiguratorTests.csproj", "{80A525B9-E984-4316-8DEC-7FB05D275997}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19487716-1E25-4F25-94EC-950AC426F6D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19487716-1E25-4F25-94EC-950AC426F6D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19487716-1E25-4F25-94EC-950AC426F6D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19487716-1E25-4F25-94EC-950AC426F6D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A525B9-E984-4316-8DEC-7FB05D275997}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A525B9-E984-4316-8DEC-7FB05D275997}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A525B9-E984-4316-8DEC-7FB05D275997}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A525B9-E984-4316-8DEC-7FB05D275997}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
