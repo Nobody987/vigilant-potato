@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataModel\transformator_object_id.cs" />
+    <Compile Include="_00_Controller.cs" />
     <Compile Include="_0201_PopupDatasource.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -9,9 +9,9 @@ namespace XML_Configurator.DatabaseConnect
 {
     static class API_database_connector
     {
-
         //establishing connection
-        public static SqlConnection database_open_connection_SQLSERVER(datasource datasource)
+        #region
+        private static SqlConnection database_open_connection_SQLSERVER(datasource datasource)
         {
             string connectionString = null;
             System.Data.SqlClient.SqlConnectionStringBuilder builder = new System.Data.SqlClient.SqlConnectionStringBuilder();
@@ -29,7 +29,7 @@ namespace XML_Configurator.DatabaseConnect
             return connection;
         }
 
-        public static OdbcConnection database_open_connection_ODBC(datasource datasource)
+        private static OdbcConnection database_open_connection_ODBC(datasource datasource)
         {
             //            string String_Format = null;
 
@@ -71,7 +71,7 @@ namespace XML_Configurator.DatabaseConnect
             return connection;
         }
 #pragma warning disable CS0618 // Type or member is obsolete
-        public static OracleConnection database_open_connection_OLEDB(datasource datasource)
+        private static OracleConnection database_open_connection_OLEDB(datasource datasource)
 #pragma warning restore CS0618 // Type or member is obsolete
         {
             string String_Format = null;
@@ -91,8 +91,10 @@ namespace XML_Configurator.DatabaseConnect
             connection.Open();
             return connection;
         }
+        #endregion
 
         //extract metadata of tables
+        #region
         public static List<string> database_schema_SQLSERVER(datasource datasource)
         {
             List<string> list_database_table = new List<string>();
@@ -161,8 +163,10 @@ namespace XML_Configurator.DatabaseConnect
 
             return list_database_table;
         }
+        #endregion
 
         //extract metadata of columns
+        #region
         public static List<ResultSet> database_table_SQLSERVER(datasource ds, string table_name)
         {
             List<ResultSet> list_table_columns = new List<ResultSet>();
@@ -217,8 +221,10 @@ namespace XML_Configurator.DatabaseConnect
             }
             return list_table_columns;
         }
+        #endregion
 
         //run sample queries
+        #region
         public static List<object> database_query_SQLSERVER(datasource ds, string query)
         {
             string query_reformated = reformat_string_to_query_number_of_rows(query);
@@ -284,6 +290,7 @@ namespace XML_Configurator.DatabaseConnect
             }
             return result;
         }
+        #endregion
 
         //reformation of string
         private static string reformat_string_to_query_number_of_rows(string query)

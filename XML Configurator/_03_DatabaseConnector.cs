@@ -10,7 +10,7 @@ using XML_Configurator.DatabaseConnect;
 namespace XML_Configurator
 {
 
-    //REWORK COMPLETE CLASS
+    //REWORK TABLE LOAD
     //
     //
 
@@ -21,20 +21,15 @@ namespace XML_Configurator
         List<Control> list_controls = new List<Control>();
         List<string> list_database_table = new List<string>();
         _02_ObjectCreator OC;
+        _00_Controller _controller;
 
         public _03_DatabaseConnector(_02_ObjectCreator OC)
         {
+            _controller = _00_Controller._instance;
             InitializeComponent();
             InitializeComboBox();
             comboBox_connection_type.SelectedIndex = 0;
             this.OC = OC;
-        }
-
-        public _03_DatabaseConnector()
-        {
-            InitializeComponent();
-            InitializeComboBox();
-            comboBox_connection_type.SelectedIndex = 0;
         }
 
         private void InitializeComboBox()
@@ -45,29 +40,20 @@ namespace XML_Configurator
 
         private void button_database_connect_Click(object sender, EventArgs e) //dodati metodu koja ce da popuni list box nezavisno od toga koji je tip konekcije
         {
-            ds = (datasource)comboBox_connection_type.SelectedItem;
+            try
+            {
+                ds = (datasource)comboBox_connection_type.SelectedItem;
 
-            if (ds.Datasource_connection_type.ToUpper() == "SQLSERVER")
-            {
-                list_database_table = API_database_connector.database_schema_SQLSERVER(ds);
+                list_database_table = _controller.return_database_schema(ds);
+                listBox_database_tables.Items.Clear();
+                foreach (string table in list_database_table)
+                {
+                    listBox_database_tables.Items.Add(table);
+                }
             }
-            else if (ds.Datasource_connection_type.ToUpper() == "ODBC")
+            catch (Exception ex)
             {
-                list_database_table = API_database_connector.database_schema_ODBC(ds);
-            }
-            else if (ds.Datasource_connection_type.ToUpper() == "OLEDB")
-            {
-                list_database_table = API_database_connector.database_schema_OLEDB(ds);
-            }
-            else
-            {
-                MessageBox.Show("Unknown type of connection - " + ds.Datasource_connection_type + " !");
-            }
-
-            listBox_database_tables.Items.Clear();
-            foreach (string table in list_database_table)
-            {
-                listBox_database_tables.Items.Add(table);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -81,34 +67,12 @@ namespace XML_Configurator
                 list_selected_tables.Add(new database_table(listBox_database_tables.Items[listBox_database_tables.Items.IndexOf(item)].ToString(), new List<string>(), new List<string>(), new List<string>()));
             }
 
-            if (ds.Datasource_connection_type.ToUpper() == "SQLSERVER")
+            try
             {
-                //          PREPRAVITI DA CITA METODU SAMO JEDNOM, PROSLEDJUJE LISTU UMESTE ELEMENATA LISTE. SQL radi za svaki element pojedinacno
-                for (int i = 0; i < list_selected_tables.Count; i++)
+                for (int i = 0; i < list_selected_tables.Count; i++)            //          PREPRAVITI DA CITA METODU SAMO JEDNOM, PROSLEDJUJE LISTU UMESTE ELEMENATA LISTE. SQL radi za svaki element pojedinacno
                 {
                     database_table item = list_selected_tables[i];
-                    List<ResultSet> list_table_columns = API_database_connector.database_table_SQLSERVER(ds, item.ToString());
-
-                    List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
-                    foreach (ResultSet rs in list_table_columns)
-                    {
-                        item.Columns.Add(rs.COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
-                        item.Columns_types.Add(rs.DATA_TYPE);
-                        item.Columns_nullable.Add(rs.IS_NULLABLE);
-                        ls.Add(rs.COLUMN_NAME + " : " + rs.DATA_TYPE);
-                    }
-                    addIntoTreeView(item.ToString(), ls);
-                }
-
-            }
-
-            else if (ds.Datasource_connection_type.ToUpper() == "ODBC")
-            {
-                foreach (database_table item in list_selected_tables)
-                {
-                    List<ResultSet> list_table_columns = API_database_connector.database_table_ODBC(ds, ds.Datasource_catalog, item.ToString());
-
-                    List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
+                    List<ResultSet> list_table_columns = _controller.return_database_tables(ds, item.ToString()); List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
                     foreach (ResultSet rs in list_table_columns)
                     {
                         item.Columns.Add(rs.COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
@@ -119,23 +83,9 @@ namespace XML_Configurator
                     addIntoTreeView(item.ToString(), ls);
                 }
             }
-
-            else if (ds.Datasource_connection_type.ToUpper() == "OLEDB")
+            catch (Exception ex)
             {
-                foreach (database_table item in list_selected_tables)
-                {
-                    List<ResultSet> list_table_columns = API_database_connector.database_table_OLEDB(ds, ds.Datasource_catalog, item.ToString());
-
-                    List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
-                    foreach (ResultSet rs in list_table_columns)
-                    {
-                        item.Columns.Add(rs.COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
-                        item.Columns_types.Add(rs.DATA_TYPE);
-                        item.Columns_nullable.Add(rs.IS_NULLABLE);
-                        ls.Add(rs.COLUMN_NAME + " : " + rs.DATA_TYPE);
-                    }
-                    addIntoTreeView(item.ToString(), ls);
-                }
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -180,17 +130,6 @@ namespace XML_Configurator
                 this.Controls.Add(item);
             }
             this.Refresh();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            var conn = new OdbcConnection();
-            //conn.ConnectionString = "Driver={iSeries Access ODBC Driver};System=10.64.17.103;Uid=WCMREAD;Pwd=readwcm;DBQ=FILDETEST;";
-            //conn.ConnectionString = "Driver={iSeries Access ODBC Driver};System=10.64.17.104;Uid=QV_SQL;Pwd=kl987zzvtr;";
-            conn.ConnectionString = textBox_database_connect.Text;
-
-            conn.Open();
-            Console.Write("Success");
         }
 
         private void textBox_search_loaded_tables_TextChanged(object sender, EventArgs e)

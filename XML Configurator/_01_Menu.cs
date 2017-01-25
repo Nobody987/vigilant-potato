@@ -27,7 +27,7 @@ namespace XML_Configurator
         private void button_database_connection_Click(object sender, EventArgs e)
         {
             //this.Hide();
-            Form Form = new _03_DatabaseConnector();
+            Form Form = new _03_DatabaseConnector(null);
             Form.Visible = true;
         }
 

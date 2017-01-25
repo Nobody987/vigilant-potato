@@ -271,13 +271,17 @@ namespace XML_Configurator.DataModel
             {
                 string return_string = null;
 
-                foreach (var item in select_statement_for_display_string_array)
+                foreach (string item in select_statement_for_display_string_array)
                 {
-                    if (item.Trim().Contains("SELECT")) //Sve ostalo
+                    if (item.ToUpper().Trim().Contains("SELECT")) //Sve ostalo
                     {
-                        return_string += item.Trim();
+                        return_string += "\r\n" + item.Trim();
                     }
-                    else if (item.Trim().Contains("FROM")) //FROM
+                    else if (item.ToUpper().Trim().Contains("FROM")) //FROM
+                    {
+                        return_string += "\r\n" + item.Trim();
+                    }
+                    else if (item.ToUpper().Trim().Contains("WHERE")) //WHERE
                     {
                         return_string += "\r\n" + item.Trim();
                     }
@@ -286,7 +290,7 @@ namespace XML_Configurator.DataModel
                         return_string += "\r\n\t" + item.Trim();
                     }
                 }
-                return return_string;
+                return return_string.TrimStart();
             }
 
             set

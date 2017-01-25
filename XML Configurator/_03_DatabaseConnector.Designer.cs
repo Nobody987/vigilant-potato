@@ -29,24 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_03_DatabaseConnector));
-            this.textBox_database_connect = new System.Windows.Forms.TextBox();
             this.button_database_connect = new System.Windows.Forms.Button();
             this.listBox_database_tables = new System.Windows.Forms.ListBox();
             this.comboBox_connection_type = new System.Windows.Forms.ComboBox();
             this.button_extract_table_definition = new System.Windows.Forms.Button();
             this.button_save_table_definition = new System.Windows.Forms.Button();
             this.treeView_table_columns = new System.Windows.Forms.TreeView();
-            this.button1 = new System.Windows.Forms.Button();
             this.textBox_search_loaded_tables = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // textBox_database_connect
-            // 
-            this.textBox_database_connect.Location = new System.Drawing.Point(12, 14);
-            this.textBox_database_connect.Name = "textBox_database_connect";
-            this.textBox_database_connect.Size = new System.Drawing.Size(567, 20);
-            this.textBox_database_connect.TabIndex = 0;
-            this.textBox_database_connect.Text = "Driver={iSeries Access ODBC Driver};DSN=F40004DE.F19;Uid=QV_SQL;Pwd=kl987zzvtr;";
             // 
             // button_database_connect
             // 
@@ -107,16 +97,6 @@
             this.treeView_table_columns.Size = new System.Drawing.Size(240, 407);
             this.treeView_table_columns.TabIndex = 8;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(258, 38);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(127, 23);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Connect (OBSOLETE)";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // textBox_search_loaded_tables
             // 
             this.textBox_search_loaded_tables.Location = new System.Drawing.Point(12, 70);
@@ -125,22 +105,20 @@
             this.textBox_search_loaded_tables.TabIndex = 10;
             this.textBox_search_loaded_tables.TextChanged += new System.EventHandler(this.textBox_search_loaded_tables_TextChanged);
             // 
-            // DatabaseConnector
+            // _03_DatabaseConnector
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 539);
             this.Controls.Add(this.textBox_search_loaded_tables);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.treeView_table_columns);
             this.Controls.Add(this.button_save_table_definition);
             this.Controls.Add(this.button_extract_table_definition);
             this.Controls.Add(this.comboBox_connection_type);
             this.Controls.Add(this.listBox_database_tables);
             this.Controls.Add(this.button_database_connect);
-            this.Controls.Add(this.textBox_database_connect);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "DatabaseConnector";
+            this.Name = "_03_DatabaseConnector";
             this.Text = "DatabaseConnector";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -148,15 +126,12 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox_database_connect;
         private System.Windows.Forms.Button button_database_connect;
         private System.Windows.Forms.ListBox listBox_database_tables;
         private System.Windows.Forms.ComboBox comboBox_connection_type;
         private System.Windows.Forms.Button button_extract_table_definition;
         private System.Windows.Forms.Button button_save_table_definition;
         private System.Windows.Forms.TreeView treeView_table_columns;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox_search_loaded_tables;
     }
 }
