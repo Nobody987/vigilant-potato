@@ -97,7 +97,7 @@ namespace XML_Configurator
             //    sb.AppendLine("\t" + column);
             //}
 
-            sb.AppendLine("\t" + "$(object_fieldstoload_statement)");
+            sb.AppendLine("\t" + "$(vDatasource_Object_FieldsToLoad_Statement)");
 
             if (!string.IsNullOrEmpty(datasource.Datasource_library)) //proverava dali postoji library da se doda u upit
             {
@@ -174,7 +174,7 @@ namespace XML_Configurator
             switch (data_type.ToUpper())
             {
                 case "INT": return "NUM(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "DECIMAL": return "NUM(" + column_name + ", #.##) AS " + table_name + "." + column_name + ",";
+                case "DECIMAL": return "NUM(" + column_name + ", '#.##') AS " + table_name + "." + column_name + ",";
                 case "NVARCHAR": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
                 case "VARCHAR": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
                 case "VARCHAR2": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
@@ -186,7 +186,8 @@ namespace XML_Configurator
                 case "CHARACTER": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
                 case "DATETIME": return "TIMESTAMP(" + column_name + ") AS " + table_name + "." + column_name + ",";
 
-                default: return "UNKNOWN TYPE " + data_type + ",";
+                //default: return "UNKNOWN TYPE " + data_type + " FOR COLUMN " + column_name + ",";
+                default: return column_name + " AS " + table_name + "." + column_name + ",";
             }
         }
 
@@ -396,7 +397,7 @@ namespace XML_Configurator
             ListViewItem ListItem = (ListViewItem)newItem;
             listView_all_objects.Items.Add(ListItem);
 
-            listview_check_colors();
+            listview_check_colors(listView_all_objects);
             if (listView_all_objects.Items.Count > 0)
             {
                 listView_all_objects.Items[listView_all_objects.Items.Count - 1].Selected = true;
@@ -454,9 +455,9 @@ namespace XML_Configurator
             }
         }
 
-        private void listview_check_colors()
+        private void listview_check_colors(ListView listview_object)
         {
-            foreach (ListViewItem item in listView_all_objects.Items)
+            foreach (ListViewItem item in listview_object.Items)
             {
                 if (item.SubItems[1].Text.ToUpper() == "N")
                 {
@@ -524,7 +525,7 @@ namespace XML_Configurator
 
             listView_all_objects.Items[listView_all_objects.SelectedItems[0].Index] = (ListViewItem)obj;
 
-            listview_check_colors();
+            listview_check_colors(listView_all_objects);
         }
 
         private void button_load_xml_Click(object sender, EventArgs e)
@@ -686,7 +687,7 @@ namespace XML_Configurator
                             ListViewItem ListItem = (ListViewItem)object_id_instance;
                             listView_all_objects.Items.Add(ListItem);
 
-                            listview_check_colors();
+                            listview_check_colors(listView_all_objects);
                             if (listView_all_objects.Items.Count > 0)
                             {
                                 listView_all_objects.Items[0].Selected = true;
@@ -945,7 +946,7 @@ namespace XML_Configurator
                 item = (ListViewItem)object_item;
                 listView_all_objects.Items[i] = item;
             }
-            listview_check_colors();
+            listview_check_colors(listView_all_objects);
         }
 
         private void button_set_all_notactive_Click(object sender, EventArgs e)
@@ -958,7 +959,7 @@ namespace XML_Configurator
                 item = (ListViewItem)object_item;
                 listView_all_objects.Items[i] = item;
             }
-            listview_check_colors();
+            listview_check_colors(listView_all_objects);
         }
 
         private void button_go_back_database_connector_Click(object sender, EventArgs e)
@@ -1043,7 +1044,7 @@ namespace XML_Configurator
             }
             else if (comboBox_object_load_type.SelectedItem.ToString() == "FULL")
             {
-                textBox_object_target_extraction_filename.Text = @"90 - CUBES\" + entered_text;
+                textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + entered_text;
             }
         }
 
@@ -1054,7 +1055,7 @@ namespace XML_Configurator
                 switch (comboBox_object_load_type.SelectedItem.ToString().ToUpper())
                 {
                     case "FULL":
-                        textBox_object_target_extraction_filename.Text = @"90 - CUBES\" + textBox_object_name.Text;
+                        textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text;
                         return;
                     case "DELTA":
                         textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text + @"_$(vCurrentLoadDate)_$(vCurrentLoadTime)";
@@ -1176,7 +1177,7 @@ namespace XML_Configurator
             ListViewItem ListItem = (ListViewItem)newItem;
             listView_all_transformations.Items.Add(ListItem);
 
-            listview_check_colors();
+            listview_check_colors(listView_all_transformations);
             if (listView_all_transformations.Items.Count > 0)
             {
                 listView_all_transformations.Items[listView_all_transformations.Items.Count - 1].Selected = true;
@@ -1228,7 +1229,7 @@ namespace XML_Configurator
 
             listView_all_transformations.Items[listView_all_transformations.SelectedItems[0].Index] = (ListViewItem)obj;
 
-            listview_check_colors();
+            listview_check_colors(listView_all_transformations);
 
         }
 
@@ -1383,7 +1384,7 @@ namespace XML_Configurator
                             ListViewItem ListItem = (ListViewItem)object_id_instance;
                             listView_all_transformations.Items.Add(ListItem);
 
-                            listview_check_colors();
+                            listview_check_colors(listView_all_transformations);
                             if (listView_all_transformations.Items.Count > 0)
                             {
                                 listView_all_transformations.Items[0].Selected = true;
@@ -1522,7 +1523,7 @@ namespace XML_Configurator
                 item = (ListViewItem)object_item;
                 listView_all_transformations.Items[i] = item;
             }
-            listview_check_colors();
+            listview_check_colors(listView_all_transformations);
         }
 
         private void button_set_all_notactive_2_Click(object sender, EventArgs e)
@@ -1535,7 +1536,7 @@ namespace XML_Configurator
                 item = (ListViewItem)object_item;
                 listView_all_transformations.Items[i] = item;
             }
-            listview_check_colors();
+            listview_check_colors(listView_all_transformations);
         }
 
         private void button_create_transformation_file_Click(object sender, EventArgs e)
