@@ -555,6 +555,11 @@ namespace XML_Configurator
 
         private void button_next_transform_Click(object sender, EventArgs e)
         {
+            next_tab_transformation();
+        }
+
+        private void next_tab_transformation()
+        {
             //List<generator_object_id> object_list = new List<generator_object_id>();
             //foreach (ListViewItem item in listView_all_objects.Items)
             //{

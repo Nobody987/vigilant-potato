@@ -115,6 +115,7 @@ namespace XML_Configurator
                     }
                 }
             }
+
             //listBox_connections.Items.Add(ds);
             list_datasource.Add(ds);
             this.Refresh();
