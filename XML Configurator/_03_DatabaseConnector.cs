@@ -20,6 +20,7 @@ namespace XML_Configurator
         List<database_table> list_selected_tables;
         List<Control> list_controls = new List<Control>();
         List<string> list_database_table = new List<string>();
+        List<string> list_database_selected = new List<string>();
         _02_ObjectCreator OC;
         _00_Controller _controller;
 
@@ -135,6 +136,14 @@ namespace XML_Configurator
         private void textBox_search_loaded_tables_TextChanged(object sender, EventArgs e)
         {
             {
+                //List<string> list_database_selected_work = new List<string>();
+                //list_database_selected_work.AddRange(list_database_selected);
+                //list_database_selected.Clear();
+                //foreach (string item in ListBox_database_tables.SelectedItems)
+                //{
+                //    list_database_selected.Add(item);
+                //}
+
                 string search_string = textBox_search_loaded_tables.Text.ToUpper();
 
                 listBox_database_tables.Items.Clear();
@@ -153,6 +162,15 @@ namespace XML_Configurator
                 {
                     listBox_database_tables.Items.AddRange(list_database_table.ToArray());
                 }
+
+
+                //foreach (var item in list_database_selected)
+                //{
+                //    if (ListBox_database_tables.Items.Contains(item))
+                //    {
+                //        ListBox_database_tables.SelectedItem = item;
+                //    }
+                //}
             }
         }
     }

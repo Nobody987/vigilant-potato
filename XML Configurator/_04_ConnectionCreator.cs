@@ -49,6 +49,8 @@ namespace XML_Configurator
 
                 IList<PropertyInfo> props = new List<PropertyInfo>(ds.GetType().GetProperties());
 
+                clear_all_controls();
+
                 foreach (PropertyInfo prop in props)
                 {
                     object propValue = prop.GetValue(ds, null);
@@ -73,6 +75,18 @@ namespace XML_Configurator
                     }
                 }
             }
+        }
+
+        private void clear_all_controls()
+        {
+            foreach (Control item in list_controls)
+            {
+                if (item is TextBox)
+                {
+                    item.Text = "";
+                }
+            }
+            this.Refresh();
         }
 
         private void button_remove_Click(object sender, EventArgs e)
@@ -103,19 +117,14 @@ namespace XML_Configurator
             }
             //listBox_connections.Items.Add(ds);
             list_datasource.Add(ds);
+            this.Refresh();
             //listBox_connections.DataSource();
         }
 
         private void button_create_new_Click(object sender, EventArgs e)
         {
-            foreach (Control item in list_controls)
-            {
-                if (item is TextBox)
-                {
-                    item.Text = "";
-                    this.Refresh();
-                }
-            }
+            clear_all_controls();
+            listBox_connections.SelectedItems.Clear();
         }
 
         private void button_update_Click(object sender, EventArgs e)

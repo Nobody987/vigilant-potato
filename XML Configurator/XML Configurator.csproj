@@ -80,12 +80,6 @@
     <Compile Include="_0201_PopupDatasource.Designer.cs">
       <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
     </Compile>
-    <Compile Include="_05_TransformatorCreator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="_05_TransformatorCreator.Designer.cs">
-      <DependentUpon>_05_TransformatorCreator.cs</DependentUpon>
-    </Compile>
     <Compile Include="_04_ConnectionCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,9 +136,6 @@
     <Compile Include="XMLBuilder\GUIBuilder.cs" />
     <EmbeddedResource Include="_0201_PopupDatasource.resx">
       <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="_05_TransformatorCreator.resx">
-      <DependentUpon>_05_TransformatorCreator.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_03_DatabaseConnector.resx">
       <DependentUpon>_03_DatabaseConnector.cs</DependentUpon>

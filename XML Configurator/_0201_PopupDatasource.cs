@@ -18,13 +18,6 @@ namespace XML_Configurator
             listBox_datasources.DataSource = list_datasource;
         }
 
-        public _0201_PopupDatasource(_05_TransformatorCreator caller)
-        {
-            //this.caller = caller;
-            InitializeComponent();
-            list_datasource = new BindingList<datasource>(datasource.read_datasource_file());
-            listBox_datasources.DataSource = list_datasource;
-        }
         public _0201_PopupDatasource()
         {
             InitializeComponent();

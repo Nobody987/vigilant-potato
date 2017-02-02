@@ -30,12 +30,5 @@ namespace XML_Configurator
             Form Form = new _03_DatabaseConnector(null);
             Form.Visible = true;
         }
-
-        private void button_transformation_Click(object sender, EventArgs e)
-        {
-            //this.Hide();
-            Form Form = new _05_TransformatorCreator();
-            Form.Visible = true;
-        }
     }
 }
