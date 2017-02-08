@@ -77,9 +77,28 @@ namespace XML_Configurator
                 {
                     continue;
                 }
-                string name = row.Cells[0].Value.ToString().Trim();
-                string prefix = row.Cells[1].Value.ToString().Trim();
-                string sufix = row.Cells[1].Value.ToString().Trim();
+
+                string name = null;
+                string prefix = null;
+                string sufix = null;
+
+                if (row.Cells[0].Value != (null))
+                {
+                    name = row.Cells[0].Value.ToString().Trim();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter name for load type!");
+                    return;
+                }
+                if (row.Cells[1].Value != (null))
+                {
+                    prefix = row.Cells[1].Value.ToString().Trim();
+                }
+                if (row.Cells[2].Value != (null))
+                {
+                    sufix = row.Cells[2].Value.ToString().Trim();
+                }
 
                 list_load_types.Add(new load_types(name, prefix, sufix));
             }
@@ -143,6 +162,14 @@ namespace XML_Configurator
             {
                 MessageBox.Show("Please enter correct directory!");
                 return;
+            }
+        }
+
+        private void dataGridView_CurrentCellDirtyStateChanged(object sender, EventArgs e) //ovo sredjuje situaciju u kojoj je celija focusirana i klikne se na save ali se promene ne cuvaju. Cuvaju se tek posto dodje do un-focus od celije
+        {
+            if (dataGridView.IsCurrentCellDirty)
+            {
+                dataGridView.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
     }

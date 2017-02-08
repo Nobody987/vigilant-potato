@@ -8,17 +8,17 @@ namespace XML_Configurator.DataModel
 {
     static class Metadata
     {
-        public enum OBJECT_LOAD_TYPE
-        {
-            FULL,
-            DELTA
-            //FULL_WITH_DATE,
-            //FULL_WITH_DATE_HOUR,
-            //FULL_WITH_TIMESTAMP,
-            //INCREMENTAL_WITH_DATE,
-            //INCREMENTAL_WITH_MONTH,
-            //INCREMENTAL_WITH_YEAR
-        }
+        //public enum OBJECT_LOAD_TYPE
+        //{
+        //    FULL,
+        //    DELTA
+        //    //FULL_WITH_DATE,
+        //    //FULL_WITH_DATE_HOUR,
+        //    //FULL_WITH_TIMESTAMP,
+        //    //INCREMENTAL_WITH_DATE,
+        //    //INCREMENTAL_WITH_MONTH,
+        //    //INCREMENTAL_WITH_YEAR
+        //}
 
         private static string datasource_parameters = @"..\Debug\";
 

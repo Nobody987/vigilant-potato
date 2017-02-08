@@ -4,11 +4,21 @@
   <load_type><!--FULL                                                                            -->
     <load_type_name>FULL</load_type_name>
     <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
-    <load_type_file_sufix>10 - DELTA\</load_type_file_sufix>
+    <load_type_file_sufix>_$(vCurrentLoadDate)_$(vCurrentLoadTime)</load_type_file_sufix>
   </load_type>
   <load_type><!--DELTA                                                                           -->
     <load_type_name>DELTA</load_type_name>
     <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
-    <load_type_file_sufix>10 - DELTA\</load_type_file_sufix>
+    <load_type_file_sufix> </load_type_file_sufix>
+  </load_type>
+  <load_type><!--123                                                                             -->
+    <load_type_name>123</load_type_name>
+    <load_type_file_prefix> </load_type_file_prefix>
+    <load_type_file_sufix>54</load_type_file_sufix>
+  </load_type>
+  <load_type><!--123                                                                             -->
+    <load_type_name>123</load_type_name>
+    <load_type_file_prefix>3</load_type_file_prefix>
+    <load_type_file_sufix> </load_type_file_sufix>
   </load_type>
 </load_types>

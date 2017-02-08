@@ -13,6 +13,11 @@ namespace XML_Configurator.DataModel
         string load_type_file_prefix;
         string load_type_file_sufix;
 
+        public override string ToString()
+        {
+            return Load_type_name;
+        }
+
         public string Load_type_name
         {
             get

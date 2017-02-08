@@ -12,7 +12,7 @@ namespace XML_Configurator
 {
     public partial class _02_ObjectCreator : Form
     {
-        //List<object_id> LIST_OBJECTS;
+        List<load_types> list_load_types;
         List<database_table> loaded_tables;
         _03_DatabaseConnector form_database_connector;
         datasource datasource;
@@ -20,15 +20,16 @@ namespace XML_Configurator
 
         public _02_ObjectCreator(List<database_table> loaded_tables_from_database, datasource loaded_datasource, _03_DatabaseConnector dc)
         {
+            InitializeComponent();
             _controller = _00_Controller._instance;
             loaded_tables = loaded_tables_from_database;
-            InitializeComponent();
             WindowState = FormWindowState.Maximized;
 
             form_database_connector = dc;
             datasource = loaded_datasource;
 
-            comboBox_object_load_type.Items.AddRange(typeof(Metadata.OBJECT_LOAD_TYPE).GetEnumNames());
+            list_load_types = load_types.read_load_types_file();
+            comboBox_object_load_type.Items.AddRange(load_types.read_load_types_file().ToArray());
             comboBox_object_load_type.SelectedIndex = 0;
             toolStripComboBox_loaded_datasources.Items.AddRange(datasource.read_datasource_file().ToArray());
 
@@ -116,7 +117,7 @@ namespace XML_Configurator
             checkBox_object_active.Checked = true;
             comboBox_object_load_type.SelectedIndex = 0;
             textBox_object_target_extraction_folder.Text = loaded_tables[index].ToString();
-            textBox_object_target_extraction_filename.Text = @"90 - CUBES\" + loaded_tables[index].ToString();
+            textBox_object_target_extraction_filename.Text = list_load_types[0].Load_type_file_prefix + loaded_tables[index].ToString() + list_load_types[0].Load_type_file_sufix;
 
             ///////////////////////////////////////////////////////////
             //  Transformation Statement  
@@ -524,32 +525,35 @@ namespace XML_Configurator
             textBox_object_comment.Text = entered_text;
             textBox_object_target_extraction_folder.Text = entered_text;
 
-            if (comboBox_object_load_type.SelectedItem.ToString() == "DELTA")
-            {
-                textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + entered_text + "_$(vCurrentLoadDate)_$(vCurrentLoadTime)";
-            }
-            else if (comboBox_object_load_type.SelectedItem.ToString() == "FULL")
-            {
-                textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + entered_text;
-            }
+            textBox_object_target_extraction_filename.Text = list_load_types[comboBox_object_load_type.SelectedIndex].Load_type_file_prefix + entered_text + list_load_types[comboBox_object_load_type.SelectedIndex].Load_type_file_sufix;
+            //if (comboBox_object_load_type.SelectedItem.ToString() == "DELTA")
+            //{
+            //    textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + entered_text + "_$(vCurrentLoadDate)_$(vCurrentLoadTime)";
+            //}
+            //else if (comboBox_object_load_type.SelectedItem.ToString() == "FULL")
+            //{
+            //    textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + entered_text;
+            //}
         }
 
         private void comboBox_object_load_type_SelectedIndexChanged(object sender, EventArgs e)//ovde moze biti problema. Npr ako se promeni text u textboxu i onda se promeni vrednost combo boxa, pregazice se vrednost.
         {
             if (!string.IsNullOrEmpty(textBox_object_name.Text))
             {
-                switch (comboBox_object_load_type.SelectedItem.ToString().ToUpper())
-                {
-                    case "FULL":
-                        textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text;
-                        return;
-                    case "DELTA":
-                        textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text + @"_$(vCurrentLoadDate)_$(vCurrentLoadTime)";
-                        return;
+                textBox_object_target_extraction_filename.Text = list_load_types[comboBox_object_load_type.SelectedIndex].Load_type_file_prefix + textBox_object_name.Text + list_load_types[comboBox_object_load_type.SelectedIndex].Load_type_file_sufix;
 
-                    default:
-                        break;
-                }
+                //switch (comboBox_object_load_type.SelectedItem.ToString().ToUpper())
+                //{
+                //    case "FULL":
+                //        textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text;
+                //        return;
+                //    case "DELTA":
+                //        textBox_object_target_extraction_filename.Text = @"10 - DELTA\" + textBox_object_name.Text + @"_$(vCurrentLoadDate)_$(vCurrentLoadTime)";
+                //        return;
+
+                //    default:
+                //        break;
+                //}
             }
         }
 

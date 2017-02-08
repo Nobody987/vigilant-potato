@@ -55,6 +55,7 @@
             this.dataGridView.RowHeadersWidth = 50;
             this.dataGridView.Size = new System.Drawing.Size(955, 478);
             this.dataGridView.TabIndex = 2;
+            this.dataGridView.CurrentCellDirtyStateChanged += new System.EventHandler(this.dataGridView_CurrentCellDirtyStateChanged);
             this.dataGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridView_RowsAdded);
             this.dataGridView.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.dataGridView_RowsRemoved);
             // 
