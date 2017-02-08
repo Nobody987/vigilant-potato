@@ -394,7 +394,7 @@ namespace XML_Configurator
             this.tabTransformation.Location = new System.Drawing.Point(4, 22);
             this.tabTransformation.Name = "tabTransformation";
             this.tabTransformation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabTransformation.Size = new System.Drawing.Size(1269, 607);
+            this.tabTransformation.Size = new System.Drawing.Size(1269, 605);
             this.tabTransformation.TabIndex = 1;
             this.tabTransformation.Text = "Transformation";
             this.tabTransformation.UseVisualStyleBackColor = true;

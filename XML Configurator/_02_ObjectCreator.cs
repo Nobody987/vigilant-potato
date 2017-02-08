@@ -560,23 +560,35 @@ namespace XML_Configurator
 
         private void next_tab_transformation()
         {
-            //List<generator_object_id> object_list = new List<generator_object_id>();
-            //foreach (ListViewItem item in listView_all_objects.Items)
-            //{
-            //    object_list.Add((generator_object_id)item);
-            //}
-            //if (form_tranformation == null)
-            //{
-            //    Hide();
-            //    form_tranformation = new _05_TransformatorCreator(object_list, this);
-            //    form_tranformation.Visible = true;
-            //}
-            //else
-            //{
-            //    Hide();
-            //    form_tranformation.Show();
-            //}
+            List<ListViewItem> object_list = new List<ListViewItem>();
+            foreach (ListViewItem item in listView_all_objects.Items)
+            {
+                object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+            }
+            listView_all_transformations.Items.AddRange(object_list.ToArray());
+            tabControl.SelectedTab = tabTransformation;
         }
+
+        //public void _05_TransformatorCreator(List<generator_object_id> items, _02_ObjectCreator _02_ObjectCreator)
+        //{
+        //    transformation_items = new List<transformator_object_id>();
+        //    InitializeComponent();
+        //    WindowState = FormWindowState.Maximized;
+
+        //    foreach (generator_object_id item in items)
+        //    {
+        //        transformator_object_id new_item = (transformator_object_id)item;
+        //        transformation_items.Add(new_item);
+        //        listView_all_objects.Items.Add((ListViewItem)new_item);
+        //    }
+
+        //    listView_all_objects.Refresh();
+
+        //    this._02_ObjectCreator = _02_ObjectCreator;
+
+        //    textBox_file_name.Text = "transformation_parameters.xml";
+        //    textBox_folder_path.Text = _02_ObjectCreator.textBox_folder_path.Text;
+        //}
 
         private void button_back_generator_Click(object sender, EventArgs e)
         {
@@ -781,11 +793,11 @@ namespace XML_Configurator
 
         private void toolStripButton_load_sample_object_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 load_sample_generator_object();
             }
-            else if (tabControl.SelectedTab.Name == "tabTransformation")
+            else if (tabControl.SelectedTab == tabTransformation)
             {
                 load_sample_transformation_object();
             }
@@ -793,11 +805,11 @@ namespace XML_Configurator
 
         private void toolStripButton_create_object_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 create_generator_item();
             }
-            else if (tabControl.SelectedTab.Name == "tabTransformation")
+            else if (tabControl.SelectedTab == tabTransformation)
             {
                 create_transformation_item();
             }
@@ -805,11 +817,11 @@ namespace XML_Configurator
 
         private void toolStripButton_update_object_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 update_generator_item();
             }
-            else if (tabControl.SelectedTab.Name == "tabTransformation")
+            else if (tabControl.SelectedTab == tabTransformation)
             {
                 update_transformation_item();
             }
@@ -817,11 +829,11 @@ namespace XML_Configurator
 
         private void toolStripButton_create_xml_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 create_generator_xml();
             }
-            else if (tabControl.SelectedTab.Name == "tabTransformation")
+            else if (tabControl.SelectedTab == tabTransformation)
             {
                 create_tranformation_xml();
             }
@@ -829,7 +841,7 @@ namespace XML_Configurator
 
         private void toolStripButton_execute_test_statement_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 test_statement();
             }
@@ -850,11 +862,11 @@ namespace XML_Configurator
 
         private void toolStripButton_load_xml_Click(object sender, EventArgs e)
         {
-            if (tabControl.SelectedTab.Name == "tabGenerator")
+            if (tabControl.SelectedTab == tabGenerator)
             {
                 load_generator_xml();
             }
-            else if (tabControl.SelectedTab.Name == "tabTransformation")
+            else if (tabControl.SelectedTab == tabTransformation)
             {
                 load_transformation_xml();
             }
@@ -869,13 +881,13 @@ namespace XML_Configurator
 
         private void update_tab_gui(TabPage selected_tab) //TODO dodati da se updateuje i update object button; trenutno ne radi kada se doda item u jedan tab, aktivira se na svim tabovima. treba da se proveri da li ima itema u listview-u
         {
-            if (selected_tab.Name == "tabTransformation")
+            if (selected_tab == tabTransformation)
             {
                 enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", false);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", false);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", false);
             }
-            else if (selected_tab.Name == "tabGenerator")
+            else if (selected_tab == tabGenerator)
             {
                 enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", true);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", true);

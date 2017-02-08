@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--TO BE ADDED-->
+<load_types>
+  <load_type><!--FULL                                                                            -->
+    <load_type_name>FULL</load_type_name>
+    <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
+    <load_type_file_sufix>10 - DELTA\</load_type_file_sufix>
+  </load_type>
+  <load_type><!--DELTA                                                                           -->
+    <load_type_name>DELTA</load_type_name>
+    <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
+    <load_type_file_sufix>10 - DELTA\</load_type_file_sufix>
+  </load_type>
+</load_types>

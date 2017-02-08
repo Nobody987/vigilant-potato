@@ -30,5 +30,17 @@ namespace XML_Configurator
             Form Form = new _03_DatabaseConnector(null);
             Form.Visible = true;
         }
+
+        private void button_load_types_Click(object sender, EventArgs e)
+        {
+            _05_LoadType lt = new _05_LoadType();
+            lt.Visible = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form_test t = new Form_test();
+            t.Visible = true;
+        }
     }
 }
