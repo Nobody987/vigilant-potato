@@ -86,11 +86,41 @@ namespace XML_Configurator
             }
         }
 
-        internal List<ResultSet> return_database_tables(datasource datasource, string table_name)
+        internal ResultSetInstance[][] return_database_tables(datasource datasource, List<database_table> list_selected_tables)
         {
             try
             {
-                List<ResultSet> list_table_columns = new List<ResultSet>();
+                if (datasource.Datasource_connection_type.ToUpper() == "SQLSERVER")
+                {
+                    return API_database_connector.database_table_SQLSERVER(datasource, list_selected_tables);
+                }
+
+                else if (datasource.Datasource_connection_type.ToUpper() == "ODBC")
+                {
+                    return API_database_connector.database_table_ODBC(datasource, datasource.Datasource_catalog, list_selected_tables);
+                }
+
+                else if (datasource.Datasource_connection_type.ToUpper() == "OLEDB")
+                {
+                    return API_database_connector.database_table_OLEDB(datasource, datasource.Datasource_catalog, list_selected_tables);
+                }
+                else
+                {
+                    throw new Exception("Unknown connection type! \n'" + datasource.Datasource_connection_type + "'"); //not supported database
+                }
+            }
+            catch (Exception ex)
+            {
+                Exception e = new Exception("Error occurred while executing schema load query \n\n" + ex.Message);
+                throw e;
+            }
+        }
+
+        internal List<ResultSetInstance> return_database_tables(datasource datasource, string table_name)
+        {
+            try
+            {
+                List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
                 if (datasource.Datasource_connection_type.ToUpper() == "SQLSERVER")
                 {
                     return list_table_columns = API_database_connector.database_table_SQLSERVER(datasource, table_name);
@@ -116,7 +146,6 @@ namespace XML_Configurator
                 throw e;
             }
         }
-
 
     }
 }

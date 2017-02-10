@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace XML_Configurator.DatabaseConnect
 {
-    class ResultSet
+    class ResultSetInstance
     {
         public string COLUMN_NAME;
         public string DATA_TYPE;

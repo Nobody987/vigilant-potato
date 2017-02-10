@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--TO BE ADDED-->
+<data_types>
+  <data_type><!--VARCHAR                                                                         -->
+    <data_type_name>VARCHAR</data_type_name>
+    <data_type_return_value>TEXT("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--VARBINARY                                                                       -->
+    <data_type_name>VARBINARY</data_type_name>
+    <data_type_return_value>TEXT("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--CHARACTER                                                                       -->
+    <data_type_name>CHARACTER</data_type_name>
+    <data_type_return_value>TEXT("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--VARCHAR2                                                                        -->
+    <data_type_name>VARCHAR2</data_type_name>
+    <data_type_return_value>TEXT("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--NVARCHAR                                                                        -->
+    <data_type_name>NVARCHAR</data_type_name>
+    <data_type_return_value>TEXT("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--INT                                                                             -->
+    <data_type_name>INT</data_type_name>
+    <data_type_return_value>NUM("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--NUMERIC                                                                         -->
+    <data_type_name>NUMERIC</data_type_name>
+    <data_type_return_value>NUM("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--NUMBER                                                                          -->
+    <data_type_name>NUMBER</data_type_name>
+    <data_type_return_value>NUM("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--DECIMAL                                                                         -->
+    <data_type_name>DECIMAL</data_type_name>
+    <data_type_return_value>NUM("COLUMN_NAME", '#.##')</data_type_return_value>
+  </data_type>
+  <data_type><!--DATE                                                                            -->
+    <data_type_name>DATE</data_type_name>
+    <data_type_return_value>DATE("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--TIME                                                                            -->
+    <data_type_name>TIME</data_type_name>
+    <data_type_return_value>TIME("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+  <data_type><!--DATETIME                                                                        -->
+    <data_type_name>DATETIME</data_type_name>
+    <data_type_return_value>TIMESTAMP("COLUMN_NAME")</data_type_return_value>
+  </data_type>
+</data_types>

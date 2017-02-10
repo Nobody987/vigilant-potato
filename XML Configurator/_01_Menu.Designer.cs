@@ -82,7 +82,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(145, 33);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Text";
+            this.button1.Text = "Data Types";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

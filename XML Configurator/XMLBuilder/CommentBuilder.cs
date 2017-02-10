@@ -31,5 +31,11 @@ namespace XML_Configurator.XMLBuilder
             string padded_final = padded_comment_add_active.PadRight(80);
             return padded_final;
         }
+        public static string ItemCommentBuilder(data_type item) //dodati active
+        {
+            string padded_comment_add_active = item.Data_type_name.PadRight(50);
+            string padded_final = padded_comment_add_active.PadRight(80);
+            return padded_final;
+        }
     }
 }

@@ -54,8 +54,8 @@ namespace XML_Configurator
             this.tabTransformation = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
             this.listView_all_transformations = new System.Windows.Forms.ListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnObjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnObjectActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox_transformation_split_parameter = new System.Windows.Forms.TextBox();
             this.textBox_additional_transformation_split_parameters = new System.Windows.Forms.TextBox();
             this.textBox_additional_transformation_where_statement = new System.Windows.Forms.TextBox();
@@ -411,8 +411,8 @@ namespace XML_Configurator
             // listView_all_transformations
             // 
             this.listView_all_transformations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2});
+            this.columnObjectName,
+            this.columnObjectActive});
             this.listView_all_transformations.FullRowSelect = true;
             this.listView_all_transformations.GridLines = true;
             this.listView_all_transformations.HideSelection = false;
@@ -425,15 +425,15 @@ namespace XML_Configurator
             this.listView_all_transformations.View = System.Windows.Forms.View.Details;
             this.listView_all_transformations.SelectedIndexChanged += new System.EventHandler(this.listView_all_transformations_SelectedIndexChanged);
             // 
-            // columnHeader1
+            // columnObjectName
             // 
-            this.columnHeader1.Text = "Object Name";
-            this.columnHeader1.Width = 190;
+            this.columnObjectName.Text = "Object Name";
+            this.columnObjectName.Width = 190;
             // 
-            // columnHeader2
+            // columnObjectActive
             // 
-            this.columnHeader2.Text = "Object Active";
-            this.columnHeader2.Width = 80;
+            this.columnObjectActive.Text = "Object Active";
+            this.columnObjectActive.Width = 80;
             // 
             // textBox_transformation_split_parameter
             // 
@@ -1342,8 +1342,8 @@ namespace XML_Configurator
         private System.Windows.Forms.Button button_delete_list_item_2;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.ListView listView_all_transformations;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnObjectName;
+        private System.Windows.Forms.ColumnHeader columnObjectActive;
         private System.Windows.Forms.TextBox textBox_transformation_split_parameter;
         private System.Windows.Forms.TextBox textBox_additional_transformation_split_parameters;
         private System.Windows.Forms.TextBox textBox_additional_transformation_where_statement;

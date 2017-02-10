@@ -72,6 +72,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="_06_DataTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_06_DataTypes.Designer.cs">
+      <DependentUpon>_06_DataTypes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataModel\data_type.cs" />
     <Compile Include="DataModel\load_types.cs" />
     <Compile Include="DataModel\transformator_object_id.cs" />
     <Compile Include="Form_test.cs">
@@ -176,6 +183,9 @@
     <EmbeddedResource Include="_05_LoadType.resx">
       <DependentUpon>_05_LoadType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="_06_DataTypes.resx">
+      <DependentUpon>_06_DataTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\XML_Configurator.DataModel.Metadata.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -200,6 +210,7 @@
     <None Include="Resources\1481573303_Next.png" />
     <None Include="Resources\1481641334_8.png" />
     <None Include="Resources\1481641481_Previous.png" />
+    <Content Include="Include\data_types.xml" />
     <Content Include="Include\load_types.xml">
       <SubType>Designer</SubType>
     </Content>

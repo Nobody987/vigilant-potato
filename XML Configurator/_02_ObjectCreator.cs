@@ -13,6 +13,7 @@ namespace XML_Configurator
     public partial class _02_ObjectCreator : Form
     {
         List<load_types> list_load_types;
+        List<data_type> list_data_types;
         List<database_table> loaded_tables;
         _03_DatabaseConnector form_database_connector;
         datasource datasource;
@@ -29,6 +30,7 @@ namespace XML_Configurator
             datasource = loaded_datasource;
 
             list_load_types = load_types.read_load_types_file();
+            list_data_types = data_type.read_data_type_file();
             comboBox_object_load_type.Items.AddRange(load_types.read_load_types_file().ToArray());
             comboBox_object_load_type.SelectedIndex = 0;
             toolStripComboBox_loaded_datasources.Items.AddRange(datasource.read_datasource_file().ToArray());
@@ -169,26 +171,16 @@ namespace XML_Configurator
             //populate_fields(loaded_tables, 0);
         }
 
-        private string statement_builder(string table_name, string column_name, string data_type)
+        private string statement_builder(string table_name, string column_name, string data_type_instance)
         {
-            switch (data_type.ToUpper())
+            foreach (data_type item in list_data_types)
             {
-                case "INT": return "NUM(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "DECIMAL": return "NUM(" + column_name + ", '#.##') AS " + table_name + "." + column_name + ",";
-                case "NVARCHAR": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "VARCHAR": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "VARCHAR2": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "NUMBER": return "NUM(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "NUMERIC": return "NUM(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "DATE": return "DATE(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "TIME": return "TIME(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "VARBINARY": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "CHARACTER": return "TEXT(" + column_name + ") AS " + table_name + "." + column_name + ",";
-                case "DATETIME": return "TIMESTAMP(" + column_name + ") AS " + table_name + "." + column_name + ",";
-
-                //default: return "UNKNOWN TYPE " + data_type + " FOR COLUMN " + column_name + ",";
-                default: return column_name + " AS " + table_name + "." + column_name + ",";
+                if (item.Data_type_name.ToUpper() == data_type_instance.ToUpper())
+                {
+                    return item.Data_type_return_value.Replace("COLUMN_NAME", column_name) + " AS " + table_name + "." + column_name + ",";
+                }
             }
+            return column_name + " AS " + table_name + "." + column_name + ",";
         }
 
         private string write_multiline_statement(string v)
@@ -569,8 +561,20 @@ namespace XML_Configurator
             {
                 object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
             }
+            listView_all_transformations.Items.Clear();
             listView_all_transformations.Items.AddRange(object_list.ToArray());
             tabControl.SelectedTab = tabTransformation;
+        }
+
+        private void next_tab_generator()
+        {
+            //List<ListViewItem> object_list = new List<ListViewItem>();
+            //foreach (ListViewItem item in listView_all_objects.Items)
+            //{
+            //    object_list.Add((ListViewItem)(generator_object_id)(transformator_object_id)item);
+            //}
+            //listView_all_transformations.Items.AddRange(object_list.ToArray());
+            tabControl.SelectedTab = tabGenerator;
         }
 
         //public void _05_TransformatorCreator(List<generator_object_id> items, _02_ObjectCreator _02_ObjectCreator)
@@ -880,7 +884,8 @@ namespace XML_Configurator
 
         private void tabControl_Selected(object sender, TabControlEventArgs e)
         {
-                update_tab_gui(tabControl.SelectedTab);
+            update_tab_gui(tabControl.SelectedTab);
+            update_tab_data(tabControl.SelectedTab);
         }
 
         private void update_tab_gui(TabPage selected_tab) //TODO dodati da se updateuje i update object button; trenutno ne radi kada se doda item u jedan tab, aktivira se na svim tabovima. treba da se proveri da li ima itema u listview-u
@@ -896,6 +901,17 @@ namespace XML_Configurator
                 enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", true);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", true);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", true);
+            }
+        }
+        private void update_tab_data(TabPage selected_tab)
+        {
+            if (selected_tab == tabTransformation)
+            {
+                next_tab_transformation();
+            }
+            else if (selected_tab == tabGenerator)
+            {
+                next_tab_generator();
             }
         }
 

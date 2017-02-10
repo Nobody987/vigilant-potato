@@ -91,11 +91,12 @@ namespace XML_Configurator.DatabaseConnect
             connection.Open();
             return connection;
         }
+
         #endregion
 
         //extract metadata of tables
         #region
-        public static List<string> database_schema_SQLSERVER(datasource datasource)
+        internal static List<string> database_schema_SQLSERVER(datasource datasource)
         {
             List<string> list_database_table = new List<string>();
             SqlConnection connection = database_open_connection_SQLSERVER(datasource);
@@ -114,7 +115,7 @@ namespace XML_Configurator.DatabaseConnect
             return list_database_table;
         }
 
-        public static List<string> database_schema_ODBC(datasource datasource)
+        internal static List<string> database_schema_ODBC(datasource datasource)
         {
             List<string> list_database_table = new List<string>();
             OdbcConnection connection = database_open_connection_ODBC(datasource);
@@ -124,7 +125,6 @@ namespace XML_Configurator.DatabaseConnect
             {
                 command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE OWNER = '" + datasource.Datasource_library + "'", connection);//mora to_char, baca overflow ex
                                                                                                                                                                         //                command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE TABLE_NAME = 'XXAZP'", connection);//mora to_char, baca overflow ex
-
             }
             else
             {
@@ -144,7 +144,7 @@ namespace XML_Configurator.DatabaseConnect
             return list_database_table;
         }
 
-        public static List<string> database_schema_OLEDB(datasource datasource)
+        internal static List<string> database_schema_OLEDB(datasource datasource)
         {
             List<string> list_database_table = new List<string>();
             OracleConnection connection = database_open_connection_OLEDB(datasource);
@@ -167,16 +167,16 @@ namespace XML_Configurator.DatabaseConnect
 
         //extract metadata of columns
         #region
-        public static List<ResultSet> database_table_SQLSERVER(datasource ds, string table_name)
+        internal static List<ResultSetInstance> database_table_SQLSERVER(datasource ds, string table_name)
         {
-            List<ResultSet> list_table_columns = new List<ResultSet>();
+            List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
 
             SqlConnection connection = database_open_connection_SQLSERVER(ds);
             SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_name = '" + table_name + "'; ", connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                ResultSet rs = new ResultSet();
+                ResultSetInstance rs = new ResultSetInstance();
                 rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
                 rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
                 rs.IS_NULLABLE = reader["IS_NULLABLE"].ToString();
@@ -184,42 +184,114 @@ namespace XML_Configurator.DatabaseConnect
             }
             reader.Close();
             return list_table_columns;
+        } //should be obsolete
+        internal static ResultSetInstance[][] database_table_SQLSERVER(datasource datasource, List<database_table> list_selected_tables)
+        {
+            ResultSetInstance[][] array_tables = new ResultSetInstance[list_selected_tables.Count][];
+
+            SqlConnection connection = database_open_connection_SQLSERVER(datasource);
+            foreach (database_table table in list_selected_tables)
+            {
+                List<ResultSetInstance> array_table_columns = new List<ResultSetInstance>();
+
+                SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_name = '" + table + "'; ", connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ResultSetInstance rs = new ResultSetInstance();
+                    rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
+                    rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
+                    rs.IS_NULLABLE = reader["IS_NULLABLE"].ToString();
+                    array_table_columns.Add(rs);
+                }
+                reader.Close();
+                array_tables[list_selected_tables.IndexOf(table)] = array_table_columns.ToArray();
+            }
+            return array_tables;
         }
 
-        public static List<ResultSet> database_table_ODBC(datasource ds, string schema_name, string table_name)
+        internal static List<ResultSetInstance> database_table_ODBC(datasource ds, string schema_name, string table_name)
         {
-            List<ResultSet> list_table_columns = new List<ResultSet>();
+            List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
 
             OdbcConnection connection = database_open_connection_ODBC(ds);
             OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_schema = '" + schema_name + "' and table_name = '" + table_name + "'", connection);
             OdbcDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                ResultSet rs = new ResultSet();
+                ResultSetInstance rs = new ResultSetInstance();
                 rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
                 rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
                 rs.IS_NULLABLE = reader["IS_NULLABLE"].ToString();
                 list_table_columns.Add(rs);
             }
             return list_table_columns;
+        } //should be obsolete
+        internal static ResultSetInstance[][] database_table_ODBC(datasource ds, string schema_name, List<database_table> list_selected_tables)
+        {
+            ResultSetInstance[][] array_tables = new ResultSetInstance[list_selected_tables.Count][];
+
+            OdbcConnection connection = database_open_connection_ODBC(ds);
+            foreach (database_table table in list_selected_tables)
+            {
+                List<ResultSetInstance> array_table_columns = new List<ResultSetInstance>();
+
+                OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_schema = '" + schema_name + "' and table_name = '" + table + "'", connection);
+                OdbcDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ResultSetInstance rs = new ResultSetInstance();
+                    rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
+                    rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
+                    rs.IS_NULLABLE = reader["IS_NULLABLE"].ToString();
+                    array_table_columns.Add(rs);
+                }
+                reader.Close();
+                array_tables[list_selected_tables.IndexOf(table)] = array_table_columns.ToArray();
+            }
+            return array_tables;
         }
 
-        public static List<ResultSet> database_table_OLEDB(datasource ds, string schema_name, string table_name)
+        internal static List<ResultSetInstance> database_table_OLEDB(datasource ds, string schema_name, string table_name)
         {
-            List<ResultSet> list_table_columns = new List<ResultSet>();
+            List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
 
             OracleConnection connection = database_open_connection_OLEDB(ds);
             OracleCommand command = new OracleCommand("SELECT COLUMN_NAME, DATA_TYPE, NULLABLE FROM ALL_TAB_COLUMNS WHERE OWNER = '" + schema_name + "' and TABLE_NAME = '" + table_name + "'", connection);
             OracleDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                ResultSet rs = new ResultSet();
+                ResultSetInstance rs = new ResultSetInstance();
                 rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
                 rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
                 rs.IS_NULLABLE = reader["NULLABLE"].ToString();
                 list_table_columns.Add(rs);
             }
             return list_table_columns;
+        } //should be obsolete
+        internal static ResultSetInstance[][] database_table_OLEDB(datasource ds, string schema_name, List<database_table> list_selected_tables)
+        {
+            ResultSetInstance[][] array_tables = new ResultSetInstance[list_selected_tables.Count][];
+
+            OracleConnection connection = database_open_connection_OLEDB(ds);
+            foreach (database_table table in list_selected_tables)
+            {
+                List<ResultSetInstance> array_table_columns = new List<ResultSetInstance>();
+
+                OracleCommand command = new OracleCommand("SELECT COLUMN_NAME, DATA_TYPE, NULLABLE FROM ALL_TAB_COLUMNS WHERE OWNER = '" + schema_name + "' and TABLE_NAME = '" + table + "'", connection);
+                OracleDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    ResultSetInstance rs = new ResultSetInstance();
+                    rs.COLUMN_NAME = reader["COLUMN_NAME"].ToString();
+                    rs.DATA_TYPE = reader["DATA_TYPE"].ToString();
+                    rs.IS_NULLABLE = reader["NULLABLE"].ToString();
+                    array_table_columns.Add(rs);
+                }
+                reader.Close();
+                array_tables[list_selected_tables.IndexOf(table)] = array_table_columns.ToArray();
+            }
+            return array_tables;
         }
         #endregion
 
@@ -293,7 +365,7 @@ namespace XML_Configurator.DatabaseConnect
         #endregion
 
         //reformation of string
-        private static string reformat_string_to_query_number_of_rows(string query)
+        internal static string reformat_string_to_query_number_of_rows(string query)
         {
             query = query.Replace("\n", " ");
             query = query.Replace("\t", " ");

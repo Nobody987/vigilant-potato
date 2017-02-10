@@ -39,7 +39,7 @@ namespace XML_Configurator
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form_test t = new Form_test();
+            _06_data_types t = new _06_data_types();
             t.Visible = true;
         }
     }

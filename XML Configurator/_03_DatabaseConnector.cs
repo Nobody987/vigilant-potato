@@ -60,6 +60,11 @@ namespace XML_Configurator
 
         private void button_extract_table_definition_Click(object sender, EventArgs e) //ovde treba malo srediti kod, ima duplikata
         {
+            if (listBox_database_tables.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select at least one table from the list!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             datasource ds = (datasource)comboBox_connection_type.SelectedItem;
             list_selected_tables = new List<database_table>();
             treeView_table_columns.Nodes.Clear();
@@ -70,16 +75,18 @@ namespace XML_Configurator
 
             try
             {
-                for (int i = 0; i < list_selected_tables.Count; i++)            //          PREPRAVITI DA CITA METODU SAMO JEDNOM, PROSLEDJUJE LISTU UMESTE ELEMENATA LISTE. SQL radi za svaki element pojedinacno
+                ResultSetInstance[][] array_tables = _controller.return_database_tables(ds, list_selected_tables);
+                for (int i = 0; i < array_tables.GetLength(0); i++)
                 {
                     database_table item = list_selected_tables[i];
-                    List<ResultSet> list_table_columns = _controller.return_database_tables(ds, item.ToString()); List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
-                    foreach (ResultSet rs in list_table_columns)
+                    List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
+                    for (int j = 0; j < array_tables[i].Length; j++)
                     {
-                        item.Columns.Add(rs.COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
-                        item.Columns_types.Add(rs.DATA_TYPE);
-                        item.Columns_nullable.Add(rs.IS_NULLABLE);
-                        ls.Add(rs.COLUMN_NAME + " : " + rs.DATA_TYPE);
+                        item.Columns.Add(array_tables[i][j].COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
+                        item.Columns_types.Add(array_tables[i][j].DATA_TYPE);
+                        item.Columns_nullable.Add(array_tables[i][j].IS_NULLABLE);
+
+                        ls.Add(array_tables[i][j].COLUMN_NAME + " : " + array_tables[i][j].DATA_TYPE);
                     }
                     addIntoTreeView(item.ToString(), ls);
                 }
