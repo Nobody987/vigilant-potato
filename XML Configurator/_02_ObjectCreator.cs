@@ -180,7 +180,7 @@ namespace XML_Configurator
                     return item.Data_type_return_value.Replace("COLUMN_NAME", column_name) + " AS " + table_name + "." + column_name + ",";
                 }
             }
-            return column_name + " AS " + table_name + "." + column_name + ",";
+            return column_name + " AS " + table_name + "." + column_name + "," + @" //Unknown data type " + data_type_instance;
         }
 
         private string write_multiline_statement(string v)
