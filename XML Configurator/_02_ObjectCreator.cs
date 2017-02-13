@@ -386,14 +386,12 @@ namespace XML_Configurator
                 {
                     checkBox_object_active.Checked = false;
                 }
-                if (obj.Object_load_type == "FULL")
-                {
-                    comboBox_object_load_type.SelectedItem = "FULL";
-                }
-                else
-                {
-                    comboBox_object_load_type.SelectedItem = "DELTA";
-                }
+
+                comboBox_object_load_type.SelectedIndex = comboBox_object_load_type.FindStringExact(list_load_types.Single(s => s.Load_type_name == obj.Object_load_type).ToString());
+
+                //comboBox_object_load_type.SelectedIndex = comboBox_object_load_type.
+                //comboBox_object_load_type.SelectedItem = list_load_types.Where(s => s.Load_type_name == obj.Object_load_type) ;
+            
                 textBox_object_fieldstoload_statement.Text = obj.Object_fieldstoload_statement;
                 textBox_object_reorganization.Text = obj.Object_reorganization;
                 textBox_object_transformation_statement.Text = obj.Object_transformation_statement;
@@ -414,7 +412,7 @@ namespace XML_Configurator
                 textBox_object_time_format.Text = null;
                 textBox_object_where_statement.Text = null;
                 checkBox_object_active.Checked = false;
-                comboBox_object_load_type.SelectedItem = "FULL";
+                comboBox_object_load_type.SelectedIndex = 0;
                 textBox_object_fieldstoload_statement.Text = null;
                 textBox_object_reorganization.Text = null;
                 textBox_object_transformation_statement.Text = null;
@@ -448,11 +446,11 @@ namespace XML_Configurator
 
                 if (obj.Transformation_active.ToUpper() == "Y")
                 {
-                    checkBox_object_active.Checked = true;
+                    checkBox_transformation_active.Checked = true;
                 }
                 else
                 {
-                    checkBox_object_active.Checked = false;
+                    checkBox_transformation_active.Checked = false;
                 }
                 if (obj.Transformation_incremental.ToUpper() == "Y")
                 {
@@ -556,14 +554,40 @@ namespace XML_Configurator
 
         private void next_tab_transformation()
         {
-            List<ListViewItem> object_list = new List<ListViewItem>();
-            foreach (ListViewItem item in listView_all_objects.Items)
+            if (listView_all_transformations.Items.Count > 0)
             {
-                object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+                DialogResult dr = MessageBox.Show("Transformation list already contains objects. Do you want to remove them and add objects defined in generator object list?", "Alert", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                if (dr == DialogResult.Yes)
+                {
+                    List<ListViewItem> object_list = new List<ListViewItem>();
+                    foreach (ListViewItem item in listView_all_objects.Items)
+                    {
+                        object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+                    }
+                    listView_all_transformations.Items.Clear();
+                    listView_all_transformations.Items.AddRange(object_list.ToArray());
+                    tabControl.SelectedTab = tabTransformation;
+                }
+                else if (dr == DialogResult.No)
+                {
+                    tabControl.SelectedTab = tabTransformation;
+                }
+                else
+                {
+                    return;
+                }
             }
-            listView_all_transformations.Items.Clear();
-            listView_all_transformations.Items.AddRange(object_list.ToArray());
-            tabControl.SelectedTab = tabTransformation;
+            else
+            {
+                List<ListViewItem> object_list = new List<ListViewItem>();
+                foreach (ListViewItem item in listView_all_objects.Items)
+                {
+                    object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+                }
+                listView_all_transformations.Items.Clear();
+                listView_all_transformations.Items.AddRange(object_list.ToArray());
+                tabControl.SelectedTab = tabTransformation;
+            }
         }
 
         private void next_tab_generator()
@@ -885,7 +909,7 @@ namespace XML_Configurator
         private void tabControl_Selected(object sender, TabControlEventArgs e)
         {
             update_tab_gui(tabControl.SelectedTab);
-            update_tab_data(tabControl.SelectedTab);
+            //update_tab_data(tabControl.SelectedTab);
         }
 
         private void update_tab_gui(TabPage selected_tab) //TODO dodati da se updateuje i update object button; trenutno ne radi kada se doda item u jedan tab, aktivira se na svim tabovima. treba da se proveri da li ima itema u listview-u
@@ -1564,7 +1588,7 @@ namespace XML_Configurator
             obj.Additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
             obj.Additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
             obj.Additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
-            if (checkBox_object_active.Checked)
+            if (checkBox_transformation_active.Checked)
             {
                 obj.Transformation_active = "Y";
             }

@@ -11,14 +11,4 @@
     <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
     <load_type_file_sufix> </load_type_file_sufix>
   </load_type>
-  <load_type><!--ad                                                                              -->
-    <load_type_name>ad</load_type_name>
-    <load_type_file_prefix>asdref</load_type_file_prefix>
-    <load_type_file_sufix>rfafra</load_type_file_sufix>
-  </load_type>
-  <load_type><!--arfa                                                                            -->
-    <load_type_name>arfa</load_type_name>
-    <load_type_file_prefix>afr</load_type_file_prefix>
-    <load_type_file_sufix>fra</load_type_file_sufix>
-  </load_type>
 </load_types>

@@ -77,7 +77,7 @@ namespace XML_Configurator
             this.label_transformation_target_filename = new System.Windows.Forms.Label();
             this.checkBox_transformation_incremental = new System.Windows.Forms.CheckBox();
             this.label_transformation_incremental = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBox_transformation_active = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -380,7 +380,7 @@ namespace XML_Configurator
             this.tabTransformation.Controls.Add(this.label_transformation_target_filename);
             this.tabTransformation.Controls.Add(this.checkBox_transformation_incremental);
             this.tabTransformation.Controls.Add(this.label_transformation_incremental);
-            this.tabTransformation.Controls.Add(this.checkBox1);
+            this.tabTransformation.Controls.Add(this.checkBox_transformation_active);
             this.tabTransformation.Controls.Add(this.label4);
             this.tabTransformation.Controls.Add(this.label5);
             this.tabTransformation.Controls.Add(this.label6);
@@ -606,14 +606,14 @@ namespace XML_Configurator
             this.label_transformation_incremental.TabIndex = 93;
             this.label_transformation_incremental.Text = "transformation_incremental";
             // 
-            // checkBox1
+            // checkBox_transformation_active
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(345, 63);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 90;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox_transformation_active.AutoSize = true;
+            this.checkBox_transformation_active.Location = new System.Drawing.Point(345, 63);
+            this.checkBox_transformation_active.Name = "checkBox_transformation_active";
+            this.checkBox_transformation_active.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_transformation_active.TabIndex = 90;
+            this.checkBox_transformation_active.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -1108,14 +1108,14 @@ namespace XML_Configurator
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton_load_xml,
             this.toolStripSeparator5,
+            this.toolStripButton_load_sample_object,
+            this.toolStripSeparator3,
             this.toolStripButton_create_object,
             this.toolStripButton_update_object,
             this.toolStripButton_create_xml,
             this.toolStripSeparator1,
             this.toolStripButton_execute_test_statement,
             this.toolStripSeparator2,
-            this.toolStripButton_load_sample_object,
-            this.toolStripSeparator3,
             this.toolStripLabel_save,
             this.toolStripTextBox_folder_path,
             this.toolStripButton_browse,
@@ -1365,7 +1365,7 @@ namespace XML_Configurator
         private System.Windows.Forms.Label label_transformation_target_filename;
         private System.Windows.Forms.CheckBox checkBox_transformation_incremental;
         private System.Windows.Forms.Label label_transformation_incremental;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox_transformation_active;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;

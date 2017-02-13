@@ -8,24 +8,25 @@ namespace XML_Configurator.DataModel
     [Serializable]
     public class generator_object_id
     {
-        String object_name;
-        String object_reload_minutes;
-        String object_comment;
-        String object_primary_key;
-        String object_select_statement;
-        String object_datetime_format;
-        String object_date_format;
-        String object_time_format;
-        String object_where_statement;
-        Char object_active;
-        String object_load_type;
-        String object_fieldstoload_statement;
-        String object_reorganization;
-        String object_transformation_statement;
-        String object_target_extraction_folder;
-        String object_target_extraction_filename;
-        public String select_statement_for_display; //ovaj atribut je public da se u XML ne bi uzimao kao property jer ne treba da se ispisuje
-        String[] select_statement_for_display_string_array; //ovaj atribut je public da se u XML ne bi uzimao kao property jer ne treba da se ispisuje
+        string object_name;
+        string object_reload_minutes;
+        string object_comment;
+        string object_primary_key;
+        string object_select_statement;
+        string object_datetime_format;
+        string object_date_format;
+        string object_time_format;
+        string object_where_statement;
+        char object_active;
+        string object_load_type;
+        string object_fieldstoload_statement;
+        string object_reorganization;
+        string object_transformation_statement;
+        string object_target_extraction_folder;
+        string object_target_extraction_filename;
+        public string select_statement_for_display; //ovaj atribut je public da se u XML ne bi uzimao kao property jer ne treba da se ispisuje
+        string[] select_statement_for_display_string_array; //ovaj atribut je public da se u XML ne bi uzimao kao property jer ne treba da se ispisuje
+        //string internal_filename; //koristi se za prebicavanje u transformation object
 
         public override string ToString()
         {
@@ -45,7 +46,7 @@ namespace XML_Configurator.DataModel
             }
         }
 
-        public String Object_reload_minutes
+        public string Object_reload_minutes
         {
             get
             {
@@ -204,7 +205,7 @@ namespace XML_Configurator.DataModel
 
             string[] array_statement_text = statement_text.Trim().Split("\r\n".ToArray(), StringSplitOptions.RemoveEmptyEntries);
 
-            String object_select_statement = null;
+            string object_select_statement = null;
             for (int Line = 0; Line < array_statement_text.Count(); Line++)
             {
                     object_select_statement = object_select_statement + array_statement_text[Line].Trim() + '\r' + '\n';

@@ -48,6 +48,11 @@ namespace XML_Configurator.DataModel
             this.transformation_target_filename = transformation_target_filename;
         }
 
+        public override string ToString()
+        {
+            return transformation_name;
+        }
+
         public string Transformation_name
         {
             get
@@ -250,7 +255,32 @@ namespace XML_Configurator.DataModel
 
         public static explicit operator transformator_object_id(generator_object_id v)
         {
-            return new transformator_object_id(v.Object_name, v.Object_active.ToString(), null, null, null, v.Object_primary_key, null, null, null, null, null, null, null, null, null);
+            string source_filename = "";
+            string source_folder = "";
+            string target_filename = "";
+            string target_folder = "";
+            try
+            {
+                string source_folder_remove_prefix = v.Object_target_extraction_filename.Substring(v.Object_target_extraction_filename.LastIndexOf('\\') + 1);
+                if (source_folder_remove_prefix.Contains('$'))
+                {
+                    source_filename = source_folder_remove_prefix.Substring(0, source_folder_remove_prefix.IndexOf('$')) + '*';
+                }
+                else
+                {
+                    source_filename = source_folder_remove_prefix;
+                }
+                source_folder = "..\\15 - Interface\\" + v.Object_target_extraction_folder + '\\' + v.Object_target_extraction_filename.Substring(0, v.Object_target_extraction_filename.LastIndexOf('\\'));
+                target_filename = v.Object_target_extraction_folder;
+                target_folder = "..\\15 - Interface\\" + v.Object_target_extraction_folder + "\\90 - CUBES"; 
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error converting generator to transformation object \n " + e);
+            }
+
+            //string source_folder = v.Object_target_extraction_filename.Substring(v.Object_target_extraction_filename.LastIndexOf('\\')+1);
+            return new transformator_object_id(v.Object_name, v.Object_active.ToString(), null, v.Object_transformation_statement, null, v.Object_primary_key, null, null, null, null, null, source_folder, source_filename, target_folder, target_filename);
         }
 
         public static explicit operator ListViewItem(transformator_object_id v)
