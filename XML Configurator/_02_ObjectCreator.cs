@@ -1720,9 +1720,9 @@ namespace XML_Configurator
 
             try
             {
-                if (textBox_file_name.Text != "" && toolStripTextBox_folder_path.Text != "")
+                if (textBox_file_name_2.Text != "" && toolStripTextBox_folder_path.Text != "")
                 {
-                    filename = textBox_file_name.Text;
+                    filename = textBox_file_name_2.Text;
                     folder_path = toolStripTextBox_folder_path.Text;
 
                     archive_file(folder_path, filename);
