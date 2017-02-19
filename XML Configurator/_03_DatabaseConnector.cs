@@ -82,9 +82,7 @@ namespace XML_Configurator
                     List<string> ls = new List<string>(); //pravim listu koju cu da dodam u tree. sadrzi column_name : data_type
                     for (int j = 0; j < array_tables[i].Length; j++)
                     {
-                        item.Columns.Add(array_tables[i][j].COLUMN_NAME); // dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
-                        item.Columns_types.Add(array_tables[i][j].DATA_TYPE);
-                        item.Columns_nullable.Add(array_tables[i][j].IS_NULLABLE);
+                        item.List_column_objects.Add(new column_object(array_tables[i][j].COLUMN_NAME, array_tables[i][j].DATA_TYPE, array_tables[i][j].IS_NULLABLE));// dodaju se kolone za svaku tabelu i to ce se ucitati u sledecoj formi
 
                         ls.Add(array_tables[i][j].COLUMN_NAME + " : " + array_tables[i][j].DATA_TYPE);
                     }

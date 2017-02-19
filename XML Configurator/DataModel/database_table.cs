@@ -1,29 +1,33 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace XML_Configurator.DataModel
 {
     public class database_table
     {
         string table_name;
-        List<string> columns;
-        List<string> columns_types;
-        List<string> columns_nullable;
+        List<column_object> list_column_objects;
+        //List<string> columns;
+        //List<string> columns_types;
+        //List<string> columns_nullable;
 
 
         public database_table(string table_name, List<string> columns, List<string> column_types, List<string> columns_nullable)
         {
+            List_column_objects = new List<column_object>();
             Table_name = table_name;
-            Columns = columns;
-            Columns_types = column_types;
-            Columns_nullable = columns_nullable;
+            for (int i = 0; i < columns.Count; i++)
+            {
+                column_object column = new column_object(columns[i], column_types[i], columns_nullable[i]);
+                List_column_objects.Add(column);
+            }
         }
 
         public database_table()
         {
             table_name = null;
-            columns = new List<string>();
-            Columns_types = new List<string>();
-            Columns_nullable = new List<string>();
+            List_column_objects = new List<column_object>();
         }
 
         public string Table_name
@@ -39,42 +43,16 @@ namespace XML_Configurator.DataModel
             }
         }
 
-        public List<string> Columns
+        internal List<column_object> List_column_objects
         {
             get
             {
-                return columns;
+                return list_column_objects;
             }
 
             set
             {
-                columns = value;
-            }
-        }
-
-        public List<string> Columns_types
-        {
-            get
-            {
-                return columns_types;
-            }
-
-            set
-            {
-                columns_types = value;
-            }
-        }
-
-        public List<string> Columns_nullable
-        {
-            get
-            {
-                return columns_nullable;
-            }
-
-            set
-            {
-                columns_nullable = value;
+                list_column_objects = value;
             }
         }
 
@@ -82,5 +60,10 @@ namespace XML_Configurator.DataModel
         {
             return table_name;
         }
+
+        //public static explicit operator database_table(ListViewItem v)
+        //{
+        //    return new database_table(v.SubItems.)
+        //}
     }
 }

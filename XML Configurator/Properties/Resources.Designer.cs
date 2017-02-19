@@ -219,5 +219,15 @@ namespace XML_Configurator.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _1487105202_Database_copy_DynamoDB_Table {
+            get {
+                object obj = ResourceManager.GetObject("1487105202_Database_copy_DynamoDB_Table", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

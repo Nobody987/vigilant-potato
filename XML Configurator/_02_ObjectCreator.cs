@@ -64,17 +64,17 @@ namespace XML_Configurator
 
             textBox_object_primary_key.Text = null;
 
-            for (int i = 0; i < loaded_tables[index].Columns_nullable.Count(); i++)
+            for (int i = 0; i < loaded_tables[index].List_column_objects.Count(); i++)
             {
-                if (!loaded_tables[index].Columns_nullable[i].Equals("YES") && !loaded_tables[index].Columns_nullable[i].Equals("Y"))
+                if (!loaded_tables[index].List_column_objects[i].Column_nullable.Equals("YES") && !loaded_tables[index].List_column_objects[i].Column_nullable.Equals("Y"))
                 {
                     if (string.IsNullOrEmpty(textBox_object_primary_key.Text))
                     {
-                        textBox_object_primary_key.Text += loaded_tables[index].Columns[i].ToString();
+                        textBox_object_primary_key.Text += loaded_tables[index].List_column_objects[i].Column_name.ToString();
                     }
                     else
                     {
-                        textBox_object_primary_key.Text += " & '_' & " + loaded_tables[index].Columns[i].ToString();
+                        textBox_object_primary_key.Text += " & '_' & " + loaded_tables[index].List_column_objects[i].Column_name.ToString();
                     }
                 }
             }
@@ -127,9 +127,9 @@ namespace XML_Configurator
 
             StringBuilder transformation_builder = new StringBuilder();
 
-            for (int i = 0; i < loaded_tables[index].Columns.Count; i++)
+            for (int i = 0; i < loaded_tables[index].List_column_objects.Count; i++)
             {
-                transformation_builder.AppendLine(statement_builder(loaded_tables[index].ToString(), loaded_tables[index].Columns[i], loaded_tables[index].Columns_types[i]));
+                transformation_builder.AppendLine(statement_builder(loaded_tables[index].ToString(), loaded_tables[index].List_column_objects[i].Column_name, loaded_tables[index].List_column_objects[i].Column_data_type));
             }
             transformation_builder.Remove(transformation_builder.ToString().LastIndexOf(','), 1);
             textBox_object_transformation_statement.Text = transformation_builder.ToString();
@@ -144,15 +144,15 @@ namespace XML_Configurator
 
             StringBuilder fields_to_load_builder = new StringBuilder();
 
-            for (int i = 0; i < loaded_tables[index].Columns.Count; i++)
+            for (int i = 0; i < loaded_tables[index].List_column_objects.Count; i++)
             {
-                if (loaded_tables[index].Columns[i] != loaded_tables[index].Columns.Last())
+                if (loaded_tables[index].List_column_objects[i].Column_name != loaded_tables[index].List_column_objects.Last().Column_name)
                 {
-                    fields_to_load_builder.AppendLine(loaded_tables[index].Columns[i].ToString() + ",\t");
+                    fields_to_load_builder.AppendLine(loaded_tables[index].List_column_objects[i].Column_name.ToString() + ",\t");
                 }
                 else
                 {
-                    fields_to_load_builder.AppendLine(loaded_tables[index].Columns[i].ToString() + "\t");
+                    fields_to_load_builder.AppendLine(loaded_tables[index].List_column_objects[i].Column_name.ToString() + "\t");
                 }
             }
 
@@ -340,7 +340,12 @@ namespace XML_Configurator
 
         private void add_autocomplete_function(List<database_table> loaded_tables, int selectedIndex)
         {
-            string[] arr = loaded_tables[selectedIndex].Columns.ToArray();
+            List<string> list_of_column_names = new List<string>();
+            foreach (column_object item in loaded_tables[selectedIndex].List_column_objects)
+            {
+                list_of_column_names.Add(item.Column_name);
+            }
+            string[] arr = list_of_column_names.ToArray();
             AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
             collection.AddRange(arr);
             textBox_object_primary_key.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -391,7 +396,7 @@ namespace XML_Configurator
 
                 //comboBox_object_load_type.SelectedIndex = comboBox_object_load_type.
                 //comboBox_object_load_type.SelectedItem = list_load_types.Where(s => s.Load_type_name == obj.Object_load_type) ;
-            
+
                 textBox_object_fieldstoload_statement.Text = obj.Object_fieldstoload_statement;
                 textBox_object_reorganization.Text = obj.Object_reorganization;
                 textBox_object_transformation_statement.Text = obj.Object_transformation_statement;
@@ -1877,6 +1882,12 @@ namespace XML_Configurator
                 System.IO.Directory.CreateDirectory(folder_path + @"\Archive");
                 System.IO.File.Copy(folder_path + @"\" + filename, folder_path + @"\Archive\" + filename.Replace(".xml", "_") + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".xml");
             }
+        }
+
+        private void button_select_columns_Click(object sender, EventArgs e)
+        {
+            _0202_PopupColumns popup = new _0202_PopupColumns((generator_object_id)listView_all_objects.SelectedItems[0]);
+            popup.Visible = true;
         }
     }
 }

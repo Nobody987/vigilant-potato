@@ -72,6 +72,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\column_object.cs" />
+    <Compile Include="_0202_PopupColumns.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_0202_PopupColumns.Designer.cs">
+      <DependentUpon>_0202_PopupColumns.cs</DependentUpon>
+    </Compile>
     <Compile Include="_06_DataTypes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -160,6 +167,9 @@
     <EmbeddedResource Include="_0201_PopupDatasource.resx">
       <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="_0202_PopupColumns.resx">
+      <DependentUpon>_0202_PopupColumns.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="_03_DatabaseConnector.resx">
       <DependentUpon>_03_DatabaseConnector.cs</DependentUpon>
     </EmbeddedResource>
@@ -214,6 +224,7 @@
     <Content Include="Include\load_types.xml">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="Resources\1487105202_Database_copy_DynamoDB_Table.png" />
     <Content Include="Resources\get-logo.ico" />
     <Content Include="Include\datasource_parameters.xml">
       <SubType>Designer</SubType>

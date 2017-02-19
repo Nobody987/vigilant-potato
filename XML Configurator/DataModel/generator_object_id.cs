@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace XML_Configurator.DataModel
 {
     [Serializable]
-    public class generator_object_id
+    public class generator_object_id : database_table
     {
         string object_name;
         string object_reload_minutes;
