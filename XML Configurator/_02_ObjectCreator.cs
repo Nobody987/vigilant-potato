@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using XML_Configurator.DataModel;
 using System.Xml;
-using System.Drawing;
-using XML_Configurator.DatabaseConnect;
+using XML_Configurator.DataModel;
 
 namespace XML_Configurator
 {
@@ -1380,8 +1379,8 @@ namespace XML_Configurator
             textBox_transformation_statement.Text =
                 @"		*,
                 date(date#(PSAVEAK_AKDTDI,'YYYYMMDD'), 'DD.MM.YYYY')	AS PSAVEAK_AKDTDI_DATUM,
-		        time(time#(Right(trim('000000' &amp; PSAVEAK_AKTIDI),6),'hhmmss'), 'hh:mm:ss') as PSAVEAK_AKTIDI_TIME,
-		        1 as NEW_FIELD";
+                time(time#(Right(trim('000000' &amp; PSAVEAK_AKTIDI),6),'hhmmss'), 'hh:mm:ss') as PSAVEAK_AKTIDI_TIME,
+                1 as NEW_FIELD";
             textBox_additional_transformation_number_of_days.Text = "1";
             textBox_additional_transformation_number_of_months.Text = "1";
             textBox_additional_transformation_number_of_years.Text = "0";

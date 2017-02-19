@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Data.Odbc;
+using XML_Configurator.DatabaseConnect;
 using XML_Configurator.DataModel;
 using XML_Configurator.XMLBuilder;
-using XML_Configurator.DatabaseConnect;
 
 namespace XML_Configurator
 {

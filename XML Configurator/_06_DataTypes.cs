@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using XML_Configurator.DataModel;
@@ -33,7 +28,7 @@ namespace XML_Configurator
             dataGridView.Rows.Clear();
             foreach (data_type item in list_load_types)
             {
-                dataGridView.Rows.Add(new string[2] { item.Data_type_name, item.Data_type_return_value});
+                dataGridView.Rows.Add(new string[2] { item.Data_type_name, item.Data_type_return_value });
             }
             refresh_grid_view();
         }
