@@ -58,7 +58,7 @@
             // 
             // button_create_connection
             // 
-            this.button_create_connection.Location = new System.Drawing.Point(111, 37);
+            this.button_create_connection.Location = new System.Drawing.Point(111, 49);
             this.button_create_connection.Name = "button_create_connection";
             this.button_create_connection.Size = new System.Drawing.Size(145, 33);
             this.button_create_connection.TabIndex = 2;
