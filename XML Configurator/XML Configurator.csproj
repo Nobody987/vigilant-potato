@@ -88,12 +88,6 @@
     <Compile Include="DataModel\data_type.cs" />
     <Compile Include="DataModel\load_types.cs" />
     <Compile Include="DataModel\transformator_object_id.cs" />
-    <Compile Include="Form_test.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_test.Designer.cs">
-      <DependentUpon>Form_test.cs</DependentUpon>
-    </Compile>
     <Compile Include="_00_Controller.cs" />
     <Compile Include="_0201_PopupDatasource.cs">
       <SubType>Form</SubType>
@@ -146,13 +140,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TESTForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TESTForm.Designer.cs">
-      <DependentUpon>TESTForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TestingClass.cs" />
     <Compile Include="XMLBuilder\CommentBuilder.cs" />
     <Compile Include="XMLBuilder\GUIBuilder.cs" />
     <Compile Include="_05_LoadType.cs">
@@ -161,9 +148,6 @@
     <Compile Include="_05_LoadType.Designer.cs">
       <DependentUpon>_05_LoadType.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form_test.resx">
-      <DependentUpon>Form_test.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="_0201_PopupDatasource.resx">
       <DependentUpon>_0201_PopupDatasource.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,9 +170,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="TESTForm.resx">
-      <DependentUpon>TESTForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="_05_LoadType.resx">
       <DependentUpon>_05_LoadType.cs</DependentUpon>
