@@ -949,10 +949,7 @@ namespace XML_Configurator
             {
                 if (openFileDialogLocation.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (ListViewItem item in listView_all_objects.Items)
-                    {
-                        listView_all_objects.Items.Remove(item);
-                    }
+                    listView_all_objects.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
                     XmlDocument document = new XmlDocument();
                     document.Load(openFileDialogLocation.FileName.ToString());
@@ -963,6 +960,7 @@ namespace XML_Configurator
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
                             generator_object_id object_id_instance = new generator_object_id();
+
                             try
                             {
                                 object_id_instance.Object_name = new_object["object_name"].InnerText;
@@ -1162,10 +1160,7 @@ namespace XML_Configurator
             {
                 if (openFileDialogLocation.ShowDialog() == DialogResult.OK)
                 {
-                    foreach (ListViewItem item in listView_all_transformations.Items)
-                    {
-                        listView_all_transformations.Items.Remove(item);
-                    }
+                    listView_all_transformations.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
                     XmlDocument document = new XmlDocument();
                     document.Load(openFileDialogLocation.FileName.ToString());
@@ -1376,11 +1371,7 @@ namespace XML_Configurator
         {
             textBox_transformation_name.Text = "PSAVEAK";
             textBox_transformation_primary_key.Text = "PSAVEAK_AKKONZ & '_' & PSAVEAK_AKFIRM & '_' & PSAVEAK_AKAPN";
-            textBox_transformation_statement.Text =
-                @"		*,
-                date(date#(PSAVEAK_AKDTDI,'YYYYMMDD'), 'DD.MM.YYYY')	AS PSAVEAK_AKDTDI_DATUM,
-                time(time#(Right(trim('000000' &amp; PSAVEAK_AKTIDI),6),'hhmmss'), 'hh:mm:ss') as PSAVEAK_AKTIDI_TIME,
-                1 as NEW_FIELD";
+            textBox_transformation_statement.Text = "*,\r\ndate(date#(PSAVEAK_AKDTDI,'YYYYMMDD'), 'DD.MM.YYYY')	AS PSAVEAK_AKDTDI_DATUM,\r\ntime(time#(Right(trim('000000' &amp; PSAVEAK_AKTIDI),6),'hhmmss'), 'hh:mm:ss') as PSAVEAK_AKTIDI_TIME,\r\n1 as NEW_FIELD";
             textBox_additional_transformation_number_of_days.Text = "1";
             textBox_additional_transformation_number_of_months.Text = "1";
             textBox_additional_transformation_number_of_years.Text = "0";
@@ -1414,39 +1405,35 @@ namespace XML_Configurator
             }
 
             //String object_name = new Random().Next().ToString();
-            String object_name = textBox_object_name.Text;
+            string object_name = textBox_object_name.Text;
 
-            String object_reload_minutes = textBox_object_reload_minutes.Text;
-            String object_comment = textBox_object_comment.Text;
-            String object_primary_key = textBox_object_primary_key.Text;
-            String object_select_statement = generator_object_id.ConstructSelectStatement(textBox_object_select_statement.Text);
+            string object_reload_minutes = textBox_object_reload_minutes.Text;
+            string object_comment = textBox_object_comment.Text;
+            string object_primary_key = textBox_object_primary_key.Text;
+            string object_select_statement = generator_object_id.ConstructSelectStatement(textBox_object_select_statement.Text);
 
-            String select_statement_for_display = textBox_object_select_statement.Text;
+            string select_statement_for_display = textBox_object_select_statement.Text;
             //String select_statement_for_display_string_array = object_id.ConstructSelectStatement(this.textBox_object_select_statement);
-            String select_statement_for_display_string_array = textBox_object_select_statement.Text;
+            string select_statement_for_display_string_array = textBox_object_select_statement.Text;
             //String object_select_statement = select_statement_for_display_string_array;
 
-            String object_datetime_format = textBox_object_datetime_format.Text;
-            String object_date_format = textBox_object_date_format.Text;
-            String object_time_format = textBox_object_time_format.Text;
-            String object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
-            char object_active;
-            if (checkBox_object_active.Checked)
-            {
-                object_active = 'Y';
-            }
-            else
-            {
-                object_active = 'N';
-            }
-            String object_load_type = comboBox_object_load_type.SelectedItem.ToString();
-            String object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
-            String object_reorganization = textBox_object_reorganization.Text;
-            String object_transformation_statement = generator_object_id.ConstructSelectStatement(textBox_object_transformation_statement.Text);
-            String object_target_extraction_folder = textBox_object_target_extraction_folder.Text;
-            String object_target_extraction_filename = textBox_object_target_extraction_filename.Text;
+            string object_datetime_format = textBox_object_datetime_format.Text;
+            string object_date_format = textBox_object_date_format.Text;
+            string object_time_format = textBox_object_time_format.Text;
+            string object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
 
-            generator_object_id newItem = new generator_object_id(object_name, object_reload_minutes, object_comment, object_primary_key, select_statement_for_display_string_array, object_datetime_format, object_date_format, object_time_format, object_where_statement, object_active, object_load_type, object_fieldstoload_statement, object_reorganization, object_transformation_statement, object_target_extraction_folder, object_target_extraction_filename, select_statement_for_display, select_statement_for_display_string_array);
+            char object_active = checkBox_object_active.Checked ? 'Y' : 'N';
+
+            string object_load_type = comboBox_object_load_type.SelectedItem.ToString();
+            string object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
+            string object_reorganization = textBox_object_reorganization.Text;
+            string object_transformation_statement = generator_object_id.ConstructSelectStatement(textBox_object_transformation_statement.Text);
+            string object_target_extraction_folder = textBox_object_target_extraction_folder.Text;
+            string object_target_extraction_filename = textBox_object_target_extraction_filename.Text;
+
+            generator_object_id newItem = new generator_object_id(object_name, object_reload_minutes, object_comment, object_primary_key, select_statement_for_display_string_array,
+                object_datetime_format, object_date_format, object_time_format, object_where_statement, object_active, object_load_type, object_fieldstoload_statement, object_reorganization,
+                object_transformation_statement, object_target_extraction_folder, object_target_extraction_filename, select_statement_for_display, select_statement_for_display_string_array);
 
             //LIST_OBJECTS.Add(newItem);
 
@@ -1480,47 +1467,33 @@ namespace XML_Configurator
             //}
 
             //String object_name = new Random().Next().ToString();
-            String transformation_name = textBox_transformation_name.Text;
+            string transformation_name = textBox_transformation_name.Text;
 
-            String transformation_primary_key = textBox_transformation_primary_key.Text;
-            String transformation_statement = generator_object_id.ConstructSelectStatement(textBox_transformation_statement.Text);
+            string transformation_primary_key = textBox_transformation_primary_key.Text;
+            string transformation_statement = generator_object_id.ConstructSelectStatement(textBox_transformation_statement.Text);
 
             //String transformation_statement_for_display = this.textBox_transformation_statement.Text;
             //String select_statement_for_display_string_array = object_id.ConstructSelectStatement(this.textBox_object_select_statement);
             //String transformation_statement_for_display_string_array = this.textBox_transformation_statement.Text;
             //String object_select_statement = select_statement_for_display_string_array;
 
-            String additional_transformation_number_of_days = textBox_additional_transformation_number_of_days.Text;
-            String additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
-            String additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
-            String additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
-            String transformation_active;
-            if (checkBox_object_active.Checked)
-            {
-                transformation_active = "Y";
-            }
-            else
-            {
-                transformation_active = "N";
-            }
-            String transformation_incremental;
-            if (checkBox_transformation_incremental.Checked)
-            {
-                transformation_incremental = "Y";
-            }
-            else
-            {
-                transformation_incremental = "N";
-            }
+            string additional_transformation_number_of_days = textBox_additional_transformation_number_of_days.Text;
+            string additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
+            string additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
+            string additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
+            string transformation_active = checkBox_object_active.Checked ? "Y" : "N";
+            string transformation_incremental = checkBox_transformation_incremental.Checked ? "Y" : "N";
+            string additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
+            string transformation_source_folder = textBox_transformation_source_folder.Text;
+            string transformation_split_parameter = generator_object_id.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
+            string transformation_source_filename = textBox_transformation_source_filename.Text;
+            string transformation_target_folder = textBox_transformation_target_folder.Text;
+            string transformation_target_filename = textBox_transformation_target_filename.Text;
 
-            String additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
-            String transformation_source_folder = textBox_transformation_source_folder.Text;
-            String transformation_split_parameter = generator_object_id.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
-            String transformation_source_filename = textBox_transformation_source_filename.Text;
-            String transformation_target_folder = textBox_transformation_target_folder.Text;
-            String transformation_target_filename = textBox_transformation_target_filename.Text;
-
-            transformator_object_id newItem = new transformator_object_id(transformation_name, transformation_active, transformation_incremental, transformation_statement, transformation_split_parameter, transformation_primary_key, additional_transformation_split_parameters, additional_transformation_where_statement, additional_transformation_number_of_days, additional_transformation_number_of_months, additional_transformation_number_of_years, transformation_source_folder, transformation_source_filename, transformation_target_folder, transformation_target_filename);
+            transformator_object_id newItem = new transformator_object_id(transformation_name, transformation_active, transformation_incremental, transformation_statement,
+                transformation_split_parameter, transformation_primary_key, additional_transformation_split_parameters, additional_transformation_where_statement,
+                additional_transformation_number_of_days, additional_transformation_number_of_months, additional_transformation_number_of_years, transformation_source_folder,
+                transformation_source_filename, transformation_target_folder, transformation_target_filename);
 
             //LIST_OBJECTS.Add(newItem);
 
@@ -1536,7 +1509,7 @@ namespace XML_Configurator
         }
         private void update_generator_item()
         {
-            if (textBox_object_name.Text == "")
+            if (textBox_object_name.Text == "") // check how to fusion into single method this and create/ same for Transofmration 
             {
                 MessageBox.Show("Name of the object must be filled!");
                 return;
@@ -1554,14 +1527,7 @@ namespace XML_Configurator
             obj.Object_date_format = textBox_object_date_format.Text;
             obj.Object_time_format = textBox_object_time_format.Text;
             obj.Object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
-            if (checkBox_object_active.Checked)
-            {
-                obj.Object_active = 'Y';
-            }
-            else
-            {
-                obj.Object_active = 'N';
-            }
+            obj.Object_active = checkBox_object_active.Checked ? 'Y' : 'N';
             obj.Object_load_type = comboBox_object_load_type.SelectedItem.ToString();
             obj.Object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
             obj.Object_reorganization = textBox_object_reorganization.Text;
@@ -1592,22 +1558,8 @@ namespace XML_Configurator
             obj.Additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
             obj.Additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
             obj.Additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
-            if (checkBox_transformation_active.Checked)
-            {
-                obj.Transformation_active = "Y";
-            }
-            else
-            {
-                obj.Transformation_active = "N";
-            }
-            if (checkBox_transformation_incremental.Checked)
-            {
-                obj.Transformation_incremental = "Y";
-            }
-            else
-            {
-                obj.Transformation_incremental = "N";
-            }
+            obj.Transformation_active = checkBox_transformation_active.Checked ? "Y" : "N";
+            obj.Transformation_incremental = checkBox_transformation_incremental.Checked ? "Y" : "N";
             obj.Additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
             obj.Transformation_source_folder = textBox_transformation_source_folder.Text;
             obj.Transformation_split_parameter = generator_object_id.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
@@ -1623,19 +1575,13 @@ namespace XML_Configurator
         private void create_generator_xml()
         {
             //TO DO validation
-            string filename;
-            string folder_path;
-
             try
             {
                 if (textBox_file_name.Text != "" && toolStripTextBox_folder_path.Text != "")
                 {
-                    filename = textBox_file_name.Text;
-                    folder_path = toolStripTextBox_folder_path.Text;
+                    archive_file(textBox_file_name.Text, toolStripTextBox_folder_path.Text);
 
-                    archive_file(filename, folder_path);
-
-                    XmlTextWriter writer = new XmlTextWriter(folder_path + @"\" + filename, Encoding.UTF8);
+                    XmlTextWriter writer = new XmlTextWriter(textBox_file_name.Text + "\\" + toolStripTextBox_folder_path.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
 
@@ -1673,7 +1619,8 @@ namespace XML_Configurator
                                 writer.WriteStartElement(property.Name.ToLower());
                                 if (property.GetValue(item).ToString() != "")
                                 {
-                                    if (property.Name == "Object_select_statement" || property.Name == "Object_where_statement" || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement")
+                                    if (property.Name == "Object_select_statement" || property.Name == "Object_where_statement"
+                                        || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement")
                                     {
                                         writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
                                     }
@@ -1719,19 +1666,14 @@ namespace XML_Configurator
         private void create_tranformation_xml()
         {
             //TO DO validation
-            string filename;
-            string folder_path;
-
             try
             {
                 if (textBox_file_name_2.Text != "" && toolStripTextBox_folder_path.Text != "")
                 {
-                    filename = textBox_file_name_2.Text;
-                    folder_path = toolStripTextBox_folder_path.Text;
 
-                    archive_file(folder_path, filename);
+                    archive_file(textBox_file_name_2.Text, toolStripTextBox_folder_path.Text);
 
-                    XmlTextWriter writer = new XmlTextWriter(folder_path + @"\" + filename, Encoding.UTF8);
+                    XmlTextWriter writer = new XmlTextWriter(textBox_file_name_2.Text + "\\" + toolStripTextBox_folder_path.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
 
@@ -1811,7 +1753,6 @@ namespace XML_Configurator
                 MessageBox.Show("Please select datasource", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            datasource datasource = (datasource)toolStripComboBox_loaded_datasources.SelectedItem;
             List<object> object_list = new List<object>();
 
             string query_string = textBox_object_select_statement.Text;
@@ -1842,7 +1783,7 @@ namespace XML_Configurator
 
             try
             {
-                object_list = _controller.return_database_query(datasource, query_string);
+                object_list = _controller.return_database_query((datasource)toolStripComboBox_loaded_datasources.SelectedItem, query_string);
 
                 string message = null;
                 foreach (var item in object_list)
@@ -1879,7 +1820,7 @@ namespace XML_Configurator
             if (System.IO.File.Exists(folder_path + filename))
             {
                 System.IO.Directory.CreateDirectory(folder_path + @"\Archive");
-                System.IO.File.Copy(folder_path + @"\" + filename, folder_path + @"\Archive\" + filename.Replace(".xml", "_") + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".xml");
+                System.IO.File.Copy(folder_path + "\\" + filename, folder_path + "\\Archive\\" + filename.Replace(".xml", "_") + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".xml");
             }
         }
 
