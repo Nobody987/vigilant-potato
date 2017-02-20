@@ -108,13 +108,13 @@ namespace XML_Configurator
         {
             if (OC == null)
             {
-                this.Hide();
+                Hide();
                 OC = new _02_ObjectCreator(list_selected_tables, ds, this);
                 OC.Visible = true;
             }
             else
             {
-                this.Hide();
+                Hide();
                 OC.add_database_objects(list_selected_tables, ds, this);
                 OC.Show();
             }
@@ -124,17 +124,17 @@ namespace XML_Configurator
         {
             foreach (Control item in list_controls)
             {
-                this.Controls.Remove(item);
-                this.Refresh();
+                Controls.Remove(item);
+                Refresh();
             }
             datasource ds = (datasource)comboBox_connection_type.SelectedItem;
             list_controls = GUIBuilder.GenerateLabelsAndTextBoxes(600, 14, 1000, 370, ds.get_properties_and_values());
 
             foreach (Control item in list_controls)
             {
-                this.Controls.Add(item);
+                Controls.Add(item);
             }
-            this.Refresh();
+            Refresh();
         }
 
         private void textBox_search_loaded_tables_TextChanged(object sender, EventArgs e)

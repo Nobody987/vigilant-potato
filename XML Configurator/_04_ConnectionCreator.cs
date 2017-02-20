@@ -20,18 +20,18 @@ namespace XML_Configurator
             InitializeComponent();
             foreach (Control item in list_controls)
             {
-                this.Controls.Remove(item);
-                this.Refresh();
+                Controls.Remove(item);
+                Refresh();
             }
             datasource ds = new datasource();
 
             list_controls = GUIBuilder.GenerateLabelsAndTextBoxes(12, 41, 400, 300, ds.GetType().GetProperties());
             foreach (Control control in list_controls)
             {
-                this.Controls.Add(control);
+                Controls.Add(control);
             }
 
-            this.Refresh();
+            Refresh();
         }
 
         private void button_load_connections_Click(object sender, EventArgs e)
@@ -62,7 +62,6 @@ namespace XML_Configurator
                         }
                     }
                 }
-                this.Refresh();
             }
             else
             {
@@ -71,10 +70,10 @@ namespace XML_Configurator
                     if (item is TextBox)
                     {
                         item.Text = "";
-                        this.Refresh();
                     }
                 }
             }
+            Refresh();
         }
 
         private void clear_all_controls()
@@ -86,7 +85,7 @@ namespace XML_Configurator
                     item.Text = "";
                 }
             }
-            this.Refresh();
+            Refresh();
         }
 
         private void button_remove_Click(object sender, EventArgs e)
@@ -118,7 +117,7 @@ namespace XML_Configurator
 
             //listBox_connections.Items.Add(ds);
             list_datasource.Add(ds);
-            this.Refresh();
+            Refresh();
             //listBox_connections.DataSource();
         }
 
@@ -165,7 +164,7 @@ namespace XML_Configurator
 
                 writer.Formatting = Formatting.Indented;
 
-                writer.WriteComment(XMLBuilder.CommentBuilder.comment);
+                writer.WriteComment(CommentBuilder.comment);
 
                 writer.WriteStartElement("datasources");
 
@@ -174,7 +173,7 @@ namespace XML_Configurator
                     datasource item = (datasource)list_item;
                     writer.WriteStartElement("datasource");
                     writer.Formatting = Formatting.None;
-                    writer.WriteComment(XMLBuilder.CommentBuilder.ItemCommentBuilder(item));
+                    writer.WriteComment(CommentBuilder.ItemCommentBuilder(item));
                     writer.Formatting = Formatting.Indented;
                     var properties = item.GetType().GetProperties();
                     foreach (var property in properties)

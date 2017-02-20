@@ -134,11 +134,11 @@ namespace XML_Configurator
             textBox_object_transformation_statement.Text = transformation_builder.ToString();
 
             ///////////////////////////////////////////////////////////
-            //  Fields to load Statement
+            //  Transformation Statement
             ///////////////////////////////////////////////////////////
 
             ///////////////////////////////////////////////////////////
-            //  Transformation Statement
+            //  Fields to load Statement
             ///////////////////////////////////////////////////////////
 
             StringBuilder fields_to_load_builder = new StringBuilder();
@@ -226,18 +226,10 @@ namespace XML_Configurator
 
         private bool check_select_statement(string text)
         {
-            string word = text.Substring(text.LastIndexOf("SELECT"), text.IndexOf("FROM"));
-            if (word.Contains('*'))
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return text.Substring(text.LastIndexOf("SELECT"), text.IndexOf("FROM")).Contains('*') ? false : true;
         }
 
-        private bool validate_control(IEnumerable<TextBox> control_collection, string v)
+        private bool validate_control(IEnumerable<TextBox> control_collection, string v) //da li je dobar return?
         {
             int number_of_errors = 0;
 
@@ -264,14 +256,7 @@ namespace XML_Configurator
                 }
             }
 
-            if (number_of_errors > 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return number_of_errors > 0 ? true : false;
         }
 
         private void listview_check_colors(ListView listview_object)
@@ -316,14 +301,7 @@ namespace XML_Configurator
             obj.Object_date_format = textBox_object_date_format.Text;
             obj.Object_time_format = textBox_object_time_format.Text;
             obj.Object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
-            if (checkBox_object_active.Checked)
-            {
-                obj.Object_active = 'Y';
-            }
-            else
-            {
-                obj.Object_active = 'N';
-            }
+            obj.Object_active = checkBox_object_active.Checked ? 'Y' : 'N';
             obj.Object_load_type = comboBox_object_load_type.SelectedItem.ToString();
             obj.Object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
             obj.Object_reorganization = textBox_object_reorganization.Text;
@@ -381,15 +359,8 @@ namespace XML_Configurator
                 textBox_object_datetime_format.Text = obj.Object_datetime_format;
                 textBox_object_date_format.Text = obj.Object_date_format;
                 textBox_object_time_format.Text = obj.Object_time_format;
-                textBox_object_where_statement.Text = obj.Object_where_statement; //ovde treba srediti da se formatira koa i select
-                if (char.ToUpper(obj.Object_active) == 'Y')
-                {
-                    checkBox_object_active.Checked = true;
-                }
-                else
-                {
-                    checkBox_object_active.Checked = false;
-                }
+                textBox_object_where_statement.Text = obj.Object_where_statement; //ovde treba srediti da se formatira kao i select
+                checkBox_object_active.Checked = char.ToUpper(obj.Object_active) == 'Y' ? true : false;
 
                 comboBox_object_load_type.SelectedIndex = comboBox_object_load_type.FindStringExact(list_load_types.Single(s => s.Load_type_name == obj.Object_load_type).ToString());
 
@@ -447,24 +418,8 @@ namespace XML_Configurator
                 textBox_additional_transformation_number_of_months.Text = obj.Additional_transformation_number_of_months;
                 textBox_additional_transformation_number_of_years.Text = obj.Additional_transformation_number_of_years;
                 textBox_additional_transformation_where_statement.Text = obj.Additional_transformation_where_statement; //ovde treba srediti da se formatira koa i select
-
-                if (obj.Transformation_active.ToUpper() == "Y")
-                {
-                    checkBox_transformation_active.Checked = true;
-                }
-                else
-                {
-                    checkBox_transformation_active.Checked = false;
-                }
-                if (obj.Transformation_incremental.ToUpper() == "Y")
-                {
-                    checkBox_transformation_incremental.Checked = true;
-                }
-                else
-                {
-                    checkBox_transformation_incremental.Checked = false;
-                }
-
+                checkBox_transformation_active.Checked = obj.Transformation_active.ToUpper() == "Y" ? true : false;
+                checkBox_transformation_incremental.Checked = obj.Transformation_incremental.ToUpper() == "Y" ? true : false;
                 textBox_additional_transformation_split_parameters.Text = obj.Additional_transformation_split_parameters;
                 textBox_transformation_split_parameter.Text = obj.Transformation_split_parameter;
 
@@ -1592,7 +1547,7 @@ namespace XML_Configurator
                     writer.WriteStartElement("datasource");
 
                     writer.WriteStartElement("datasource_name");
-                    if (toolStripComboBox_loaded_datasources.SelectedIndex != -1)
+                    if (toolStripComboBox_loaded_datasources.SelectedIndex != -1) // moze se skratiti
                     {
                         writer.WriteString(toolStripComboBox_loaded_datasources.SelectedItem.ToString());
                     }
@@ -1620,7 +1575,7 @@ namespace XML_Configurator
                                 if (property.GetValue(item).ToString() != "")
                                 {
                                     if (property.Name == "Object_select_statement" || property.Name == "Object_where_statement"
-                                        || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement")
+                                        || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement") //moze se skratiti?
                                     {
                                         writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
                                     }
@@ -1707,7 +1662,7 @@ namespace XML_Configurator
                             writer.WriteStartElement(property.Name.ToLower());
                             if (property.GetValue(item).ToString() != "")
                             {
-                                if (property.Name == "Transformation_statement")
+                                if (property.Name == "Transformation_statement") //moze se skratiti
                                 {
                                     writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
                                 }
@@ -1819,7 +1774,7 @@ namespace XML_Configurator
             }
             if (System.IO.File.Exists(folder_path + filename))
             {
-                System.IO.Directory.CreateDirectory(folder_path + @"\Archive");
+                System.IO.Directory.CreateDirectory(folder_path + "\\Archive");
                 System.IO.File.Copy(folder_path + "\\" + filename, folder_path + "\\Archive\\" + filename.Replace(".xml", "_") + DateTime.Now.ToString("yyyy_MM_dd_hh_mm_ss") + ".xml");
             }
         }
