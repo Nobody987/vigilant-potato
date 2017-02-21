@@ -85,16 +85,4 @@
     <datasource_catalog>324</datasource_catalog>
     <datasource_database>543</datasource_database>
   </datasource>
-  <datasource><!--F40004DE.F191                                                                   -->
-    <connection_string> </connection_string>
-    <datasource_name>F40004DE.F191</datasource_name>
-    <database_ip_address> </database_ip_address>
-    <datasource_username> </datasource_username>
-    <datasource_password> </datasource_password>
-    <datasource_encrypted_credentials> </datasource_encrypted_credentials>
-    <datasource_connection_type> </datasource_connection_type>
-    <datasource_library> </datasource_library>
-    <datasource_catalog> </datasource_catalog>
-    <datasource_database> </datasource_database>
-  </datasource>
 </datasources>

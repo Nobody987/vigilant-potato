@@ -8,8 +8,8 @@ namespace XML_Configurator.DataModel
 {
     public class datasource
     {
-        string connection_string;
         string datasource_name;
+        string connection_string;
         string datasource_database;
         string datasource_username;
         string datasource_password;
@@ -23,10 +23,10 @@ namespace XML_Configurator.DataModel
         {
         }
 
-        public datasource(string connection_string, string datasource_name, string datasource_database, string datasource_username, string datasource_password, string datasource_encrypted_credentials, string datasource_connection_type, string datasource_library, string datasource_catalog, string database_ip_address)
+        public datasource(string datasource_name, string connection_string, string datasource_database, string datasource_username, string datasource_password, string datasource_encrypted_credentials, string datasource_connection_type, string datasource_library, string datasource_catalog, string database_ip_address)
         {
-            this.connection_string = connection_string;
             this.datasource_name = datasource_name;
+            this.connection_string = connection_string;
             this.datasource_database = datasource_database;
             this.datasource_username = datasource_username;
             this.datasource_password = datasource_password;

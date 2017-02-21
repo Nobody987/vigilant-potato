@@ -30,15 +30,36 @@ namespace XML_Configurator
             {
                 Controls.Add(control);
             }
+            loadConnections();
+            Refresh();
+        }
 
+        public _04_ConnectionCreator(string datasourceName)
+        {
+            InitializeComponent();
+            datasource ds = new datasource(datasourceName, null, null, null, null, null, null, null, null, null);
+
+            list_controls = GUIBuilder.GenerateLabelsAndTextBoxes(12, 41, 400, 300, ds.GetType().GetProperties());
+            foreach (Control control in list_controls)
+            {
+                Controls.Add(control);
+            }
+            loadConnections();
+            addToList(datasourceName);
+            listBox_connections.SelectedIndex = listBox_connections.Items.Count - 1;
             Refresh();
         }
 
         private void button_load_connections_Click(object sender, EventArgs e)
         {
+            loadConnections();
+            //listBox_connections.Items.AddRange(list_datasource.ToArray());
+        }
+
+        private void loadConnections()
+        {
             list_datasource = new BindingList<datasource>(datasource.read_datasource_file());
             listBox_connections.DataSource = list_datasource;
-            //listBox_connections.Items.AddRange(list_datasource.ToArray());
         }
 
         private void listBox_connections_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,41 +111,51 @@ namespace XML_Configurator
 
         private void button_remove_Click(object sender, EventArgs e)
         {
-            list_datasource.RemoveAt(listBox_connections.SelectedIndex);
-            listBox_connections_SelectedIndexChanged(this, null);
-            //listBox_connections.SelectedItem = null;
-            //this.Refresh();
+            DialogResult result = MessageBox.Show("Would you like to remove selected connection?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+
+                list_datasource.RemoveAt(listBox_connections.SelectedIndex);
+                listBox_connections_SelectedIndexChanged(this, null);
+            }
+            else return;
         }
 
         private void button_add_to_list_Click(object sender, EventArgs e)
         {
-            datasource ds = new datasource();
-            IList<PropertyInfo> props = new List<PropertyInfo>(ds.GetType().GetProperties());
+            //addToList();
+            //listBox_connections.DataSource();
+        }
 
-            foreach (var control in list_controls)
-            {
-                if (control is TextBox)
-                {
-                    foreach (PropertyInfo prop in props)
-                    {
-                        if (control.Name == prop.Name)
-                        {
-                            prop.SetValue(ds, control.Text);
-                        }
-                    }
-                }
-            }
+        private void addToList(string datasourceName)
+        {
+            datasource ds = new datasource(datasourceName, null, null, null, null, null, null, null, null, null);
+            list_datasource.Add(ds);
+            //IList<PropertyInfo> props = new List<PropertyInfo>(ds.GetType().GetProperties());
+
+            //foreach (var control in list_controls)
+            //{
+            //    if (control is TextBox)
+            //    {
+            //        foreach (PropertyInfo prop in props)
+            //        {
+            //            if (control.Name == prop.Name)
+            //            {
+            //                prop.SetValue(ds, control.Text);
+            //            }
+            //        }
+            //    }
+            //}
 
             //listBox_connections.Items.Add(ds);
-            list_datasource.Add(ds);
             Refresh();
-            //listBox_connections.DataSource();
         }
 
         private void button_create_new_Click(object sender, EventArgs e)
         {
             clear_all_controls();
-            listBox_connections.SelectedItems.Clear();
+            addToList("New Connection");
+            listBox_connections.SelectedIndex = listBox_connections.Items.Count - 1;
         }
 
         private void button_update_Click(object sender, EventArgs e)
@@ -201,6 +232,8 @@ namespace XML_Configurator
                 writer.Close();
 
                 MessageBox.Show("File successfully saved!");
+
+                OnConnectionListUpdated(); //calls update on all subscribers
             }
             catch (System.IO.DirectoryNotFoundException)
             {
@@ -212,6 +245,13 @@ namespace XML_Configurator
             //    MessageBox.Show("General Error!");
             //    return;
             //}
+        }
+
+        public event EventHandler ConnectionListUpdated;
+
+        protected virtual void OnConnectionListUpdated()
+        {
+            ConnectionListUpdated?.Invoke(this, EventArgs.Empty);
         }
     }
 }

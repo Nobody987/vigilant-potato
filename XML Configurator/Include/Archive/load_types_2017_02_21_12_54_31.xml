@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--TO BE ADDED-->
+<load_types>
+  <load_type><!--FULL                                                                            -->
+    <load_type_name>FULL</load_type_name>
+    <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
+    <load_type_file_sufix>_$(vCurrentLoadDate)_$(vCurrentLoadTime)</load_type_file_sufix>
+  </load_type>
+  <load_type><!--DELTA                                                                           -->
+    <load_type_name>DELTA</load_type_name>
+    <load_type_file_prefix>10 - DELTA\</load_type_file_prefix>
+    <load_type_file_sufix> </load_type_file_sufix>
+  </load_type>
+  <load_type><!--ad                                                                              -->
+    <load_type_name>ad</load_type_name>
+    <load_type_file_prefix>asdref</load_type_file_prefix>
+    <load_type_file_sufix>rfafra</load_type_file_sufix>
+  </load_type>
+  <load_type><!--arfa                                                                            -->
+    <load_type_name>arfa</load_type_name>
+    <load_type_file_prefix>afr</load_type_file_prefix>
+    <load_type_file_sufix>fra</load_type_file_sufix>
+  </load_type>
+</load_types>

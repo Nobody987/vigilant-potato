@@ -29,34 +29,22 @@
         private void InitializeComponent()
         {
             this.button_create_new = new System.Windows.Forms.Button();
-            this.button_load_connections = new System.Windows.Forms.Button();
             this.button_save = new System.Windows.Forms.Button();
             this.openFileDialogLocation = new System.Windows.Forms.OpenFileDialog();
             this.button_remove = new System.Windows.Forms.Button();
             this.listBox_connections = new System.Windows.Forms.ListBox();
-            this.button_add_to_list = new System.Windows.Forms.Button();
             this.button_update = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button_create_new
             // 
-            this.button_create_new.Location = new System.Drawing.Point(93, 12);
+            this.button_create_new.Location = new System.Drawing.Point(12, 12);
             this.button_create_new.Name = "button_create_new";
             this.button_create_new.Size = new System.Drawing.Size(75, 23);
             this.button_create_new.TabIndex = 0;
             this.button_create_new.Text = "Create New";
             this.button_create_new.UseVisualStyleBackColor = true;
             this.button_create_new.Click += new System.EventHandler(this.button_create_new_Click);
-            // 
-            // button_load_connections
-            // 
-            this.button_load_connections.Location = new System.Drawing.Point(12, 12);
-            this.button_load_connections.Name = "button_load_connections";
-            this.button_load_connections.Size = new System.Drawing.Size(75, 23);
-            this.button_load_connections.TabIndex = 1;
-            this.button_load_connections.Text = "Load";
-            this.button_load_connections.UseVisualStyleBackColor = true;
-            this.button_load_connections.Click += new System.EventHandler(this.button_load_connections_Click);
             // 
             // button_save
             // 
@@ -91,19 +79,9 @@
             this.listBox_connections.TabIndex = 53;
             this.listBox_connections.SelectedIndexChanged += new System.EventHandler(this.listBox_connections_SelectedIndexChanged);
             // 
-            // button_add_to_list
-            // 
-            this.button_add_to_list.Location = new System.Drawing.Point(369, 12);
-            this.button_add_to_list.Name = "button_add_to_list";
-            this.button_add_to_list.Size = new System.Drawing.Size(75, 23);
-            this.button_add_to_list.TabIndex = 54;
-            this.button_add_to_list.Text = "Add To List";
-            this.button_add_to_list.UseVisualStyleBackColor = true;
-            this.button_add_to_list.Click += new System.EventHandler(this.button_add_to_list_Click);
-            // 
             // button_update
             // 
-            this.button_update.Location = new System.Drawing.Point(288, 12);
+            this.button_update.Location = new System.Drawing.Point(369, 12);
             this.button_update.Name = "button_update";
             this.button_update.Size = new System.Drawing.Size(75, 23);
             this.button_update.TabIndex = 55;
@@ -117,13 +95,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 564);
             this.Controls.Add(this.button_update);
-            this.Controls.Add(this.button_add_to_list);
             this.Controls.Add(this.listBox_connections);
             this.Controls.Add(this.button_remove);
             this.Controls.Add(this.button_save);
-            this.Controls.Add(this.button_load_connections);
             this.Controls.Add(this.button_create_new);
-            this.Name = "ConnectionCreator";
+            this.Name = "_04_ConnectionCreator";
             this.Text = "ConnectionCreator";
             this.ResumeLayout(false);
 
@@ -132,12 +108,10 @@
         #endregion
 
         private System.Windows.Forms.Button button_create_new;
-        private System.Windows.Forms.Button button_load_connections;
         private System.Windows.Forms.Button button_save;
         private System.Windows.Forms.OpenFileDialog openFileDialogLocation;
         private System.Windows.Forms.Button button_remove;
         private System.Windows.Forms.ListBox listBox_connections;
-        private System.Windows.Forms.Button button_add_to_list;
         private System.Windows.Forms.Button button_update;
     }
 }

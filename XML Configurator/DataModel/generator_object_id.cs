@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace XML_Configurator.DataModel
 {
     [Serializable]
-    public class generator_object_id : database_table
+    public class generator_object_id
     {
         string object_name;
         string object_reload_minutes;
@@ -208,7 +208,7 @@ namespace XML_Configurator.DataModel
             string object_select_statement = null;
             for (int Line = 0; Line < array_statement_text.Count(); Line++)
             {
-                    object_select_statement = object_select_statement + array_statement_text[Line].Trim() + '\r' + '\n';
+                object_select_statement = object_select_statement + array_statement_text[Line].Trim() + '\r' + '\n';
             }
             object_select_statement = object_select_statement + '\r' + '\n';
             return object_select_statement;

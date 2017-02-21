@@ -32,7 +32,7 @@ namespace XML_Configurator
             list_data_types = data_type.read_data_type_file();
             comboBox_object_load_type.Items.AddRange(load_types.read_load_types_file().ToArray());
             comboBox_object_load_type.SelectedIndex = 0;
-            toolStripComboBox_loaded_datasources.Items.AddRange(datasource.read_datasource_file().ToArray());
+            populateComboBox();
 
             populate_listview_all_objects();
             if (listView_all_objects.SelectedItems.Count == 0)
@@ -41,6 +41,12 @@ namespace XML_Configurator
             }
             textBox_file_name.Text = "XML_FILE.xml";
             toolStripTextBox_folder_path.Text = AppDomain.CurrentDomain.BaseDirectory;
+        }
+
+        private void populateComboBox()
+        {
+            toolStripComboBox_loaded_datasources.Items.Clear();
+            toolStripComboBox_loaded_datasources.Items.AddRange(datasource.read_datasource_file().ToArray());
         }
 
         private void populate_listview_all_objects()
@@ -185,7 +191,9 @@ namespace XML_Configurator
         private string write_multiline_statement(string v)
         {
             string return_string = "";
-            string[] string_array = v.Trim().Replace("\t", "").Split("\r\n".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            //string[] string_array = v.Trim().Replace("\t", "").Split("\r\n".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+            string[] string_array = v.Trim().Split("\r\n".ToArray(), StringSplitOptions.RemoveEmptyEntries);
+
             for (int i = 0; i < string_array.Length; i++)
             {
                 if (!string.IsNullOrEmpty(string_array[i].Trim()))
@@ -1056,12 +1064,12 @@ namespace XML_Configurator
                             listView_all_objects.Items.Add(ListItem);
 
                             listview_check_colors(listView_all_objects);
-                            if (listView_all_objects.Items.Count > 0)
-                            {
-                                listView_all_objects.Items[0].Selected = true;
-                                listView_all_objects.Select();
-                            }
                         }
+                    }
+                    if (listView_all_objects.Items.Count > 0)
+                    {
+                        listView_all_objects.Items[0].Selected = true;
+                        listView_all_objects.Select();
                     }
 
                     if (document.DocumentElement.SelectSingleNode("/datasource/datasource_name") != null)
@@ -1073,6 +1081,14 @@ namespace XML_Configurator
                             if (toolStripComboBox_loaded_datasources.SelectedIndex == -1)
                             {
                                 DialogResult dialog = MessageBox.Show("Warning! Datasource definition for " + datasource_node.InnerText + " does not exists. \n\nDo you want to create datasource definition now?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                if (dialog == DialogResult.Yes)
+                                {
+                                    var connectionCreator = new _04_ConnectionCreator(datasource_node.InnerText);
+                                    connectionCreator.Show();
+
+                                    //add subsciption to ConnectionListUpdated
+                                    connectionCreator.ConnectionListUpdated += OnConnectionListUpdated;
+                                }
                             }
                         }
                     }
@@ -1250,12 +1266,12 @@ namespace XML_Configurator
                             listView_all_transformations.Items.Add(ListItem);
 
                             listview_check_colors(listView_all_transformations);
-                            if (listView_all_transformations.Items.Count > 0)
-                            {
-                                listView_all_transformations.Items[0].Selected = true;
-                                listView_all_transformations.Select();
-                            }
                         }
+                    }
+                    if (listView_all_transformations.Items.Count > 0)
+                    {
+                        listView_all_transformations.Items[0].Selected = true;
+                        listView_all_transformations.Select();
                     }
 
                     //if (document.DocumentElement.SelectSingleNode("/datasource/datasource_name") != null)
@@ -1536,7 +1552,7 @@ namespace XML_Configurator
                 {
                     archive_file(textBox_file_name.Text, toolStripTextBox_folder_path.Text);
 
-                    XmlTextWriter writer = new XmlTextWriter(textBox_file_name.Text + "\\" + toolStripTextBox_folder_path.Text, Encoding.UTF8);
+                    XmlTextWriter writer = new XmlTextWriter(toolStripTextBox_folder_path.Text + "\\" + textBox_file_name.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
 
@@ -1628,7 +1644,7 @@ namespace XML_Configurator
 
                     archive_file(textBox_file_name_2.Text, toolStripTextBox_folder_path.Text);
 
-                    XmlTextWriter writer = new XmlTextWriter(textBox_file_name_2.Text + "\\" + toolStripTextBox_folder_path.Text, Encoding.UTF8);
+                    XmlTextWriter writer = new XmlTextWriter(toolStripTextBox_folder_path.Text + "\\" + textBox_file_name_2.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
 
@@ -1781,8 +1797,37 @@ namespace XML_Configurator
 
         private void button_select_columns_Click(object sender, EventArgs e)
         {
-            _0202_PopupColumns popup = new _0202_PopupColumns((generator_object_id)listView_all_objects.SelectedItems[0]);
-            popup.Visible = true;
+            //_0202_PopupColumns popup = new _0202_PopupColumns((generator_object_id)listView_all_objects.SelectedItems[0]);
+            //popup.Visible = true;
+        }
+
+        public void OnConnectionListUpdated(object source, EventArgs e)
+        {
+            populateComboBox();
+            Console.WriteLine("ComboBox repopulated!");
+        }
+
+        //private void textBox_object_select_statement_TextChanged(object sender, EventArgs e)
+        //{
+        //    CheckKeyword(textBox_object_select_statement ,"SELECT", Color.Purple, 0);
+        //    CheckKeyword(textBox_object_select_statement, "if", Color.Green, 0);
+        //}
+
+        private void CheckKeyword(RichTextBox RichTextBox, string word, Color color, int startIndex) //ovo treba proveriti kako se moze iskoristiti da se menja boja kljucnih reci. Trenutno se ne korsiti
+        {
+            if (RichTextBox.Text.ToUpper().Contains(word.ToUpper()))
+            {
+                int index = -1;
+                int selectStart = RichTextBox.SelectionStart;
+
+                while ((index = RichTextBox.Text.ToUpper().IndexOf(word.ToUpper(), (index + 1))) != -1)
+                {
+                    RichTextBox.Select((index + startIndex), word.ToUpper().Length);
+                    RichTextBox.SelectionColor = color;
+                    RichTextBox.Select(selectStart, 0);
+                    RichTextBox.SelectionColor = Color.Black;
+                }
+            }
         }
     }
 }

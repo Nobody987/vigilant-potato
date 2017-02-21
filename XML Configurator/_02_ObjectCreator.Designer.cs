@@ -1,6 +1,4 @@
-﻿using XML_Configurator.Custom.Controls;
-
-namespace XML_Configurator
+﻿namespace XML_Configurator
 {
     public partial class _02_ObjectCreator
     {
@@ -40,6 +38,17 @@ namespace XML_Configurator
             this.button_set_all_notactive = new System.Windows.Forms.Button();
             this.button_set_all_active = new System.Windows.Forms.Button();
             this.button_go_back_database_connector = new System.Windows.Forms.Button();
+            this.button_select_columns = new System.Windows.Forms.Button();
+            this.button_next_transform = new System.Windows.Forms.Button();
+            this.button_remove_all_listviewitems = new System.Windows.Forms.Button();
+            this.button_delete_list_item = new System.Windows.Forms.Button();
+            this.button_list_item_move_down = new System.Windows.Forms.Button();
+            this.button_list_item_move_up = new System.Windows.Forms.Button();
+            this.button_back_generator = new System.Windows.Forms.Button();
+            this.button_remove_all_listviewitems_2 = new System.Windows.Forms.Button();
+            this.button_list_item_move_down_2 = new System.Windows.Forms.Button();
+            this.button_list_item_move_up_2 = new System.Windows.Forms.Button();
+            this.button_delete_list_item_2 = new System.Windows.Forms.Button();
             this.EP = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabTransformation = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
@@ -120,33 +129,23 @@ namespace XML_Configurator
             this.label_object_target_extraction_folder = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel_save = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripTextBox_folder_path = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel_database = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripComboBox_loaded_datasources = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButton_load_xml = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_load_sample_object = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_create_object = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_update_object = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton_create_xml = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton_execute_test_statement = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel_save = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBox_folder_path = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton_browse = new System.Windows.Forms.ToolStripButton();
-            this.button_select_columns = new System.Windows.Forms.Button();
-            this.button_next_transform = new System.Windows.Forms.Button();
-            this.button_remove_all_listviewitems = new System.Windows.Forms.Button();
-            this.button_delete_list_item = new System.Windows.Forms.Button();
-            this.button_list_item_move_down = new System.Windows.Forms.Button();
-            this.button_list_item_move_up = new System.Windows.Forms.Button();
-            this.button_back_generator = new System.Windows.Forms.Button();
-            this.button_remove_all_listviewitems_2 = new System.Windows.Forms.Button();
-            this.button_list_item_move_down_2 = new System.Windows.Forms.Button();
-            this.button_list_item_move_up_2 = new System.Windows.Forms.Button();
-            this.button_delete_list_item_2 = new System.Windows.Forms.Button();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel_database = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBox_loaded_datasources = new System.Windows.Forms.ToolStripComboBox();
+            this.tabAggregation = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.EP)).BeginInit();
             this.tabTransformation.SuspendLayout();
             this.tabGenerator.SuspendLayout();
@@ -220,6 +219,141 @@ namespace XML_Configurator
             this.toolTips.SetToolTip(this.button_go_back_database_connector, "Return to database connection screen");
             this.button_go_back_database_connector.UseVisualStyleBackColor = true;
             this.button_go_back_database_connector.Click += new System.EventHandler(this.button_go_back_database_connector_Click);
+            // 
+            // button_select_columns
+            // 
+            this.button_select_columns.BackgroundImage = global::XML_Configurator.Properties.Resources._1487105202_Database_copy_DynamoDB_Table;
+            this.button_select_columns.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_select_columns.Location = new System.Drawing.Point(885, 269);
+            this.button_select_columns.Name = "button_select_columns";
+            this.button_select_columns.Size = new System.Drawing.Size(32, 32);
+            this.button_select_columns.TabIndex = 66;
+            this.toolTips.SetToolTip(this.button_select_columns, "Select columns for load");
+            this.button_select_columns.UseVisualStyleBackColor = true;
+            this.button_select_columns.Click += new System.EventHandler(this.button_select_columns_Click);
+            // 
+            // button_next_transform
+            // 
+            this.button_next_transform.BackgroundImage = global::XML_Configurator.Properties.Resources._1481573303_Next;
+            this.button_next_transform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_next_transform.Location = new System.Drawing.Point(1225, 42);
+            this.button_next_transform.Name = "button_next_transform";
+            this.button_next_transform.Size = new System.Drawing.Size(32, 32);
+            this.button_next_transform.TabIndex = 65;
+            this.toolTips.SetToolTip(this.button_next_transform, "Go to next form for transformation");
+            this.button_next_transform.UseVisualStyleBackColor = true;
+            this.button_next_transform.Click += new System.EventHandler(this.button_next_transform_Click);
+            // 
+            // button_remove_all_listviewitems
+            // 
+            this.button_remove_all_listviewitems.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
+            this.button_remove_all_listviewitems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_remove_all_listviewitems.Location = new System.Drawing.Point(945, 307);
+            this.button_remove_all_listviewitems.Name = "button_remove_all_listviewitems";
+            this.button_remove_all_listviewitems.Size = new System.Drawing.Size(32, 32);
+            this.button_remove_all_listviewitems.TabIndex = 51;
+            this.toolTips.SetToolTip(this.button_remove_all_listviewitems, "Remove all objects from the list");
+            this.button_remove_all_listviewitems.UseVisualStyleBackColor = true;
+            this.button_remove_all_listviewitems.Click += new System.EventHandler(this.button_remove_all_listviewitems_Click);
+            // 
+            // button_delete_list_item
+            // 
+            this.button_delete_list_item.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
+            this.button_delete_list_item.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_delete_list_item.Location = new System.Drawing.Point(945, 269);
+            this.button_delete_list_item.Name = "button_delete_list_item";
+            this.button_delete_list_item.Size = new System.Drawing.Size(32, 32);
+            this.button_delete_list_item.TabIndex = 38;
+            this.toolTips.SetToolTip(this.button_delete_list_item, "Remove object from the list");
+            this.button_delete_list_item.UseVisualStyleBackColor = true;
+            this.button_delete_list_item.Click += new System.EventHandler(this.button_delete_list_item_Click);
+            // 
+            // button_list_item_move_down
+            // 
+            this.button_list_item_move_down.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
+            this.button_list_item_move_down.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_down.Location = new System.Drawing.Point(945, 116);
+            this.button_list_item_move_down.Name = "button_list_item_move_down";
+            this.button_list_item_move_down.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_list_item_move_down.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_down.TabIndex = 40;
+            this.toolTips.SetToolTip(this.button_list_item_move_down, "Move object down in the list");
+            this.button_list_item_move_down.UseVisualStyleBackColor = true;
+            this.button_list_item_move_down.Click += new System.EventHandler(this.button_list_item_move_down_Click);
+            // 
+            // button_list_item_move_up
+            // 
+            this.button_list_item_move_up.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
+            this.button_list_item_move_up.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_up.Location = new System.Drawing.Point(945, 77);
+            this.button_list_item_move_up.Name = "button_list_item_move_up";
+            this.button_list_item_move_up.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_up.TabIndex = 39;
+            this.toolTips.SetToolTip(this.button_list_item_move_up, "Move object up in the list");
+            this.button_list_item_move_up.UseVisualStyleBackColor = true;
+            this.button_list_item_move_up.Click += new System.EventHandler(this.button_list_item_move_up_Click);
+            // 
+            // button_back_generator
+            // 
+            this.button_back_generator.BackgroundImage = global::XML_Configurator.Properties.Resources._1481641481_Previous;
+            this.button_back_generator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_back_generator.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button_back_generator.Location = new System.Drawing.Point(1228, 49);
+            this.button_back_generator.Name = "button_back_generator";
+            this.button_back_generator.Size = new System.Drawing.Size(32, 32);
+            this.button_back_generator.TabIndex = 119;
+            this.toolTips.SetToolTip(this.button_back_generator, "Return to generator form");
+            this.button_back_generator.UseVisualStyleBackColor = true;
+            this.button_back_generator.Click += new System.EventHandler(this.button_back_generator_Click);
+            // 
+            // button_remove_all_listviewitems_2
+            // 
+            this.button_remove_all_listviewitems_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
+            this.button_remove_all_listviewitems_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_remove_all_listviewitems_2.Location = new System.Drawing.Point(947, 277);
+            this.button_remove_all_listviewitems_2.Name = "button_remove_all_listviewitems_2";
+            this.button_remove_all_listviewitems_2.Size = new System.Drawing.Size(32, 32);
+            this.button_remove_all_listviewitems_2.TabIndex = 114;
+            this.toolTips.SetToolTip(this.button_remove_all_listviewitems_2, "Remove all objects from the list");
+            this.button_remove_all_listviewitems_2.UseVisualStyleBackColor = true;
+            this.button_remove_all_listviewitems_2.Click += new System.EventHandler(this.button_remove_all_listviewitems_2_Click);
+            // 
+            // button_list_item_move_down_2
+            // 
+            this.button_list_item_move_down_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
+            this.button_list_item_move_down_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_down_2.Location = new System.Drawing.Point(947, 127);
+            this.button_list_item_move_down_2.Name = "button_list_item_move_down_2";
+            this.button_list_item_move_down_2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_list_item_move_down_2.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_down_2.TabIndex = 113;
+            this.toolTips.SetToolTip(this.button_list_item_move_down_2, "Move object down in the list");
+            this.button_list_item_move_down_2.UseVisualStyleBackColor = true;
+            this.button_list_item_move_down_2.Click += new System.EventHandler(this.button_list_item_move_down_2_Click);
+            // 
+            // button_list_item_move_up_2
+            // 
+            this.button_list_item_move_up_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
+            this.button_list_item_move_up_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_up_2.Location = new System.Drawing.Point(947, 89);
+            this.button_list_item_move_up_2.Name = "button_list_item_move_up_2";
+            this.button_list_item_move_up_2.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_up_2.TabIndex = 112;
+            this.toolTips.SetToolTip(this.button_list_item_move_up_2, "Move object up in the list");
+            this.button_list_item_move_up_2.UseVisualStyleBackColor = true;
+            this.button_list_item_move_up_2.Click += new System.EventHandler(this.button_list_item_move_up_2_Click);
+            // 
+            // button_delete_list_item_2
+            // 
+            this.button_delete_list_item_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
+            this.button_delete_list_item_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_delete_list_item_2.Location = new System.Drawing.Point(947, 239);
+            this.button_delete_list_item_2.Name = "button_delete_list_item_2";
+            this.button_delete_list_item_2.Size = new System.Drawing.Size(32, 32);
+            this.button_delete_list_item_2.TabIndex = 111;
+            this.toolTips.SetToolTip(this.button_delete_list_item_2, "Remove object from the list");
+            this.button_delete_list_item_2.UseVisualStyleBackColor = true;
+            this.button_delete_list_item_2.Click += new System.EventHandler(this.button_delete_list_item_2_Click);
             // 
             // EP
             // 
@@ -342,6 +476,7 @@ namespace XML_Configurator
             // 
             // textBox_file_name_2
             // 
+            this.textBox_file_name_2.ForeColor = System.Drawing.SystemColors.WindowText;
             this.textBox_file_name_2.Location = new System.Drawing.Point(234, 11);
             this.textBox_file_name_2.Name = "textBox_file_name_2";
             this.textBox_file_name_2.Size = new System.Drawing.Size(320, 20);
@@ -790,7 +925,6 @@ namespace XML_Configurator
             // 
             // textBox_object_select_statement
             // 
-            this.textBox_object_select_statement.AcceptsReturn = true;
             this.textBox_object_select_statement.AcceptsTab = true;
             this.textBox_object_select_statement.Location = new System.Drawing.Point(181, 200);
             this.textBox_object_select_statement.Multiline = true;
@@ -974,6 +1108,7 @@ namespace XML_Configurator
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl.Controls.Add(this.tabGenerator);
             this.tabControl.Controls.Add(this.tabTransformation);
+            this.tabControl.Controls.Add(this.tabAggregation);
             this.tabControl.Location = new System.Drawing.Point(0, 27);
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
@@ -1007,55 +1142,6 @@ namespace XML_Configurator
             this.toolStripMain.TabIndex = 67;
             this.toolStripMain.Text = "toolStrip1";
             // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel_save
-            // 
-            this.toolStripLabel_save.Name = "toolStripLabel_save";
-            this.toolStripLabel_save.Size = new System.Drawing.Size(107, 22);
-            this.toolStripLabel_save.Text = "XML Save Location";
-            // 
-            // toolStripTextBox_folder_path
-            // 
-            this.toolStripTextBox_folder_path.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox_folder_path.Name = "toolStripTextBox_folder_path";
-            this.toolStripTextBox_folder_path.Size = new System.Drawing.Size(750, 25);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel_database
-            // 
-            this.toolStripLabel_database.Name = "toolStripLabel_database";
-            this.toolStripLabel_database.Size = new System.Drawing.Size(55, 22);
-            this.toolStripLabel_database.Text = "Database";
-            // 
-            // toolStripComboBox_loaded_datasources
-            // 
-            this.toolStripComboBox_loaded_datasources.BackColor = System.Drawing.SystemColors.Window;
-            this.toolStripComboBox_loaded_datasources.Name = "toolStripComboBox_loaded_datasources";
-            this.toolStripComboBox_loaded_datasources.Size = new System.Drawing.Size(121, 25);
-            // 
             // toolStripButton_load_xml
             // 
             this.toolStripButton_load_xml.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1066,6 +1152,11 @@ namespace XML_Configurator
             this.toolStripButton_load_xml.ToolTipText = "Load XML file from location";
             this.toolStripButton_load_xml.Click += new System.EventHandler(this.toolStripButton_load_xml_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton_load_sample_object
             // 
             this.toolStripButton_load_sample_object.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1075,6 +1166,11 @@ namespace XML_Configurator
             this.toolStripButton_load_sample_object.Size = new System.Drawing.Size(23, 22);
             this.toolStripButton_load_sample_object.ToolTipText = "Populate fields with sample data";
             this.toolStripButton_load_sample_object.Click += new System.EventHandler(this.toolStripButton_load_sample_object_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButton_create_object
             // 
@@ -1106,6 +1202,11 @@ namespace XML_Configurator
             this.toolStripButton_create_xml.ToolTipText = "Create XML file with objects from the list on chosen location";
             this.toolStripButton_create_xml.Click += new System.EventHandler(this.toolStripButton_create_xml_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButton_execute_test_statement
             // 
             this.toolStripButton_execute_test_statement.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1117,6 +1218,23 @@ namespace XML_Configurator
             this.toolStripButton_execute_test_statement.ToolTipText = "Execute statement to return number of rows affected";
             this.toolStripButton_execute_test_statement.Click += new System.EventHandler(this.toolStripButton_execute_test_statement_Click);
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripLabel_save
+            // 
+            this.toolStripLabel_save.Name = "toolStripLabel_save";
+            this.toolStripLabel_save.Size = new System.Drawing.Size(107, 22);
+            this.toolStripLabel_save.Text = "XML Save Location";
+            // 
+            // toolStripTextBox_folder_path
+            // 
+            this.toolStripTextBox_folder_path.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolStripTextBox_folder_path.Name = "toolStripTextBox_folder_path";
+            this.toolStripTextBox_folder_path.Size = new System.Drawing.Size(750, 25);
+            // 
             // toolStripButton_browse
             // 
             this.toolStripButton_browse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -1127,140 +1245,32 @@ namespace XML_Configurator
             this.toolStripButton_browse.ToolTipText = "Browse location to store XML file";
             this.toolStripButton_browse.Click += new System.EventHandler(this.toolStripButton_browse_Click);
             // 
-            // button_select_columns
+            // toolStripSeparator4
             // 
-            this.button_select_columns.BackgroundImage = global::XML_Configurator.Properties.Resources._1487105202_Database_copy_DynamoDB_Table;
-            this.button_select_columns.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_select_columns.Location = new System.Drawing.Point(885, 269);
-            this.button_select_columns.Name = "button_select_columns";
-            this.button_select_columns.Size = new System.Drawing.Size(32, 32);
-            this.button_select_columns.TabIndex = 66;
-            this.toolTips.SetToolTip(this.button_select_columns, "Select columns for load");
-            this.button_select_columns.UseVisualStyleBackColor = true;
-            this.button_select_columns.Click += new System.EventHandler(this.button_select_columns_Click);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // button_next_transform
+            // toolStripLabel_database
             // 
-            this.button_next_transform.BackgroundImage = global::XML_Configurator.Properties.Resources._1481573303_Next;
-            this.button_next_transform.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_next_transform.Location = new System.Drawing.Point(1225, 42);
-            this.button_next_transform.Name = "button_next_transform";
-            this.button_next_transform.Size = new System.Drawing.Size(32, 32);
-            this.button_next_transform.TabIndex = 65;
-            this.toolTips.SetToolTip(this.button_next_transform, "Go to next form for transformation");
-            this.button_next_transform.UseVisualStyleBackColor = true;
-            this.button_next_transform.Click += new System.EventHandler(this.button_next_transform_Click);
+            this.toolStripLabel_database.Name = "toolStripLabel_database";
+            this.toolStripLabel_database.Size = new System.Drawing.Size(55, 22);
+            this.toolStripLabel_database.Text = "Database";
             // 
-            // button_remove_all_listviewitems
+            // toolStripComboBox_loaded_datasources
             // 
-            this.button_remove_all_listviewitems.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
-            this.button_remove_all_listviewitems.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_remove_all_listviewitems.Location = new System.Drawing.Point(945, 307);
-            this.button_remove_all_listviewitems.Name = "button_remove_all_listviewitems";
-            this.button_remove_all_listviewitems.Size = new System.Drawing.Size(32, 32);
-            this.button_remove_all_listviewitems.TabIndex = 51;
-            this.toolTips.SetToolTip(this.button_remove_all_listviewitems, "Remove all objects from the list");
-            this.button_remove_all_listviewitems.UseVisualStyleBackColor = true;
-            this.button_remove_all_listviewitems.Click += new System.EventHandler(this.button_remove_all_listviewitems_Click);
+            this.toolStripComboBox_loaded_datasources.BackColor = System.Drawing.SystemColors.Window;
+            this.toolStripComboBox_loaded_datasources.Name = "toolStripComboBox_loaded_datasources";
+            this.toolStripComboBox_loaded_datasources.Size = new System.Drawing.Size(121, 25);
             // 
-            // button_delete_list_item
+            // tabAggregation
             // 
-            this.button_delete_list_item.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
-            this.button_delete_list_item.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_delete_list_item.Location = new System.Drawing.Point(945, 269);
-            this.button_delete_list_item.Name = "button_delete_list_item";
-            this.button_delete_list_item.Size = new System.Drawing.Size(32, 32);
-            this.button_delete_list_item.TabIndex = 38;
-            this.toolTips.SetToolTip(this.button_delete_list_item, "Remove object from the list");
-            this.button_delete_list_item.UseVisualStyleBackColor = true;
-            this.button_delete_list_item.Click += new System.EventHandler(this.button_delete_list_item_Click);
-            // 
-            // button_list_item_move_down
-            // 
-            this.button_list_item_move_down.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
-            this.button_list_item_move_down.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_list_item_move_down.Location = new System.Drawing.Point(945, 116);
-            this.button_list_item_move_down.Name = "button_list_item_move_down";
-            this.button_list_item_move_down.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button_list_item_move_down.Size = new System.Drawing.Size(32, 32);
-            this.button_list_item_move_down.TabIndex = 40;
-            this.toolTips.SetToolTip(this.button_list_item_move_down, "Move object down in the list");
-            this.button_list_item_move_down.UseVisualStyleBackColor = true;
-            this.button_list_item_move_down.Click += new System.EventHandler(this.button_list_item_move_down_Click);
-            // 
-            // button_list_item_move_up
-            // 
-            this.button_list_item_move_up.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
-            this.button_list_item_move_up.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_list_item_move_up.Location = new System.Drawing.Point(945, 77);
-            this.button_list_item_move_up.Name = "button_list_item_move_up";
-            this.button_list_item_move_up.Size = new System.Drawing.Size(32, 32);
-            this.button_list_item_move_up.TabIndex = 39;
-            this.toolTips.SetToolTip(this.button_list_item_move_up, "Move object up in the list");
-            this.button_list_item_move_up.UseVisualStyleBackColor = true;
-            this.button_list_item_move_up.Click += new System.EventHandler(this.button_list_item_move_up_Click);
-            // 
-            // button_back_generator
-            // 
-            this.button_back_generator.BackgroundImage = global::XML_Configurator.Properties.Resources._1481641481_Previous;
-            this.button_back_generator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back_generator.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button_back_generator.Location = new System.Drawing.Point(1228, 49);
-            this.button_back_generator.Name = "button_back_generator";
-            this.button_back_generator.Size = new System.Drawing.Size(32, 32);
-            this.button_back_generator.TabIndex = 119;
-            this.toolTips.SetToolTip(this.button_back_generator, "Return to generator form");
-            this.button_back_generator.UseVisualStyleBackColor = true;
-            this.button_back_generator.Click += new System.EventHandler(this.button_back_generator_Click);
-            // 
-            // button_remove_all_listviewitems_2
-            // 
-            this.button_remove_all_listviewitems_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
-            this.button_remove_all_listviewitems_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_remove_all_listviewitems_2.Location = new System.Drawing.Point(947, 277);
-            this.button_remove_all_listviewitems_2.Name = "button_remove_all_listviewitems_2";
-            this.button_remove_all_listviewitems_2.Size = new System.Drawing.Size(32, 32);
-            this.button_remove_all_listviewitems_2.TabIndex = 114;
-            this.toolTips.SetToolTip(this.button_remove_all_listviewitems_2, "Remove all objects from the list");
-            this.button_remove_all_listviewitems_2.UseVisualStyleBackColor = true;
-            this.button_remove_all_listviewitems_2.Click += new System.EventHandler(this.button_remove_all_listviewitems_2_Click);
-            // 
-            // button_list_item_move_down_2
-            // 
-            this.button_list_item_move_down_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
-            this.button_list_item_move_down_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_list_item_move_down_2.Location = new System.Drawing.Point(947, 127);
-            this.button_list_item_move_down_2.Name = "button_list_item_move_down_2";
-            this.button_list_item_move_down_2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button_list_item_move_down_2.Size = new System.Drawing.Size(32, 32);
-            this.button_list_item_move_down_2.TabIndex = 113;
-            this.toolTips.SetToolTip(this.button_list_item_move_down_2, "Move object down in the list");
-            this.button_list_item_move_down_2.UseVisualStyleBackColor = true;
-            this.button_list_item_move_down_2.Click += new System.EventHandler(this.button_list_item_move_down_2_Click);
-            // 
-            // button_list_item_move_up_2
-            // 
-            this.button_list_item_move_up_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
-            this.button_list_item_move_up_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_list_item_move_up_2.Location = new System.Drawing.Point(947, 89);
-            this.button_list_item_move_up_2.Name = "button_list_item_move_up_2";
-            this.button_list_item_move_up_2.Size = new System.Drawing.Size(32, 32);
-            this.button_list_item_move_up_2.TabIndex = 112;
-            this.toolTips.SetToolTip(this.button_list_item_move_up_2, "Move object up in the list");
-            this.button_list_item_move_up_2.UseVisualStyleBackColor = true;
-            this.button_list_item_move_up_2.Click += new System.EventHandler(this.button_list_item_move_up_2_Click);
-            // 
-            // button_delete_list_item_2
-            // 
-            this.button_delete_list_item_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
-            this.button_delete_list_item_2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_delete_list_item_2.Location = new System.Drawing.Point(947, 239);
-            this.button_delete_list_item_2.Name = "button_delete_list_item_2";
-            this.button_delete_list_item_2.Size = new System.Drawing.Size(32, 32);
-            this.button_delete_list_item_2.TabIndex = 111;
-            this.toolTips.SetToolTip(this.button_delete_list_item_2, "Remove object from the list");
-            this.button_delete_list_item_2.UseVisualStyleBackColor = true;
-            this.button_delete_list_item_2.Click += new System.EventHandler(this.button_delete_list_item_2_Click);
+            this.tabAggregation.Location = new System.Drawing.Point(4, 22);
+            this.tabAggregation.Name = "tabAggregation";
+            this.tabAggregation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAggregation.Size = new System.Drawing.Size(1269, 605);
+            this.tabAggregation.TabIndex = 2;
+            this.tabAggregation.Text = "Aggregation";
+            this.tabAggregation.UseVisualStyleBackColor = true;
             // 
             // _02_ObjectCreator
             // 
@@ -1404,6 +1414,7 @@ namespace XML_Configurator
         private System.Windows.Forms.ToolStripButton toolStripButton_load_xml;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.Button button_select_columns;
+        private System.Windows.Forms.TabPage tabAggregation;
     }
 }
 
