@@ -49,6 +49,13 @@
             this.button_list_item_move_down_2 = new System.Windows.Forms.Button();
             this.button_list_item_move_up_2 = new System.Windows.Forms.Button();
             this.button_delete_list_item_2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.EP = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabTransformation = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
@@ -128,6 +135,42 @@
             this.label_object_reorganization = new System.Windows.Forms.Label();
             this.label_object_target_extraction_folder = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabAggregation = new System.Windows.Forms.TabPage();
+            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.textBoxAggregationConcatenateStatement = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationWhereStatement = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationFileName = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationTargetFilename = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationTargetFolder = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationSourceFilename = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationSourceFolder = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationSelectStatement = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationPrimaryKey = new System.Windows.Forms.TextBox();
+            this.textBoxAggregationName = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButton_load_xml = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
@@ -145,12 +188,18 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel_database = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_loaded_datasources = new System.Windows.Forms.ToolStripComboBox();
-            this.tabAggregation = new System.Windows.Forms.TabPage();
+            this.numericUpDownNumberOfMonths = new System.Windows.Forms.NumericUpDown();
+            this.checkBoxAggregationByDay = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByWeek = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByYear = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByMonth = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.EP)).BeginInit();
             this.tabTransformation.SuspendLayout();
             this.tabGenerator.SuspendLayout();
             this.tabControl.SuspendLayout();
+            this.tabAggregation.SuspendLayout();
             this.toolStripMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfMonths)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialogLocation
@@ -354,6 +403,85 @@
             this.toolTips.SetToolTip(this.button_delete_list_item_2, "Remove object from the list");
             this.button_delete_list_item_2.UseVisualStyleBackColor = true;
             this.button_delete_list_item_2.Click += new System.EventHandler(this.button_delete_list_item_2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackgroundImage = global::XML_Configurator.Properties.Resources._1481641481_Previous;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.button1.Location = new System.Drawing.Point(1228, 49);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 32);
+            this.button1.TabIndex = 160;
+            this.toolTips.SetToolTip(this.button1, "Return to generator form");
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button2.Location = new System.Drawing.Point(947, 479);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(32, 32);
+            this.button2.TabIndex = 159;
+            this.button2.Text = "N";
+            this.toolTips.SetToolTip(this.button2, "Set all items in the list to not active");
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.Location = new System.Drawing.Point(947, 441);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(32, 32);
+            this.button3.TabIndex = 158;
+            this.button3.Text = "Y";
+            this.toolTips.SetToolTip(this.button3, "Set all items in the list to active");
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button4.Location = new System.Drawing.Point(947, 277);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(32, 32);
+            this.button4.TabIndex = 157;
+            this.toolTips.SetToolTip(this.button4, "Remove all objects from the list");
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button5.Location = new System.Drawing.Point(947, 127);
+            this.button5.Name = "button5";
+            this.button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button5.Size = new System.Drawing.Size(32, 32);
+            this.button5.TabIndex = 156;
+            this.toolTips.SetToolTip(this.button5, "Move object down in the list");
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
+            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button6.Location = new System.Drawing.Point(947, 89);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(32, 32);
+            this.button6.TabIndex = 155;
+            this.toolTips.SetToolTip(this.button6, "Move object up in the list");
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
+            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button7.Location = new System.Drawing.Point(947, 239);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(32, 32);
+            this.button7.TabIndex = 154;
+            this.toolTips.SetToolTip(this.button7, "Remove object from the list");
+            this.button7.UseVisualStyleBackColor = true;
             // 
             // EP
             // 
@@ -1117,6 +1245,362 @@
             this.tabControl.TabIndex = 66;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_Selected);
             // 
+            // tabAggregation
+            // 
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationByYear);
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationByMonth);
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationByWeek);
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationByDay);
+            this.tabAggregation.Controls.Add(this.numericUpDownNumberOfMonths);
+            this.tabAggregation.Controls.Add(this.textBox17);
+            this.tabAggregation.Controls.Add(this.label36);
+            this.tabAggregation.Controls.Add(this.label35);
+            this.tabAggregation.Controls.Add(this.label34);
+            this.tabAggregation.Controls.Add(this.button1);
+            this.tabAggregation.Controls.Add(this.button2);
+            this.tabAggregation.Controls.Add(this.button3);
+            this.tabAggregation.Controls.Add(this.label1);
+            this.tabAggregation.Controls.Add(this.button4);
+            this.tabAggregation.Controls.Add(this.button5);
+            this.tabAggregation.Controls.Add(this.button6);
+            this.tabAggregation.Controls.Add(this.button7);
+            this.tabAggregation.Controls.Add(this.listView1);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationConcatenateStatement);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationWhereStatement);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationFileName);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationTargetFilename);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationTargetFolder);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationSourceFilename);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationSourceFolder);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationSelectStatement);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationPrimaryKey);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationName);
+            this.tabAggregation.Controls.Add(this.label15);
+            this.tabAggregation.Controls.Add(this.label20);
+            this.tabAggregation.Controls.Add(this.label21);
+            this.tabAggregation.Controls.Add(this.label22);
+            this.tabAggregation.Controls.Add(this.checkBox1);
+            this.tabAggregation.Controls.Add(this.label23);
+            this.tabAggregation.Controls.Add(this.checkBox2);
+            this.tabAggregation.Controls.Add(this.label24);
+            this.tabAggregation.Controls.Add(this.label25);
+            this.tabAggregation.Controls.Add(this.label26);
+            this.tabAggregation.Controls.Add(this.label27);
+            this.tabAggregation.Controls.Add(this.label28);
+            this.tabAggregation.Controls.Add(this.label29);
+            this.tabAggregation.Controls.Add(this.label30);
+            this.tabAggregation.Controls.Add(this.label31);
+            this.tabAggregation.Controls.Add(this.label32);
+            this.tabAggregation.Controls.Add(this.label33);
+            this.tabAggregation.Location = new System.Drawing.Point(4, 22);
+            this.tabAggregation.Name = "tabAggregation";
+            this.tabAggregation.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAggregation.Size = new System.Drawing.Size(1269, 605);
+            this.tabAggregation.TabIndex = 2;
+            this.tabAggregation.Text = "Aggregation";
+            this.tabAggregation.UseVisualStyleBackColor = true;
+            // 
+            // textBox17
+            // 
+            this.textBox17.Location = new System.Drawing.Point(940, 11);
+            this.textBox17.Name = "textBox17";
+            this.textBox17.Size = new System.Drawing.Size(320, 20);
+            this.textBox17.TabIndex = 166;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(714, 14);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(134, 13);
+            this.label36.TabIndex = 165;
+            this.label36.Text = "aggregation_by_procedure";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(8, 456);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(159, 13);
+            this.label35.TabIndex = 163;
+            this.label35.Text = "aggregation_number_of_months";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(8, 354);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(103, 13);
+            this.label34.TabIndex = 161;
+            this.label34.Text = "aggregation_by_day";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(982, 63);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 153;
+            this.label1.Text = "Created objects";
+            // 
+            // listView1
+            // 
+            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2});
+            this.listView1.FullRowSelect = true;
+            this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(985, 84);
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(275, 427);
+            this.listView1.TabIndex = 152;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Object Name";
+            this.columnHeader1.Width = 190;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Object Active";
+            this.columnHeader2.Width = 80;
+            // 
+            // textBoxAggregationConcatenateStatement
+            // 
+            this.textBoxAggregationConcatenateStatement.Location = new System.Drawing.Point(574, 237);
+            this.textBoxAggregationConcatenateStatement.Multiline = true;
+            this.textBoxAggregationConcatenateStatement.Name = "textBoxAggregationConcatenateStatement";
+            this.textBoxAggregationConcatenateStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationConcatenateStatement.Size = new System.Drawing.Size(319, 130);
+            this.textBoxAggregationConcatenateStatement.TabIndex = 150;
+            // 
+            // textBoxAggregationWhereStatement
+            // 
+            this.textBoxAggregationWhereStatement.Location = new System.Drawing.Point(574, 84);
+            this.textBoxAggregationWhereStatement.Multiline = true;
+            this.textBoxAggregationWhereStatement.Name = "textBoxAggregationWhereStatement";
+            this.textBoxAggregationWhereStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationWhereStatement.Size = new System.Drawing.Size(319, 134);
+            this.textBoxAggregationWhereStatement.TabIndex = 149;
+            // 
+            // textBoxAggregationFileName
+            // 
+            this.textBoxAggregationFileName.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBoxAggregationFileName.Location = new System.Drawing.Point(234, 11);
+            this.textBoxAggregationFileName.Name = "textBoxAggregationFileName";
+            this.textBoxAggregationFileName.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationFileName.TabIndex = 145;
+            // 
+            // textBoxAggregationTargetFilename
+            // 
+            this.textBoxAggregationTargetFilename.Location = new System.Drawing.Point(234, 554);
+            this.textBoxAggregationTargetFilename.Name = "textBoxAggregationTargetFilename";
+            this.textBoxAggregationTargetFilename.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationTargetFilename.TabIndex = 143;
+            // 
+            // textBoxAggregationTargetFolder
+            // 
+            this.textBoxAggregationTargetFolder.Location = new System.Drawing.Point(234, 529);
+            this.textBoxAggregationTargetFolder.Name = "textBoxAggregationTargetFolder";
+            this.textBoxAggregationTargetFolder.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationTargetFolder.TabIndex = 138;
+            // 
+            // textBoxAggregationSourceFilename
+            // 
+            this.textBoxAggregationSourceFilename.Location = new System.Drawing.Point(234, 504);
+            this.textBoxAggregationSourceFilename.Name = "textBoxAggregationSourceFilename";
+            this.textBoxAggregationSourceFilename.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationSourceFilename.TabIndex = 137;
+            // 
+            // textBoxAggregationSourceFolder
+            // 
+            this.textBoxAggregationSourceFolder.Location = new System.Drawing.Point(234, 479);
+            this.textBoxAggregationSourceFolder.Name = "textBoxAggregationSourceFolder";
+            this.textBoxAggregationSourceFolder.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationSourceFolder.TabIndex = 136;
+            // 
+            // textBoxAggregationSelectStatement
+            // 
+            this.textBoxAggregationSelectStatement.AcceptsReturn = true;
+            this.textBoxAggregationSelectStatement.AcceptsTab = true;
+            this.textBoxAggregationSelectStatement.Location = new System.Drawing.Point(234, 134);
+            this.textBoxAggregationSelectStatement.Multiline = true;
+            this.textBoxAggregationSelectStatement.Name = "textBoxAggregationSelectStatement";
+            this.textBoxAggregationSelectStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationSelectStatement.Size = new System.Drawing.Size(320, 202);
+            this.textBoxAggregationSelectStatement.TabIndex = 132;
+            // 
+            // textBoxAggregationPrimaryKey
+            // 
+            this.textBoxAggregationPrimaryKey.Location = new System.Drawing.Point(234, 109);
+            this.textBoxAggregationPrimaryKey.Name = "textBoxAggregationPrimaryKey";
+            this.textBoxAggregationPrimaryKey.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationPrimaryKey.TabIndex = 131;
+            // 
+            // textBoxAggregationName
+            // 
+            this.textBoxAggregationName.Location = new System.Drawing.Point(234, 84);
+            this.textBoxAggregationName.Name = "textBoxAggregationName";
+            this.textBoxAggregationName.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationName.TabIndex = 130;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(571, 221);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(189, 13);
+            this.label15.TabIndex = 147;
+            this.label15.Text = "aggregation_concatenation_statement";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(571, 68);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(150, 13);
+            this.label20.TabIndex = 146;
+            this.label20.Text = "aggregation_where_statement";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(8, 14);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(74, 13);
+            this.label21.TabIndex = 144;
+            this.label21.Text = "XML file name";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(8, 557);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(141, 13);
+            this.label22.TabIndex = 142;
+            this.label22.Text = "aggregation_target_filename";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(539, 64);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 141;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(400, 64);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(123, 13);
+            this.label23.TabIndex = 140;
+            this.label23.Text = "aggregation_incremental";
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(345, 63);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(15, 14);
+            this.checkBox2.TabIndex = 139;
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(8, 532);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(128, 13);
+            this.label24.TabIndex = 129;
+            this.label24.Text = "aggregation_target_folder";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(8, 507);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(146, 13);
+            this.label25.TabIndex = 128;
+            this.label25.Text = "aggregation_source_filename";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(8, 482);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(133, 13);
+            this.label26.TabIndex = 127;
+            this.label26.Text = "aggregation_source_folder";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(231, 63);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(98, 13);
+            this.label27.TabIndex = 126;
+            this.label27.Text = "aggregation_active";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(8, 429);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(106, 13);
+            this.label28.TabIndex = 125;
+            this.label28.Text = "aggregation_by_year";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(8, 404);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(115, 13);
+            this.label29.TabIndex = 124;
+            this.label29.Text = "aggregation_by_month";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(8, 379);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(112, 13);
+            this.label30.TabIndex = 123;
+            this.label30.Text = "aggregation_by_week";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(8, 137);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(149, 13);
+            this.label31.TabIndex = 122;
+            this.label31.Text = "aggregation_select_statement";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(8, 112);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(125, 13);
+            this.label32.TabIndex = 121;
+            this.label32.Text = "aggregation_primary_key";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(8, 87);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(95, 13);
+            this.label33.TabIndex = 120;
+            this.label33.Text = "aggregation_name";
+            // 
             // toolStripMain
             // 
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1262,15 +1746,48 @@
             this.toolStripComboBox_loaded_datasources.Name = "toolStripComboBox_loaded_datasources";
             this.toolStripComboBox_loaded_datasources.Size = new System.Drawing.Size(121, 25);
             // 
-            // tabAggregation
+            // numericUpDownNumberOfMonths
             // 
-            this.tabAggregation.Location = new System.Drawing.Point(4, 22);
-            this.tabAggregation.Name = "tabAggregation";
-            this.tabAggregation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAggregation.Size = new System.Drawing.Size(1269, 605);
-            this.tabAggregation.TabIndex = 2;
-            this.tabAggregation.Text = "Aggregation";
-            this.tabAggregation.UseVisualStyleBackColor = true;
+            this.numericUpDownNumberOfMonths.Location = new System.Drawing.Point(234, 454);
+            this.numericUpDownNumberOfMonths.Name = "numericUpDownNumberOfMonths";
+            this.numericUpDownNumberOfMonths.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDownNumberOfMonths.TabIndex = 167;
+            // 
+            // checkBoxAggregationByDay
+            // 
+            this.checkBoxAggregationByDay.AutoSize = true;
+            this.checkBoxAggregationByDay.Location = new System.Drawing.Point(234, 354);
+            this.checkBoxAggregationByDay.Name = "checkBoxAggregationByDay";
+            this.checkBoxAggregationByDay.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByDay.TabIndex = 168;
+            this.checkBoxAggregationByDay.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByWeek
+            // 
+            this.checkBoxAggregationByWeek.AutoSize = true;
+            this.checkBoxAggregationByWeek.Location = new System.Drawing.Point(234, 379);
+            this.checkBoxAggregationByWeek.Name = "checkBoxAggregationByWeek";
+            this.checkBoxAggregationByWeek.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByWeek.TabIndex = 169;
+            this.checkBoxAggregationByWeek.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByYear
+            // 
+            this.checkBoxAggregationByYear.AutoSize = true;
+            this.checkBoxAggregationByYear.Location = new System.Drawing.Point(234, 429);
+            this.checkBoxAggregationByYear.Name = "checkBoxAggregationByYear";
+            this.checkBoxAggregationByYear.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByYear.TabIndex = 171;
+            this.checkBoxAggregationByYear.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByMonth
+            // 
+            this.checkBoxAggregationByMonth.AutoSize = true;
+            this.checkBoxAggregationByMonth.Location = new System.Drawing.Point(234, 404);
+            this.checkBoxAggregationByMonth.Name = "checkBoxAggregationByMonth";
+            this.checkBoxAggregationByMonth.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByMonth.TabIndex = 170;
+            this.checkBoxAggregationByMonth.UseVisualStyleBackColor = true;
             // 
             // _02_ObjectCreator
             // 
@@ -1291,8 +1808,11 @@
             this.tabGenerator.ResumeLayout(false);
             this.tabGenerator.PerformLayout();
             this.tabControl.ResumeLayout(false);
+            this.tabAggregation.ResumeLayout(false);
+            this.tabAggregation.PerformLayout();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfMonths)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1415,6 +1935,53 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.Button button_select_columns;
         private System.Windows.Forms.TabPage tabAggregation;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.TextBox textBoxAggregationConcatenateStatement;
+        private System.Windows.Forms.TextBox textBoxAggregationWhereStatement;
+        private System.Windows.Forms.TextBox textBoxAggregationFileName;
+        private System.Windows.Forms.TextBox textBoxAggregationTargetFilename;
+        private System.Windows.Forms.TextBox textBoxAggregationTargetFolder;
+        private System.Windows.Forms.TextBox textBoxAggregationSourceFilename;
+        private System.Windows.Forms.TextBox textBoxAggregationSourceFolder;
+        private System.Windows.Forms.TextBox textBoxAggregationSelectStatement;
+        private System.Windows.Forms.TextBox textBoxAggregationPrimaryKey;
+        private System.Windows.Forms.TextBox textBoxAggregationName;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.CheckBox checkBoxAggregationByYear;
+        private System.Windows.Forms.CheckBox checkBoxAggregationByMonth;
+        private System.Windows.Forms.CheckBox checkBoxAggregationByWeek;
+        private System.Windows.Forms.CheckBox checkBoxAggregationByDay;
+        private System.Windows.Forms.NumericUpDown numericUpDownNumberOfMonths;
     }
 }
 
