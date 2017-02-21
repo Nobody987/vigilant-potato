@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XML_Configurator.DataModel
+﻿namespace XML_Configurator.DataModel
 {
     class column_object
     {
@@ -21,11 +15,11 @@ namespace XML_Configurator.DataModel
 
         public column_object(string column_name, string column_data_type, string column_nullable)
         {
-            this.column_name = column_name;
-            this.Column_nullable = column_nullable;
-            this.column_data_type = column_data_type;
-            this.column_primary_key = "";
-            this.column_transformation = "";
+            Column_name = column_name;
+            Column_nullable = column_nullable;
+            Column_data_type = column_data_type;
+            column_primary_key = "";
+            column_transformation = "";
         }
 
         public string Column_name

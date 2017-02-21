@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace XML_Configurator.DataModel
@@ -14,14 +11,14 @@ namespace XML_Configurator.DataModel
 
         public data_type(string data_type_name, string data_type_return_value)
         {
-            this.data_type_name = data_type_name;
-            this.data_type_return_value = data_type_return_value;
+            Data_type_name = data_type_name;
+            Data_type_return_value = data_type_return_value;
         }
 
         public data_type()
         {
-            this.data_type_name = "";
-            this.data_type_return_value = "";
+            data_type_name = "";
+            data_type_return_value = "";
         }
 
         public string Data_type_name
@@ -71,7 +68,7 @@ namespace XML_Configurator.DataModel
                     }
                     try
                     {
-                        data_type.data_type_return_value= data_type_node["data_type_return_value"].InnerText;
+                        data_type.data_type_return_value = data_type_node["data_type_return_value"].InnerText;
                     }
                     catch (NullReferenceException)
                     {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace XML_Configurator.DataModel
+﻿namespace XML_Configurator.DataModel
 {
     static class Metadata
     {
@@ -20,19 +14,19 @@ namespace XML_Configurator.DataModel
         //    //INCREMENTAL_WITH_YEAR
         //}
 
-        private static string datasource_parameters = @"..\Debug\";
+        //private static string datasource_parameters = @"..\Debug\";
 
-        public static string Datasource_parameters
-        {
-            get
-            {
-                return datasource_parameters;
-            }
+        //public static string Datasource_parameters
+        //{
+        //    get
+        //    {
+        //        return datasource_parameters;
+        //    }
 
-            set
-            {
-                datasource_parameters = value;
-            }
-        }
+        //    set
+        //    {
+        //        datasource_parameters = value;
+        //    }
+        //}
     }
 }

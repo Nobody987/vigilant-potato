@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace XML_Configurator.DataModel
@@ -59,15 +56,15 @@ namespace XML_Configurator.DataModel
 
         public load_types(string load_type_name, string load_type_file_prefix, string load_type_file_sufix)
         {
-            this.Load_type_name = load_type_name;
-            this.Load_type_file_prefix = load_type_file_prefix;
-            this.Load_type_file_sufix = load_type_file_sufix;
+            Load_type_name = load_type_name;
+            Load_type_file_prefix = load_type_file_prefix;
+            Load_type_file_sufix = load_type_file_sufix;
         }
         public load_types()
         {
-            this.Load_type_name = "";
-            this.Load_type_file_prefix = "";
-            this.Load_type_file_sufix = "";
+            Load_type_name = "";
+            Load_type_file_prefix = "";
+            Load_type_file_sufix = "";
         }
 
         public static List<load_types> read_load_types_file() //izmeniti, nije konacna verzija. potrebno je proveriti koji je tip konekcije da bi se znalo sta se loaduje. ovo treba uraditi na neki logican nacin, mozda nasledjivanjem ili tako nesto slicno. 

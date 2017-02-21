@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -257,14 +254,13 @@ namespace XML_Configurator.DataModel
             return list_datasource;
         }
 
-        public string [,] get_properties_and_values()
+        public string[,] get_properties_and_values()
         {//opisati rad metode i verovatno pomeriti u engine
             Type type = typeof(datasource);
-            int NumberOfRecords = type.GetProperties().Length;
 
             PropertyInfo[] item_array = type.GetProperties();
 
-            string[,] array_of_strings = new string[NumberOfRecords,2];
+            string[,] array_of_strings = new string[type.GetProperties().Length, 2];
 
             for (int i = 0; i < type.GetProperties().Length; i++)
             {
@@ -280,7 +276,7 @@ namespace XML_Configurator.DataModel
 
         public override string ToString()
         {
-            return Datasource_name; 
+            return Datasource_name;
         }
 
         public string Construct_Connection_String()

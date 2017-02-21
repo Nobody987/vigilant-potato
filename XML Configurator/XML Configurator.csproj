@@ -108,7 +108,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DatabaseConnect\API_database_connector.cs" />
-    <Compile Include="DatabaseConnect\ConnectionString.cs" />
     <Compile Include="_03_DatabaseConnector.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,7 +118,6 @@
     <Compile Include="DatabaseConnect\Table.cs" />
     <Compile Include="DataModel\datasource.cs" />
     <Compile Include="DataModel\database_table.cs" />
-    <Compile Include="DataModel\Metadata.cs" />
     <Compile Include="DataModel\generator_object_id.cs" />
     <Compile Include="_01_Menu.cs">
       <SubType>Form</SubType>
