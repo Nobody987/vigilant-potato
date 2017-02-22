@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataModel\aggregationObject.cs" />
     <Compile Include="DataModel\column_object.cs" />
     <Compile Include="_0202_PopupColumns.cs">
       <SubType>Form</SubType>
@@ -87,7 +88,7 @@
     </Compile>
     <Compile Include="DataModel\data_type.cs" />
     <Compile Include="DataModel\load_types.cs" />
-    <Compile Include="DataModel\transformator_object_id.cs" />
+    <Compile Include="DataModel\transformationObject.cs" />
     <Compile Include="_00_Controller.cs" />
     <Compile Include="_0201_PopupDatasource.cs">
       <SubType>Form</SubType>
@@ -118,7 +119,7 @@
     <Compile Include="DatabaseConnect\Table.cs" />
     <Compile Include="DataModel\datasource.cs" />
     <Compile Include="DataModel\database_table.cs" />
-    <Compile Include="DataModel\generator_object_id.cs" />
+    <Compile Include="DataModel\generatorObject.cs" />
     <Compile Include="_01_Menu.cs">
       <SubType>Form</SubType>
     </Compile>

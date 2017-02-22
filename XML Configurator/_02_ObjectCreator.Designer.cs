@@ -44,22 +44,21 @@
             this.button_delete_list_item = new System.Windows.Forms.Button();
             this.button_list_item_move_down = new System.Windows.Forms.Button();
             this.button_list_item_move_up = new System.Windows.Forms.Button();
-            this.button_back_generator = new System.Windows.Forms.Button();
             this.button_remove_all_listviewitems_2 = new System.Windows.Forms.Button();
             this.button_list_item_move_down_2 = new System.Windows.Forms.Button();
             this.button_list_item_move_up_2 = new System.Windows.Forms.Button();
             this.button_delete_list_item_2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.button_set_all_notactive_3 = new System.Windows.Forms.Button();
+            this.button_set_all_active_3 = new System.Windows.Forms.Button();
+            this.button_remove_all_listviewitems_3 = new System.Windows.Forms.Button();
+            this.button_list_item_move_down_3 = new System.Windows.Forms.Button();
+            this.button_list_item_move_up_3 = new System.Windows.Forms.Button();
+            this.button_delete_list_item_3 = new System.Windows.Forms.Button();
+            this.buttonNextAggregation = new System.Windows.Forms.Button();
             this.EP = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabTransformation = new System.Windows.Forms.TabPage();
             this.label19 = new System.Windows.Forms.Label();
-            this.listView_all_transformations = new System.Windows.Forms.ListView();
+            this.listViewAllTransformations = new System.Windows.Forms.ListView();
             this.columnObjectName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnObjectActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBox_transformation_split_parameter = new System.Windows.Forms.TextBox();
@@ -136,12 +135,17 @@
             this.label_object_target_extraction_folder = new System.Windows.Forms.Label();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabAggregation = new System.Windows.Forms.TabPage();
-            this.textBox17 = new System.Windows.Forms.TextBox();
+            this.checkBoxAggregationByYear = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByMonth = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByWeek = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationByDay = new System.Windows.Forms.CheckBox();
+            this.numericUpDownAggregationNumberOfMonths = new System.Windows.Forms.NumericUpDown();
+            this.textBoxAggregationProcedure = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.listViewAllAggregations = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.textBoxAggregationConcatenateStatement = new System.Windows.Forms.TextBox();
@@ -158,9 +162,9 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationIncremental = new System.Windows.Forms.CheckBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBoxAggregationActive = new System.Windows.Forms.CheckBox();
             this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -188,18 +192,13 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel_database = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_loaded_datasources = new System.Windows.Forms.ToolStripComboBox();
-            this.numericUpDownNumberOfMonths = new System.Windows.Forms.NumericUpDown();
-            this.checkBoxAggregationByDay = new System.Windows.Forms.CheckBox();
-            this.checkBoxAggregationByWeek = new System.Windows.Forms.CheckBox();
-            this.checkBoxAggregationByYear = new System.Windows.Forms.CheckBox();
-            this.checkBoxAggregationByMonth = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.EP)).BeginInit();
             this.tabTransformation.SuspendLayout();
             this.tabGenerator.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabAggregation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAggregationNumberOfMonths)).BeginInit();
             this.toolStripMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfMonths)).BeginInit();
             this.SuspendLayout();
             // 
             // openFileDialogLocation
@@ -342,19 +341,6 @@
             this.button_list_item_move_up.UseVisualStyleBackColor = true;
             this.button_list_item_move_up.Click += new System.EventHandler(this.button_list_item_move_up_Click);
             // 
-            // button_back_generator
-            // 
-            this.button_back_generator.BackgroundImage = global::XML_Configurator.Properties.Resources._1481641481_Previous;
-            this.button_back_generator.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button_back_generator.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button_back_generator.Location = new System.Drawing.Point(1228, 49);
-            this.button_back_generator.Name = "button_back_generator";
-            this.button_back_generator.Size = new System.Drawing.Size(32, 32);
-            this.button_back_generator.TabIndex = 119;
-            this.toolTips.SetToolTip(this.button_back_generator, "Return to generator form");
-            this.button_back_generator.UseVisualStyleBackColor = true;
-            this.button_back_generator.Click += new System.EventHandler(this.button_back_generator_Click);
-            // 
             // button_remove_all_listviewitems_2
             // 
             this.button_remove_all_listviewitems_2.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
@@ -404,84 +390,90 @@
             this.button_delete_list_item_2.UseVisualStyleBackColor = true;
             this.button_delete_list_item_2.Click += new System.EventHandler(this.button_delete_list_item_2_Click);
             // 
-            // button1
+            // button_set_all_notactive_3
             // 
-            this.button1.BackgroundImage = global::XML_Configurator.Properties.Resources._1481641481_Previous;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.button1.Location = new System.Drawing.Point(1228, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 32);
-            this.button1.TabIndex = 160;
-            this.toolTips.SetToolTip(this.button1, "Return to generator form");
-            this.button1.UseVisualStyleBackColor = true;
+            this.button_set_all_notactive_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_set_all_notactive_3.Location = new System.Drawing.Point(947, 479);
+            this.button_set_all_notactive_3.Name = "button_set_all_notactive_3";
+            this.button_set_all_notactive_3.Size = new System.Drawing.Size(32, 32);
+            this.button_set_all_notactive_3.TabIndex = 159;
+            this.button_set_all_notactive_3.Text = "N";
+            this.toolTips.SetToolTip(this.button_set_all_notactive_3, "Set all items in the list to not active");
+            this.button_set_all_notactive_3.UseVisualStyleBackColor = true;
+            this.button_set_all_notactive_3.Click += new System.EventHandler(this.button_set_all_notactive_3_Click);
             // 
-            // button2
+            // button_set_all_active_3
             // 
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button2.Location = new System.Drawing.Point(947, 479);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(32, 32);
-            this.button2.TabIndex = 159;
-            this.button2.Text = "N";
-            this.toolTips.SetToolTip(this.button2, "Set all items in the list to not active");
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_set_all_active_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button_set_all_active_3.Location = new System.Drawing.Point(947, 441);
+            this.button_set_all_active_3.Name = "button_set_all_active_3";
+            this.button_set_all_active_3.Size = new System.Drawing.Size(32, 32);
+            this.button_set_all_active_3.TabIndex = 158;
+            this.button_set_all_active_3.Text = "Y";
+            this.toolTips.SetToolTip(this.button_set_all_active_3, "Set all items in the list to active");
+            this.button_set_all_active_3.UseVisualStyleBackColor = true;
+            this.button_set_all_active_3.Click += new System.EventHandler(this.button_set_all_active_3_Click);
             // 
-            // button3
+            // button_remove_all_listviewitems_3
             // 
-            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button3.Location = new System.Drawing.Point(947, 441);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(32, 32);
-            this.button3.TabIndex = 158;
-            this.button3.Text = "Y";
-            this.toolTips.SetToolTip(this.button3, "Set all items in the list to active");
-            this.button3.UseVisualStyleBackColor = true;
+            this.button_remove_all_listviewitems_3.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
+            this.button_remove_all_listviewitems_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_remove_all_listviewitems_3.Location = new System.Drawing.Point(947, 277);
+            this.button_remove_all_listviewitems_3.Name = "button_remove_all_listviewitems_3";
+            this.button_remove_all_listviewitems_3.Size = new System.Drawing.Size(32, 32);
+            this.button_remove_all_listviewitems_3.TabIndex = 157;
+            this.toolTips.SetToolTip(this.button_remove_all_listviewitems_3, "Remove all objects from the list");
+            this.button_remove_all_listviewitems_3.UseVisualStyleBackColor = true;
+            this.button_remove_all_listviewitems_3.Click += new System.EventHandler(this.button_remove_all_listviewitems_3_Click);
             // 
-            // button4
+            // button_list_item_move_down_3
             // 
-            this.button4.BackgroundImage = global::XML_Configurator.Properties.Resources._1474912315_human_user_trash;
-            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button4.Location = new System.Drawing.Point(947, 277);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(32, 32);
-            this.button4.TabIndex = 157;
-            this.toolTips.SetToolTip(this.button4, "Remove all objects from the list");
-            this.button4.UseVisualStyleBackColor = true;
+            this.button_list_item_move_down_3.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
+            this.button_list_item_move_down_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_down_3.Location = new System.Drawing.Point(947, 127);
+            this.button_list_item_move_down_3.Name = "button_list_item_move_down_3";
+            this.button_list_item_move_down_3.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button_list_item_move_down_3.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_down_3.TabIndex = 156;
+            this.toolTips.SetToolTip(this.button_list_item_move_down_3, "Move object down in the list");
+            this.button_list_item_move_down_3.UseVisualStyleBackColor = true;
+            this.button_list_item_move_down_3.Click += new System.EventHandler(this.button_list_item_move_down_3_Click);
             // 
-            // button5
+            // button_list_item_move_up_3
             // 
-            this.button5.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911115_Stock_Index_Down;
-            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button5.Location = new System.Drawing.Point(947, 127);
-            this.button5.Name = "button5";
-            this.button5.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button5.Size = new System.Drawing.Size(32, 32);
-            this.button5.TabIndex = 156;
-            this.toolTips.SetToolTip(this.button5, "Move object down in the list");
-            this.button5.UseVisualStyleBackColor = true;
+            this.button_list_item_move_up_3.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
+            this.button_list_item_move_up_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_list_item_move_up_3.Location = new System.Drawing.Point(947, 89);
+            this.button_list_item_move_up_3.Name = "button_list_item_move_up_3";
+            this.button_list_item_move_up_3.Size = new System.Drawing.Size(32, 32);
+            this.button_list_item_move_up_3.TabIndex = 155;
+            this.toolTips.SetToolTip(this.button_list_item_move_up_3, "Move object up in the list");
+            this.button_list_item_move_up_3.UseVisualStyleBackColor = true;
+            this.button_list_item_move_up_3.Click += new System.EventHandler(this.button_list_item_move_up_3_Click);
             // 
-            // button6
+            // button_delete_list_item_3
             // 
-            this.button6.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911113_Stock_Index_Up;
-            this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button6.Location = new System.Drawing.Point(947, 89);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(32, 32);
-            this.button6.TabIndex = 155;
-            this.toolTips.SetToolTip(this.button6, "Move object up in the list");
-            this.button6.UseVisualStyleBackColor = true;
+            this.button_delete_list_item_3.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
+            this.button_delete_list_item_3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_delete_list_item_3.Location = new System.Drawing.Point(947, 239);
+            this.button_delete_list_item_3.Name = "button_delete_list_item_3";
+            this.button_delete_list_item_3.Size = new System.Drawing.Size(32, 32);
+            this.button_delete_list_item_3.TabIndex = 154;
+            this.toolTips.SetToolTip(this.button_delete_list_item_3, "Remove object from the list");
+            this.button_delete_list_item_3.UseVisualStyleBackColor = true;
+            this.button_delete_list_item_3.Click += new System.EventHandler(this.button_delete_list_item_3_Click);
             // 
-            // button7
+            // buttonNextAggregation
             // 
-            this.button7.BackgroundImage = global::XML_Configurator.Properties.Resources._1474911120_Error;
-            this.button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button7.Location = new System.Drawing.Point(947, 239);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(32, 32);
-            this.button7.TabIndex = 154;
-            this.toolTips.SetToolTip(this.button7, "Remove object from the list");
-            this.button7.UseVisualStyleBackColor = true;
+            this.buttonNextAggregation.BackgroundImage = global::XML_Configurator.Properties.Resources._1481573303_Next;
+            this.buttonNextAggregation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.buttonNextAggregation.Location = new System.Drawing.Point(1228, 46);
+            this.buttonNextAggregation.Name = "buttonNextAggregation";
+            this.buttonNextAggregation.Size = new System.Drawing.Size(32, 32);
+            this.buttonNextAggregation.TabIndex = 117;
+            this.toolTips.SetToolTip(this.buttonNextAggregation, "Go to next form for transformation");
+            this.buttonNextAggregation.UseVisualStyleBackColor = true;
+            this.buttonNextAggregation.Click += new System.EventHandler(this.buttonNextAggregation_Click);
             // 
             // EP
             // 
@@ -490,7 +482,7 @@
             // 
             // tabTransformation
             // 
-            this.tabTransformation.Controls.Add(this.button_back_generator);
+            this.tabTransformation.Controls.Add(this.buttonNextAggregation);
             this.tabTransformation.Controls.Add(this.button_set_all_notactive_2);
             this.tabTransformation.Controls.Add(this.button_set_all_active_2);
             this.tabTransformation.Controls.Add(this.label19);
@@ -498,7 +490,7 @@
             this.tabTransformation.Controls.Add(this.button_list_item_move_down_2);
             this.tabTransformation.Controls.Add(this.button_list_item_move_up_2);
             this.tabTransformation.Controls.Add(this.button_delete_list_item_2);
-            this.tabTransformation.Controls.Add(this.listView_all_transformations);
+            this.tabTransformation.Controls.Add(this.listViewAllTransformations);
             this.tabTransformation.Controls.Add(this.textBox_transformation_split_parameter);
             this.tabTransformation.Controls.Add(this.textBox_additional_transformation_split_parameters);
             this.tabTransformation.Controls.Add(this.textBox_additional_transformation_where_statement);
@@ -548,22 +540,22 @@
             this.label19.TabIndex = 110;
             this.label19.Text = "Created objects";
             // 
-            // listView_all_transformations
+            // listViewAllTransformations
             // 
-            this.listView_all_transformations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewAllTransformations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnObjectName,
             this.columnObjectActive});
-            this.listView_all_transformations.FullRowSelect = true;
-            this.listView_all_transformations.GridLines = true;
-            this.listView_all_transformations.HideSelection = false;
-            this.listView_all_transformations.Location = new System.Drawing.Point(985, 84);
-            this.listView_all_transformations.MultiSelect = false;
-            this.listView_all_transformations.Name = "listView_all_transformations";
-            this.listView_all_transformations.Size = new System.Drawing.Size(275, 427);
-            this.listView_all_transformations.TabIndex = 108;
-            this.listView_all_transformations.UseCompatibleStateImageBehavior = false;
-            this.listView_all_transformations.View = System.Windows.Forms.View.Details;
-            this.listView_all_transformations.SelectedIndexChanged += new System.EventHandler(this.listView_all_transformations_SelectedIndexChanged);
+            this.listViewAllTransformations.FullRowSelect = true;
+            this.listViewAllTransformations.GridLines = true;
+            this.listViewAllTransformations.HideSelection = false;
+            this.listViewAllTransformations.Location = new System.Drawing.Point(985, 84);
+            this.listViewAllTransformations.MultiSelect = false;
+            this.listViewAllTransformations.Name = "listViewAllTransformations";
+            this.listViewAllTransformations.Size = new System.Drawing.Size(275, 427);
+            this.listViewAllTransformations.TabIndex = 108;
+            this.listViewAllTransformations.UseCompatibleStateImageBehavior = false;
+            this.listViewAllTransformations.View = System.Windows.Forms.View.Details;
+            this.listViewAllTransformations.SelectedIndexChanged += new System.EventHandler(this.listView_all_transformations_SelectedIndexChanged);
             // 
             // columnObjectName
             // 
@@ -1251,20 +1243,19 @@
             this.tabAggregation.Controls.Add(this.checkBoxAggregationByMonth);
             this.tabAggregation.Controls.Add(this.checkBoxAggregationByWeek);
             this.tabAggregation.Controls.Add(this.checkBoxAggregationByDay);
-            this.tabAggregation.Controls.Add(this.numericUpDownNumberOfMonths);
-            this.tabAggregation.Controls.Add(this.textBox17);
+            this.tabAggregation.Controls.Add(this.numericUpDownAggregationNumberOfMonths);
+            this.tabAggregation.Controls.Add(this.textBoxAggregationProcedure);
             this.tabAggregation.Controls.Add(this.label36);
             this.tabAggregation.Controls.Add(this.label35);
             this.tabAggregation.Controls.Add(this.label34);
-            this.tabAggregation.Controls.Add(this.button1);
-            this.tabAggregation.Controls.Add(this.button2);
-            this.tabAggregation.Controls.Add(this.button3);
+            this.tabAggregation.Controls.Add(this.button_set_all_notactive_3);
+            this.tabAggregation.Controls.Add(this.button_set_all_active_3);
             this.tabAggregation.Controls.Add(this.label1);
-            this.tabAggregation.Controls.Add(this.button4);
-            this.tabAggregation.Controls.Add(this.button5);
-            this.tabAggregation.Controls.Add(this.button6);
-            this.tabAggregation.Controls.Add(this.button7);
-            this.tabAggregation.Controls.Add(this.listView1);
+            this.tabAggregation.Controls.Add(this.button_remove_all_listviewitems_3);
+            this.tabAggregation.Controls.Add(this.button_list_item_move_down_3);
+            this.tabAggregation.Controls.Add(this.button_list_item_move_up_3);
+            this.tabAggregation.Controls.Add(this.button_delete_list_item_3);
+            this.tabAggregation.Controls.Add(this.listViewAllAggregations);
             this.tabAggregation.Controls.Add(this.textBoxAggregationConcatenateStatement);
             this.tabAggregation.Controls.Add(this.textBoxAggregationWhereStatement);
             this.tabAggregation.Controls.Add(this.textBoxAggregationFileName);
@@ -1279,9 +1270,9 @@
             this.tabAggregation.Controls.Add(this.label20);
             this.tabAggregation.Controls.Add(this.label21);
             this.tabAggregation.Controls.Add(this.label22);
-            this.tabAggregation.Controls.Add(this.checkBox1);
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationIncremental);
             this.tabAggregation.Controls.Add(this.label23);
-            this.tabAggregation.Controls.Add(this.checkBox2);
+            this.tabAggregation.Controls.Add(this.checkBoxAggregationActive);
             this.tabAggregation.Controls.Add(this.label24);
             this.tabAggregation.Controls.Add(this.label25);
             this.tabAggregation.Controls.Add(this.label26);
@@ -1300,12 +1291,55 @@
             this.tabAggregation.Text = "Aggregation";
             this.tabAggregation.UseVisualStyleBackColor = true;
             // 
-            // textBox17
+            // checkBoxAggregationByYear
             // 
-            this.textBox17.Location = new System.Drawing.Point(940, 11);
-            this.textBox17.Name = "textBox17";
-            this.textBox17.Size = new System.Drawing.Size(320, 20);
-            this.textBox17.TabIndex = 166;
+            this.checkBoxAggregationByYear.AutoSize = true;
+            this.checkBoxAggregationByYear.Location = new System.Drawing.Point(234, 429);
+            this.checkBoxAggregationByYear.Name = "checkBoxAggregationByYear";
+            this.checkBoxAggregationByYear.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByYear.TabIndex = 171;
+            this.checkBoxAggregationByYear.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByMonth
+            // 
+            this.checkBoxAggregationByMonth.AutoSize = true;
+            this.checkBoxAggregationByMonth.Location = new System.Drawing.Point(234, 404);
+            this.checkBoxAggregationByMonth.Name = "checkBoxAggregationByMonth";
+            this.checkBoxAggregationByMonth.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByMonth.TabIndex = 170;
+            this.checkBoxAggregationByMonth.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByWeek
+            // 
+            this.checkBoxAggregationByWeek.AutoSize = true;
+            this.checkBoxAggregationByWeek.Location = new System.Drawing.Point(234, 379);
+            this.checkBoxAggregationByWeek.Name = "checkBoxAggregationByWeek";
+            this.checkBoxAggregationByWeek.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByWeek.TabIndex = 169;
+            this.checkBoxAggregationByWeek.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxAggregationByDay
+            // 
+            this.checkBoxAggregationByDay.AutoSize = true;
+            this.checkBoxAggregationByDay.Location = new System.Drawing.Point(234, 354);
+            this.checkBoxAggregationByDay.Name = "checkBoxAggregationByDay";
+            this.checkBoxAggregationByDay.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationByDay.TabIndex = 168;
+            this.checkBoxAggregationByDay.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDownNumberOfMonths
+            // 
+            this.numericUpDownAggregationNumberOfMonths.Location = new System.Drawing.Point(234, 454);
+            this.numericUpDownAggregationNumberOfMonths.Name = "numericUpDownNumberOfMonths";
+            this.numericUpDownAggregationNumberOfMonths.Size = new System.Drawing.Size(47, 20);
+            this.numericUpDownAggregationNumberOfMonths.TabIndex = 167;
+            // 
+            // textBoxAggregationProcedure
+            // 
+            this.textBoxAggregationProcedure.Location = new System.Drawing.Point(940, 11);
+            this.textBoxAggregationProcedure.Name = "textBoxAggregationProcedure";
+            this.textBoxAggregationProcedure.Size = new System.Drawing.Size(320, 20);
+            this.textBoxAggregationProcedure.TabIndex = 166;
             // 
             // label36
             // 
@@ -1343,21 +1377,22 @@
             this.label1.TabIndex = 153;
             this.label1.Text = "Created objects";
             // 
-            // listView1
+            // listViewAllAggregations
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewAllAggregations.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2});
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(985, 84);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(275, 427);
-            this.listView1.TabIndex = 152;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.listViewAllAggregations.FullRowSelect = true;
+            this.listViewAllAggregations.GridLines = true;
+            this.listViewAllAggregations.HideSelection = false;
+            this.listViewAllAggregations.Location = new System.Drawing.Point(985, 84);
+            this.listViewAllAggregations.MultiSelect = false;
+            this.listViewAllAggregations.Name = "listViewAllAggregations";
+            this.listViewAllAggregations.Size = new System.Drawing.Size(275, 427);
+            this.listViewAllAggregations.TabIndex = 152;
+            this.listViewAllAggregations.UseCompatibleStateImageBehavior = false;
+            this.listViewAllAggregations.View = System.Windows.Forms.View.Details;
+            this.listViewAllAggregations.SelectedIndexChanged += new System.EventHandler(this.listViewAllAggregations_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -1484,14 +1519,14 @@
             this.label22.TabIndex = 142;
             this.label22.Text = "aggregation_target_filename";
             // 
-            // checkBox1
+            // checkBoxAggregationIncremental
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(539, 64);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 141;
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBoxAggregationIncremental.AutoSize = true;
+            this.checkBoxAggregationIncremental.Location = new System.Drawing.Point(539, 64);
+            this.checkBoxAggregationIncremental.Name = "checkBoxAggregationIncremental";
+            this.checkBoxAggregationIncremental.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationIncremental.TabIndex = 141;
+            this.checkBoxAggregationIncremental.UseVisualStyleBackColor = true;
             // 
             // label23
             // 
@@ -1502,14 +1537,14 @@
             this.label23.TabIndex = 140;
             this.label23.Text = "aggregation_incremental";
             // 
-            // checkBox2
+            // checkBoxAggregationActive
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(345, 63);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(15, 14);
-            this.checkBox2.TabIndex = 139;
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBoxAggregationActive.AutoSize = true;
+            this.checkBoxAggregationActive.Location = new System.Drawing.Point(345, 63);
+            this.checkBoxAggregationActive.Name = "checkBoxAggregationActive";
+            this.checkBoxAggregationActive.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxAggregationActive.TabIndex = 139;
+            this.checkBoxAggregationActive.UseVisualStyleBackColor = true;
             // 
             // label24
             // 
@@ -1746,49 +1781,6 @@
             this.toolStripComboBox_loaded_datasources.Name = "toolStripComboBox_loaded_datasources";
             this.toolStripComboBox_loaded_datasources.Size = new System.Drawing.Size(121, 25);
             // 
-            // numericUpDownNumberOfMonths
-            // 
-            this.numericUpDownNumberOfMonths.Location = new System.Drawing.Point(234, 454);
-            this.numericUpDownNumberOfMonths.Name = "numericUpDownNumberOfMonths";
-            this.numericUpDownNumberOfMonths.Size = new System.Drawing.Size(47, 20);
-            this.numericUpDownNumberOfMonths.TabIndex = 167;
-            // 
-            // checkBoxAggregationByDay
-            // 
-            this.checkBoxAggregationByDay.AutoSize = true;
-            this.checkBoxAggregationByDay.Location = new System.Drawing.Point(234, 354);
-            this.checkBoxAggregationByDay.Name = "checkBoxAggregationByDay";
-            this.checkBoxAggregationByDay.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAggregationByDay.TabIndex = 168;
-            this.checkBoxAggregationByDay.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAggregationByWeek
-            // 
-            this.checkBoxAggregationByWeek.AutoSize = true;
-            this.checkBoxAggregationByWeek.Location = new System.Drawing.Point(234, 379);
-            this.checkBoxAggregationByWeek.Name = "checkBoxAggregationByWeek";
-            this.checkBoxAggregationByWeek.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAggregationByWeek.TabIndex = 169;
-            this.checkBoxAggregationByWeek.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAggregationByYear
-            // 
-            this.checkBoxAggregationByYear.AutoSize = true;
-            this.checkBoxAggregationByYear.Location = new System.Drawing.Point(234, 429);
-            this.checkBoxAggregationByYear.Name = "checkBoxAggregationByYear";
-            this.checkBoxAggregationByYear.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAggregationByYear.TabIndex = 171;
-            this.checkBoxAggregationByYear.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxAggregationByMonth
-            // 
-            this.checkBoxAggregationByMonth.AutoSize = true;
-            this.checkBoxAggregationByMonth.Location = new System.Drawing.Point(234, 404);
-            this.checkBoxAggregationByMonth.Name = "checkBoxAggregationByMonth";
-            this.checkBoxAggregationByMonth.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxAggregationByMonth.TabIndex = 170;
-            this.checkBoxAggregationByMonth.UseVisualStyleBackColor = true;
-            // 
             // _02_ObjectCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1810,9 +1802,9 @@
             this.tabControl.ResumeLayout(false);
             this.tabAggregation.ResumeLayout(false);
             this.tabAggregation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownAggregationNumberOfMonths)).EndInit();
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownNumberOfMonths)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1877,7 +1869,6 @@
         private System.Windows.Forms.Label label_object_reorganization;
         private System.Windows.Forms.Label label_object_target_extraction_folder;
         private System.Windows.Forms.TabPage tabTransformation;
-        private System.Windows.Forms.Button button_back_generator;
         private System.Windows.Forms.Button button_set_all_notactive_2;
         private System.Windows.Forms.Button button_set_all_active_2;
         private System.Windows.Forms.Button button_remove_all_listviewitems_2;
@@ -1885,7 +1876,7 @@
         private System.Windows.Forms.Button button_list_item_move_up_2;
         private System.Windows.Forms.Button button_delete_list_item_2;
         private System.Windows.Forms.Label label19;
-        private System.Windows.Forms.ListView listView_all_transformations;
+        private System.Windows.Forms.ListView listViewAllTransformations;
         private System.Windows.Forms.ColumnHeader columnObjectName;
         private System.Windows.Forms.ColumnHeader columnObjectActive;
         private System.Windows.Forms.TextBox textBox_transformation_split_parameter;
@@ -1935,15 +1926,14 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.Button button_select_columns;
         private System.Windows.Forms.TabPage tabAggregation;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button_set_all_notactive_3;
+        private System.Windows.Forms.Button button_set_all_active_3;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Button button_remove_all_listviewitems_3;
+        private System.Windows.Forms.Button button_list_item_move_down_3;
+        private System.Windows.Forms.Button button_list_item_move_up_3;
+        private System.Windows.Forms.Button button_delete_list_item_3;
+        private System.Windows.Forms.ListView listViewAllAggregations;
         private System.Windows.Forms.ColumnHeader columnHeader1;
         private System.Windows.Forms.ColumnHeader columnHeader2;
         private System.Windows.Forms.TextBox textBoxAggregationConcatenateStatement;
@@ -1960,9 +1950,9 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBoxAggregationIncremental;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox checkBoxAggregationActive;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
@@ -1973,7 +1963,7 @@
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox17;
+        private System.Windows.Forms.TextBox textBoxAggregationProcedure;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label label34;
@@ -1981,7 +1971,8 @@
         private System.Windows.Forms.CheckBox checkBoxAggregationByMonth;
         private System.Windows.Forms.CheckBox checkBoxAggregationByWeek;
         private System.Windows.Forms.CheckBox checkBoxAggregationByDay;
-        private System.Windows.Forms.NumericUpDown numericUpDownNumberOfMonths;
+        private System.Windows.Forms.NumericUpDown numericUpDownAggregationNumberOfMonths;
+        private System.Windows.Forms.Button buttonNextAggregation;
     }
 }
 

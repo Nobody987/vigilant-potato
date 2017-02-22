@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace XML_Configurator.DataModel
 {
     [Serializable]
-    public class transformator_object_id
+    public class transformationObject
     {
         string transformation_name;
         string transformation_active;
@@ -24,12 +24,12 @@ namespace XML_Configurator.DataModel
         string transformation_target_folder;
         string transformation_target_filename;
 
-        public transformator_object_id()
+        public transformationObject()
         {
 
         }
 
-        public transformator_object_id(string transformation_name, string transformation_active, string transformation_incremental, string transformation_statement, string transformation_split_parameter, string transformation_primary_key, string additional_transformation_split_parameters, string additional_transformation_where_statement, string additional_transformation_number_of_days, string additional_transformation_number_of_months, string additional_transformation_number_of_years, string transformation_source_folder, string transformation_source_filename, string transformation_target_folder, string transformation_target_filename)
+        public transformationObject(string transformation_name, string transformation_active, string transformation_incremental, string transformation_statement, string transformation_split_parameter, string transformation_primary_key, string additional_transformation_split_parameters, string additional_transformation_where_statement, string additional_transformation_number_of_days, string additional_transformation_number_of_months, string additional_transformation_number_of_years, string transformation_source_folder, string transformation_source_filename, string transformation_target_folder, string transformation_target_filename)
         {
             this.transformation_name = transformation_name;
             this.transformation_active = transformation_active;
@@ -248,12 +248,12 @@ namespace XML_Configurator.DataModel
             }
         }
 
-        public static explicit operator transformator_object_id(ListViewItem v)
+        public static explicit operator transformationObject(ListViewItem v)
         {
-            return new transformator_object_id(v.SubItems[0].Text.ToString(), v.SubItems[1].Text.ToString(), v.SubItems[2].Text.ToString(), v.SubItems[3].Text.ToString(), v.SubItems[4].Text.ToString(), v.SubItems[5].Text.ToString(), v.SubItems[6].Text.ToString(), v.SubItems[7].Text.ToString(), v.SubItems[8].Text.ToString(), v.SubItems[9].Text.ToString(), v.SubItems[10].Text.ToString(), v.SubItems[11].Text.ToString(), v.SubItems[12].Text.ToString(), v.SubItems[13].Text.ToString(), v.SubItems[14].Text.ToString());
+            return new transformationObject(v.SubItems[0].Text.ToString(), v.SubItems[1].Text.ToString(), v.SubItems[2].Text.ToString(), v.SubItems[3].Text.ToString(), v.SubItems[4].Text.ToString(), v.SubItems[5].Text.ToString(), v.SubItems[6].Text.ToString(), v.SubItems[7].Text.ToString(), v.SubItems[8].Text.ToString(), v.SubItems[9].Text.ToString(), v.SubItems[10].Text.ToString(), v.SubItems[11].Text.ToString(), v.SubItems[12].Text.ToString(), v.SubItems[13].Text.ToString(), v.SubItems[14].Text.ToString());
         }
 
-        public static explicit operator transformator_object_id(generator_object_id v)
+        public static explicit operator transformationObject(generatorObject v)
         {
             try
             {
@@ -262,18 +262,18 @@ namespace XML_Configurator.DataModel
                 string source_folder = "..\\15 - Interface\\" + v.Object_target_extraction_folder + '\\' + v.Object_target_extraction_filename.Substring(0, v.Object_target_extraction_filename.LastIndexOf('\\'));
                 string target_filename = v.Object_target_extraction_folder;
                 string target_folder = "..\\15 - Interface\\" + v.Object_target_extraction_folder + "\\90 - CUBES";
-                return new transformator_object_id(v.Object_name, v.Object_active.ToString(), null, v.Object_transformation_statement, null, v.Object_primary_key, null, null, null, null, null, source_folder, source_filename, target_folder, target_filename);
+                return new transformationObject(v.Object_name, v.Object_active.ToString(), null, v.Object_transformation_statement, null, v.Object_primary_key, null, null, null, null, null, source_folder, source_filename, target_folder, target_filename);
             }
             catch (Exception e)
             {
                 MessageBox.Show("Error converting generator to transformation object \n " + e);
-                return new transformator_object_id();
+                return new transformationObject();
             }
 
             //string source_folder = v.Object_target_extraction_filename.Substring(v.Object_target_extraction_filename.LastIndexOf('\\')+1);
         }
 
-        public static explicit operator ListViewItem(transformator_object_id v)
+        public static explicit operator ListViewItem(transformationObject v)
         {
             List<string> List_Variables = new List<string>();
             List_Variables.Add(v.transformation_name);

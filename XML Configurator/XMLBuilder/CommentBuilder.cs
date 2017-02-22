@@ -6,7 +6,7 @@ namespace XML_Configurator.XMLBuilder
     {
         public static string comment = "TO BE ADDED";
 
-        public static string ItemCommentBuilder(generator_object_id item)
+        public static string ItemCommentBuilder(generatorObject item)
         {
             string padded_comment_add_active = item.Object_name.PadRight(50) + item.Object_active;
             string padded_comment_add_active_add_load_type = padded_comment_add_active.PadRight(70) + item.Object_load_type;
@@ -19,9 +19,15 @@ namespace XML_Configurator.XMLBuilder
             string padded_final = padded_comment_add_active.PadRight(80);
             return padded_final;
         }
-        public static string ItemCommentBuilder(transformator_object_id item)
+        public static string ItemCommentBuilder(transformationObject item)
         {
             string padded_comment_add_active = item.Transformation_name.PadRight(50) + item.Transformation_active;
+            string padded_final = padded_comment_add_active.PadRight(80);
+            return padded_final;
+        }
+        public static string ItemCommentBuilder(aggregationObject item)
+        {
+            string padded_comment_add_active = item.aggregation_name.PadRight(50) + item.aggregation_active;
             string padded_final = padded_comment_add_active.PadRight(80);
             return padded_final;
         }

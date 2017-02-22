@@ -6,7 +6,7 @@ using System.Windows.Forms;
 namespace XML_Configurator.DataModel
 {
     [Serializable]
-    public class generator_object_id
+    public class generatorObject
     {
         string object_name;
         string object_reload_minutes;
@@ -300,7 +300,7 @@ namespace XML_Configurator.DataModel
             }
         }
 
-        public generator_object_id()
+        public generatorObject()
         {
             this.object_name = "Default";
             this.object_reload_minutes = "Default";
@@ -321,7 +321,7 @@ namespace XML_Configurator.DataModel
             this.select_statement_for_display = object_select_statement;
         }
 
-        public generator_object_id(string object_name, string object_reload_minutes, string object_comment, string object_primary_key, string object_select_statement, string object_datetime_format, string object_date_format, string object_time_format, string object_where_statement, char object_active, string object_load_type, string object_fieldstoload_statement, string object_reorganization, string object_transformation_statement, string object_target_extraction_folder, string object_target_extraction_filename, string select_statement_for_display, string select_statement_for_display_string_array)
+        public generatorObject(string object_name, string object_reload_minutes, string object_comment, string object_primary_key, string object_select_statement, string object_datetime_format, string object_date_format, string object_time_format, string object_where_statement, char object_active, string object_load_type, string object_fieldstoload_statement, string object_reorganization, string object_transformation_statement, string object_target_extraction_folder, string object_target_extraction_filename, string select_statement_for_display, string select_statement_for_display_string_array)
         {
             this.object_name = object_name;
             this.object_reload_minutes = object_reload_minutes;
@@ -344,14 +344,14 @@ namespace XML_Configurator.DataModel
             this.Select_statement_for_display_string_array = select_statement_for_display_string_array;
         }
 
-        public static explicit operator generator_object_id(ListViewItem v)
+        public static explicit operator generatorObject(ListViewItem v)
         {
-            return new generator_object_id(v.SubItems[0].Text.ToString(), v.SubItems[3].Text.ToString(), v.SubItems[4].Text.ToString(), v.SubItems[5].Text.ToString(), v.SubItems[6].Text.ToString(), v.SubItems[7].Text.ToString(), v.SubItems[8].Text.ToString(), v.SubItems[9].Text.ToString(), v.SubItems[10].Text.ToString(), char.Parse(v.SubItems[1].Text.ToString()), v.SubItems[2].Text.ToString(), v.SubItems[11].Text.ToString(), v.SubItems[12].Text.ToString(), v.SubItems[13].Text.ToString(), v.SubItems[14].Text.ToString(), v.SubItems[15].Text.ToString(), v.SubItems[16].Text.ToString(), v.SubItems[17].Text.ToString());
+            return new generatorObject(v.SubItems[0].Text.ToString(), v.SubItems[3].Text.ToString(), v.SubItems[4].Text.ToString(), v.SubItems[5].Text.ToString(), v.SubItems[6].Text.ToString(), v.SubItems[7].Text.ToString(), v.SubItems[8].Text.ToString(), v.SubItems[9].Text.ToString(), v.SubItems[10].Text.ToString(), char.Parse(v.SubItems[1].Text.ToString()), v.SubItems[2].Text.ToString(), v.SubItems[11].Text.ToString(), v.SubItems[12].Text.ToString(), v.SubItems[13].Text.ToString(), v.SubItems[14].Text.ToString(), v.SubItems[15].Text.ToString(), v.SubItems[16].Text.ToString(), v.SubItems[17].Text.ToString());
 
             //return new object_id(v.SubItems[0].Text.ToString(), v.SubItems[2].Text.ToString(), v.SubItems[3].Text.ToString(), v.SubItems[4].Text.ToString(), v.SubItems[5].Text.ToString(), v.SubItems[6].Text.ToString(), v.SubItems[7].Text.ToString(), v.SubItems[8].Text.ToString(), v.SubItems[9].Text.ToString(), char.Parse(v.SubItems[1].Text.ToString()), v.SubItems[10].Text.ToString(), v.SubItems[11].Text.ToString(), v.SubItems[12].Text.ToString(), v.SubItems[13].Text.ToString(), v.SubItems[14].Text.ToString(), v.SubItems[15].Text.ToString(), v.SubItems[16].Text.ToString(), v.SubItems[17].Text.ToString());
         }
 
-        public static explicit operator ListViewItem(generator_object_id v)
+        public static explicit operator ListViewItem(generatorObject v)
         {
             //List<string> List_Variables = new List<string>();
             //List_Variables.Add(v.object_name);

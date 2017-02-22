@@ -56,7 +56,7 @@ namespace XML_Configurator
                 foreach (database_table item in loaded_tables)
                 {
                     populate_fields(loaded_tables, loaded_tables.IndexOf(item));
-                    create_generator_item();
+                    createGeneratorItem();
                 }
             }
             loaded_tables = null;
@@ -296,7 +296,7 @@ namespace XML_Configurator
                 MessageBox.Show("Name of the object must be filled!");
                 return;
             }
-            generator_object_id obj = new generator_object_id();
+            generatorObject obj = new generatorObject();
 
             obj.Object_name = textBox_object_name.Text;
             obj.Object_reload_minutes = textBox_object_reload_minutes.Text;
@@ -304,16 +304,16 @@ namespace XML_Configurator
             obj.Object_primary_key = textBox_object_primary_key.Text;
             obj.select_statement_for_display = textBox_object_select_statement.Text;
             //obj.Object_select_statement = this.textBox_object_select_statement.Text;
-            obj.Object_select_statement = generator_object_id.ConstructSelectStatement(textBox_object_select_statement.Text);
+            obj.Object_select_statement = generatorObject.ConstructSelectStatement(textBox_object_select_statement.Text);
             obj.Object_datetime_format = textBox_object_datetime_format.Text;
             obj.Object_date_format = textBox_object_date_format.Text;
             obj.Object_time_format = textBox_object_time_format.Text;
-            obj.Object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
+            obj.Object_where_statement = generatorObject.ConstructSelectStatement(textBox_object_where_statement.Text);
             obj.Object_active = checkBox_object_active.Checked ? 'Y' : 'N';
             obj.Object_load_type = comboBox_object_load_type.SelectedItem.ToString();
-            obj.Object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
+            obj.Object_fieldstoload_statement = generatorObject.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
             obj.Object_reorganization = textBox_object_reorganization.Text;
-            obj.Object_transformation_statement = generator_object_id.ConstructSelectStatement(textBox_object_transformation_statement.Text);
+            obj.Object_transformation_statement = generatorObject.ConstructSelectStatement(textBox_object_transformation_statement.Text);
             obj.Object_target_extraction_folder = textBox_object_target_extraction_folder.Text;
             obj.Object_target_extraction_filename = textBox_object_target_extraction_filename.Text;
             obj.Select_statement_for_display_string_array = textBox_object_select_statement.Text;
@@ -349,7 +349,7 @@ namespace XML_Configurator
         {
             if (listView_all_objects.SelectedItems.Count != 0)
             {
-                generator_object_id obj = (generator_object_id)listView_all_objects.SelectedItems[0];
+                generatorObject obj = (generatorObject)listView_all_objects.SelectedItems[0];
                 textBox_object_name.Text = obj.Object_name;
                 textBox_object_reload_minutes.Text = obj.Object_reload_minutes.ToString();
                 textBox_object_comment.Text = obj.Object_comment;
@@ -408,9 +408,9 @@ namespace XML_Configurator
 
         private void listView_all_transformations_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView_all_transformations.SelectedItems.Count != 0)
+            if (listViewAllTransformations.SelectedItems.Count != 0)
             {
-                transformator_object_id obj = (transformator_object_id)listView_all_transformations.SelectedItems[0];
+                transformationObject obj = (transformationObject)listViewAllTransformations.SelectedItems[0];
                 textBox_transformation_name.Text = obj.Transformation_name;
                 textBox_transformation_primary_key.Text = obj.Transformation_primary_key;
                 //               this.textBox_object_select_statement.Text = obj.select_statement_for_display;
@@ -516,12 +516,12 @@ namespace XML_Configurator
 
         private void button_next_transform_Click(object sender, EventArgs e)
         {
-            next_tab_transformation();
+            nextTabTransformation();
         }
 
-        private void next_tab_transformation()
+        private void nextTabTransformation()
         {
-            if (listView_all_transformations.Items.Count > 0)
+            if (listViewAllTransformations.Items.Count > 0)
             {
                 DialogResult dr = MessageBox.Show("Transformation list already contains objects. Do you want to remove them and add objects defined in generator object list?", "Alert", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
                 if (dr == DialogResult.Yes)
@@ -529,10 +529,10 @@ namespace XML_Configurator
                     List<ListViewItem> object_list = new List<ListViewItem>();
                     foreach (ListViewItem item in listView_all_objects.Items)
                     {
-                        object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+                        object_list.Add((ListViewItem)(transformationObject)(generatorObject)item);
                     }
-                    listView_all_transformations.Items.Clear();
-                    listView_all_transformations.Items.AddRange(object_list.ToArray());
+                    listViewAllTransformations.Items.Clear();
+                    listViewAllTransformations.Items.AddRange(object_list.ToArray());
                     tabControl.SelectedTab = tabTransformation;
                 }
                 else if (dr == DialogResult.No)
@@ -549,15 +549,15 @@ namespace XML_Configurator
                 List<ListViewItem> object_list = new List<ListViewItem>();
                 foreach (ListViewItem item in listView_all_objects.Items)
                 {
-                    object_list.Add((ListViewItem)(transformator_object_id)(generator_object_id)item);
+                    object_list.Add((ListViewItem)(transformationObject)(generatorObject)item);
                 }
-                listView_all_transformations.Items.Clear();
-                listView_all_transformations.Items.AddRange(object_list.ToArray());
+                listViewAllTransformations.Items.Clear();
+                listViewAllTransformations.Items.AddRange(object_list.ToArray());
                 tabControl.SelectedTab = tabTransformation;
             }
         }
 
-        private void next_tab_generator()
+        private void nextTabGenerator()
         {
             //List<ListViewItem> object_list = new List<ListViewItem>();
             //foreach (ListViewItem item in listView_all_objects.Items)
@@ -670,7 +670,7 @@ namespace XML_Configurator
             for (int i = 0; i < listView_all_objects.Items.Count; i++)
             {
                 ListViewItem item = listView_all_objects.Items[i];
-                generator_object_id object_item = (generator_object_id)item;
+                generatorObject object_item = (generatorObject)item;
                 object_item.Object_active = 'Y';
                 item = (ListViewItem)object_item;
                 listView_all_objects.Items[i] = item;
@@ -682,7 +682,7 @@ namespace XML_Configurator
             for (int i = 0; i < listView_all_objects.Items.Count; i++)
             {
                 ListViewItem item = listView_all_objects.Items[i];
-                generator_object_id object_item = (generator_object_id)item;
+                generatorObject object_item = (generatorObject)item;
                 object_item.Object_active = 'N';
                 item = (ListViewItem)object_item;
                 listView_all_objects.Items[i] = item;
@@ -694,51 +694,51 @@ namespace XML_Configurator
         #region ListView transforamtion
         private void button_list_item_move_up_2_Click(object sender, EventArgs e)
         {
-            if (listView_all_transformations.Items.Count > 0)
+            if (listViewAllTransformations.Items.Count > 0)
             {
-                var currentIndex = listView_all_transformations.SelectedItems[0].Index;
-                var item = listView_all_transformations.SelectedItems[0];
+                var currentIndex = listViewAllTransformations.SelectedItems[0].Index;
+                var item = listViewAllTransformations.SelectedItems[0];
                 if (currentIndex > 0)
                 {
-                    listView_all_transformations.Items.RemoveAt(currentIndex);
-                    listView_all_transformations.Items.Insert(currentIndex - 1, item);
-                    listView_all_transformations.Select();
+                    listViewAllTransformations.Items.RemoveAt(currentIndex);
+                    listViewAllTransformations.Items.Insert(currentIndex - 1, item);
+                    listViewAllTransformations.Select();
                 }
             }
         }
         private void button_list_item_move_down_2_Click(object sender, EventArgs e)
         {
-            if (listView_all_transformations.Items.Count > 0)
+            if (listViewAllTransformations.Items.Count > 0)
             {
-                var currentIndex = listView_all_transformations.SelectedItems[0].Index;
-                var item = listView_all_transformations.SelectedItems[0];
-                if (currentIndex < listView_all_transformations.Items.Count - 1)
+                var currentIndex = listViewAllTransformations.SelectedItems[0].Index;
+                var item = listViewAllTransformations.SelectedItems[0];
+                if (currentIndex < listViewAllTransformations.Items.Count - 1)
                 {
-                    listView_all_transformations.Items.RemoveAt(currentIndex);
-                    listView_all_transformations.Items.Insert(currentIndex + 1, item);
-                    listView_all_transformations.Select();
+                    listViewAllTransformations.Items.RemoveAt(currentIndex);
+                    listViewAllTransformations.Items.Insert(currentIndex + 1, item);
+                    listViewAllTransformations.Select();
                 }
             }
         }
         private void button_delete_list_item_2_Click(object sender, EventArgs e)
         {
-            if (listView_all_transformations.SelectedItems.Count > 0)
+            if (listViewAllTransformations.SelectedItems.Count > 0)
             {
-                DialogResult result = MessageBox.Show("Do you want to remove " + listView_all_transformations.SelectedItems[0].ToString() + " from the list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult result = MessageBox.Show("Do you want to remove " + listViewAllTransformations.SelectedItems[0].ToString() + " from the list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
 
-                    var currentIndex = listView_all_transformations.SelectedItems[0].Index;
+                    var currentIndex = listViewAllTransformations.SelectedItems[0].Index;
                     if (currentIndex != 0)
                     {
-                        listView_all_transformations.Items[currentIndex - 1].Selected = true; //ako izbrisani element nije prvi u listi, selektuj prethodni element 
+                        listViewAllTransformations.Items[currentIndex - 1].Selected = true; //ako izbrisani element nije prvi u listi, selektuj prethodni element 
                     }
-                    else if (currentIndex != listView_all_transformations.Items.Count - 1)
+                    else if (currentIndex != listViewAllTransformations.Items.Count - 1)
                     {
-                        listView_all_transformations.Items[currentIndex + 1].Selected = true; //ako je izbrisani element prvi u listi, selektuj sledecti element
+                        listViewAllTransformations.Items[currentIndex + 1].Selected = true; //ako je izbrisani element prvi u listi, selektuj sledecti element
                     }
-                    listView_all_transformations.Items.RemoveAt(currentIndex);
-                    listView_all_transformations.Select();
+                    listViewAllTransformations.Items.RemoveAt(currentIndex);
+                    listViewAllTransformations.Select();
                 }
                 else
                 {
@@ -748,12 +748,12 @@ namespace XML_Configurator
         }
         private void button_remove_all_listviewitems_2_Click(object sender, EventArgs e)
         {
-            if (listView_all_transformations.SelectedItems.Count > 0)
+            if (listViewAllTransformations.SelectedItems.Count > 0)
             {
                 DialogResult result = MessageBox.Show("Do you want to remove all items from the list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result == DialogResult.Yes)
                 {
-                    listView_all_transformations.Items.Clear();
+                    listViewAllTransformations.Items.Clear();
                 }
                 else
                 {
@@ -763,27 +763,27 @@ namespace XML_Configurator
         }
         private void button_set_all_active_2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView_all_transformations.Items.Count; i++)
+            for (int i = 0; i < listViewAllTransformations.Items.Count; i++)
             {
-                ListViewItem item = listView_all_transformations.Items[i];
-                generator_object_id object_item = (generator_object_id)item;
+                ListViewItem item = listViewAllTransformations.Items[i];
+                generatorObject object_item = (generatorObject)item;
                 object_item.Object_active = 'Y';
                 item = (ListViewItem)object_item;
-                listView_all_transformations.Items[i] = item;
+                listViewAllTransformations.Items[i] = item;
             }
-            listview_check_colors(listView_all_transformations);
+            listview_check_colors(listViewAllTransformations);
         }
         private void button_set_all_notactive_2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < listView_all_transformations.Items.Count; i++)
+            for (int i = 0; i < listViewAllTransformations.Items.Count; i++)
             {
-                ListViewItem item = listView_all_transformations.Items[i];
-                generator_object_id object_item = (generator_object_id)item;
+                ListViewItem item = listViewAllTransformations.Items[i];
+                generatorObject object_item = (generatorObject)item;
                 object_item.Object_active = 'N';
                 item = (ListViewItem)object_item;
-                listView_all_transformations.Items[i] = item;
+                listViewAllTransformations.Items[i] = item;
             }
-            listview_check_colors(listView_all_transformations);
+            listview_check_colors(listViewAllTransformations);
         }
         #endregion
         #endregion
@@ -794,11 +794,15 @@ namespace XML_Configurator
         {
             if (tabControl.SelectedTab == tabGenerator)
             {
-                load_sample_generator_object();
+                loadSampleGeneratorObject();
             }
             else if (tabControl.SelectedTab == tabTransformation)
             {
-                load_sample_transformation_object();
+                loadSampleTransformationObject();
+            }
+            else if (tabControl.SelectedTab == tabAggregation)
+            {
+                loadSampleAggregationObject();
             }
         }
 
@@ -806,35 +810,50 @@ namespace XML_Configurator
         {
             if (tabControl.SelectedTab == tabGenerator)
             {
-                create_generator_item();
+                createGeneratorItem();
             }
             else if (tabControl.SelectedTab == tabTransformation)
             {
-                create_transformation_item();
+                createTransformationItem();
+            }
+            else if (tabControl.SelectedTab == tabAggregation)
+            {
+                createAggregationItem();
             }
         }
+
+
 
         private void toolStripButton_update_object_Click(object sender, EventArgs e)
         {
             if (tabControl.SelectedTab == tabGenerator)
             {
-                update_generator_item();
+                updateGeneratorItem();
             }
             else if (tabControl.SelectedTab == tabTransformation)
             {
-                update_transformation_item();
+                updateTransformationItem();
+            }
+            else if (tabControl.SelectedTab == tabAggregation)
+            {
+                updateAggregationItem();
             }
         }
+
 
         private void toolStripButton_create_xml_Click(object sender, EventArgs e)
         {
             if (tabControl.SelectedTab == tabGenerator)
             {
-                create_generator_xml();
+                createGeneratorXml();
             }
             else if (tabControl.SelectedTab == tabTransformation)
             {
-                create_tranformation_xml();
+                createTranformationXml();
+            }
+            else if (tabControl.SelectedTab == tabAggregation)
+            {
+                createAggregationXml();
             }
         }
 
@@ -863,13 +882,19 @@ namespace XML_Configurator
         {
             if (tabControl.SelectedTab == tabGenerator)
             {
-                load_generator_xml();
+                loadGeneratorXml();
             }
             else if (tabControl.SelectedTab == tabTransformation)
             {
-                load_transformation_xml();
+                loadTransformationXml();
+            }
+            else if (tabControl.SelectedTab == tabAggregation)
+            {
+                loadAggregationXml();
             }
         }
+
+
 
         #endregion
 
@@ -881,32 +906,39 @@ namespace XML_Configurator
 
         private void update_tab_gui(TabPage selected_tab) //TODO dodati da se updateuje i update object button; trenutno ne radi kada se doda item u jedan tab, aktivira se na svim tabovima. treba da se proveri da li ima itema u listview-u
         {
-            if (selected_tab == tabTransformation)
-            {
-                enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", false);
-                enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", false);
-                enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", false);
-            }
-            else if (selected_tab == tabGenerator)
+            if (selected_tab == tabGenerator)
             {
                 enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", true);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", true);
                 enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", true);
             }
-        }
-        private void update_tab_data(TabPage selected_tab)
-        {
-            if (selected_tab == tabTransformation)
+            else if (selected_tab == tabTransformation)
             {
-                next_tab_transformation();
+                enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", false);
+                enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", false);
+                enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", false);
             }
-            else if (selected_tab == tabGenerator)
-            {
-                next_tab_generator();
-            }
-        }
 
-        private void load_generator_xml()
+            else if (selected_tab == tabAggregation)
+            {
+                enable_disable_toolstrip_item(toolStripMain, "toolStripButton_execute_test_statement", false);
+                enable_disable_toolstrip_item(toolStripMain, "toolStripLabel_database", false);
+                enable_disable_toolstrip_item(toolStripMain, "toolStripComboBox_loaded_datasources", false);
+            }
+        }
+        //private void update_tab_data(TabPage selected_tab)
+        //{
+        //    if (selected_tab == tabTransformation)
+        //    {
+        //        nextTabTransformation();
+        //    }
+        //    else if (selected_tab == tabGenerator)
+        //    {
+        //        nextTabGenerator();
+        //    }
+        //}
+
+        private void loadGeneratorXml()
         {
             try
             {
@@ -922,7 +954,7 @@ namespace XML_Configurator
                     {
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
-                            generator_object_id object_id_instance = new generator_object_id();
+                            generatorObject object_id_instance = new generatorObject();
 
                             try
                             {
@@ -957,7 +989,7 @@ namespace XML_Configurator
                             }
                             try
                             {
-                                object_id_instance.Object_select_statement = generator_object_id.ConstructSelectStatement(new_object["object_select_statement"].InnerText);
+                                object_id_instance.Object_select_statement = generatorObject.ConstructSelectStatement(new_object["object_select_statement"].InnerText);
 
                             }
                             catch (NullReferenceException)
@@ -997,7 +1029,7 @@ namespace XML_Configurator
                             }
                             try
                             {
-                                object_id_instance.Object_where_statement = generator_object_id.ConstructSelectStatement(new_object["object_where_statement"].InnerText);
+                                object_id_instance.Object_where_statement = generatorObject.ConstructSelectStatement(new_object["object_where_statement"].InnerText);
 
                             }
                             catch (NullReferenceException)
@@ -1021,7 +1053,7 @@ namespace XML_Configurator
                             }
                             try
                             {
-                                object_id_instance.Object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(new_object["object_fieldstoload_statement"].InnerText);
+                                object_id_instance.Object_fieldstoload_statement = generatorObject.ConstructSelectStatement(new_object["object_fieldstoload_statement"].InnerText);
 
                             }
                             catch (NullReferenceException)
@@ -1037,7 +1069,7 @@ namespace XML_Configurator
                             }
                             try
                             {
-                                object_id_instance.Object_transformation_statement = generator_object_id.ConstructSelectStatement(new_object["object_transformation_statement"].InnerText);
+                                object_id_instance.Object_transformation_statement = generatorObject.ConstructSelectStatement(new_object["object_transformation_statement"].InnerText);
 
                             }
                             catch (NullReferenceException)
@@ -1125,13 +1157,13 @@ namespace XML_Configurator
                 MessageBox.Show("Error occurred during load of file! Please check if correct XML file is marked for load.");
             }
         }
-        private void load_transformation_xml()
+        private void loadTransformationXml()
         {
             try
             {
                 if (openFileDialogLocation.ShowDialog() == DialogResult.OK)
                 {
-                    listView_all_transformations.Items.Clear(); //clear list before use
+                    listViewAllTransformations.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
                     XmlDocument document = new XmlDocument();
                     document.Load(openFileDialogLocation.FileName.ToString());
@@ -1141,7 +1173,7 @@ namespace XML_Configurator
                     {
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
-                            transformator_object_id object_id_instance = new transformator_object_id();
+                            transformationObject object_id_instance = new transformationObject();
                             try
                             {
                                 object_id_instance.Transformation_name = new_object["transformation_name"].InnerText;
@@ -1167,7 +1199,7 @@ namespace XML_Configurator
                             }
                             try
                             {
-                                object_id_instance.Transformation_statement = generator_object_id.ConstructSelectStatement(new_object["transformation_statement"].InnerText);
+                                object_id_instance.Transformation_statement = generatorObject.ConstructSelectStatement(new_object["transformation_statement"].InnerText);
 
                             }
                             catch (NullReferenceException)
@@ -1263,15 +1295,15 @@ namespace XML_Configurator
                             }
 
                             ListViewItem ListItem = (ListViewItem)object_id_instance;
-                            listView_all_transformations.Items.Add(ListItem);
+                            listViewAllTransformations.Items.Add(ListItem);
 
-                            listview_check_colors(listView_all_transformations);
+                            listview_check_colors(listViewAllTransformations);
                         }
                     }
-                    if (listView_all_transformations.Items.Count > 0)
+                    if (listViewAllTransformations.Items.Count > 0)
                     {
-                        listView_all_transformations.Items[0].Selected = true;
-                        listView_all_transformations.Select();
+                        listViewAllTransformations.Items[0].Selected = true;
+                        listViewAllTransformations.Select();
                     }
 
                     //if (document.DocumentElement.SelectSingleNode("/datasource/datasource_name") != null)
@@ -1319,7 +1351,182 @@ namespace XML_Configurator
                 MessageBox.Show("Error occurred during load of file! Please check if correct XML file is marked for load. \n\n" + ex.Message);
             }
         }
-        private void load_sample_generator_object()
+        private void loadAggregationXml()
+        {
+            try
+            {
+                if (openFileDialogLocation.ShowDialog() == DialogResult.OK)
+                {
+                    listViewAllAggregations.Items.Clear(); //clear list before use
+                    Console.WriteLine(openFileDialogLocation.FileName.ToString());
+                    XmlDocument document = new XmlDocument();
+                    document.Load(openFileDialogLocation.FileName.ToString());
+
+                    XmlNode node = document.DocumentElement.SelectSingleNode("/aggregations");
+                    foreach (XmlNode new_object in node)
+                    {
+                        if (new_object.NodeType != XmlNodeType.Comment)
+                        {
+                            aggregationObject object_id_instance = new aggregationObject();
+                            try
+                            {
+                                object_id_instance.aggregation_name = new_object["aggregation_name"].InnerText;
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_active = new_object["aggregation_active"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_incremental = new_object["aggregation_incremental"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_select_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_select_statement"].InnerText);
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_concatenation_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_concatenation_statement"].InnerText);
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_where_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_where_statement"].InnerText);
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_primary_key = new_object["aggregation_primary_key"].InnerText.Trim();
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_by_day = new_object["aggregation_by_day"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_by_week = new_object["aggregation_by_week"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_by_month = new_object["aggregation_by_month"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_by_year = new_object["aggregation_by_year"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_number_of_months = new_object["aggregation_number_of_months"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_by_procedure = new_object["aggregation_by_procedure"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_source_folder = new_object["aggregation_source_folder"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_source_filename = new_object["aggregation_source_filename"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_target_folder = new_object["aggregation_target_folder"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+                            try
+                            {
+                                object_id_instance.aggregation_target_filename = new_object["aggregation_target_filename"].InnerText;
+
+                            }
+                            catch (NullReferenceException)
+                            {
+                            }
+
+                            ListViewItem ListItem = (ListViewItem)object_id_instance;
+                            listViewAllAggregations.Items.Add(ListItem);
+
+                            listview_check_colors(listViewAllAggregations);
+                        }
+                    }
+                    if (listViewAllAggregations.Items.Count > 0)
+                    {
+                        listViewAllAggregations.Items[0].Selected = true;
+                        listViewAllAggregations.Select();
+                    }
+
+                    textBoxAggregationFileName.Text = openFileDialogLocation.FileName.Substring(openFileDialogLocation.FileName.LastIndexOf('\\') + 1);
+                    toolStripTextBox_folder_path.Text = openFileDialogLocation.FileName.Substring(0, openFileDialogLocation.FileName.LastIndexOf('\\'));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error occurred during load of file! Please check if correct XML file is marked for load. \n\n" + ex.Message);
+            }
+        }
+
+        private void loadSampleGeneratorObject()
         {
             textBox_object_name.Text = "ARTIC01L";
             textBox_object_reload_minutes.Text = "30";
@@ -1338,7 +1545,7 @@ namespace XML_Configurator
             textBox_object_target_extraction_folder.Text = "ARTIC01L";
             textBox_object_target_extraction_filename.Text = @"90 - CUBES\ARTIC01L_FullRefresh";
         }
-        private void load_sample_transformation_object()
+        private void loadSampleTransformationObject()
         {
             textBox_transformation_name.Text = "PSAVEAK";
             textBox_transformation_primary_key.Text = "PSAVEAK_AKKONZ & '_' & PSAVEAK_AKFIRM & '_' & PSAVEAK_AKAPN";
@@ -1356,7 +1563,32 @@ namespace XML_Configurator
             textBox_transformation_target_folder.Text = @"..\15 - Interface\PSAVEAK\90 - CUBES";
             textBox_transformation_target_filename.Text = "PSAVEAK*";
         }
-        private void create_generator_item()
+        private void loadSampleAggregationObject()
+        {
+            textBoxAggregationName.Text = "SHIPPING_312_006";
+            textBoxAggregationPrimaryKey.Text = "PHISTTP_TPKONZ &amp; '_' &amp; PHISTTP_TPFIRM  &amp; '_' &amp;PHISTTP_TPPALN &amp; '_' &amp; PHISTTP_TPPALP";
+            checkBoxAggregationByDay.Checked = false;
+            checkBoxAggregationByWeek.Checked = false;
+            checkBoxAggregationByMonth.Checked = true;
+            checkBoxAggregationByYear.Checked = false;
+            numericUpDownAggregationNumberOfMonths.Value = 3;
+            textBoxAggregationProcedure.Text = "ResolveAndLoadTablesByWhereStatementsByJoinTypeWithPathMonths('312', '006', 'PPAKET', 'PPAKET_PKDTVE_DATUM >= date#(' &amp; chr(39) &amp; '$(v_LastLoadDate_Formated)' &amp; chr(39) &amp; ',' &amp; chr(39) &amp; 'DD.MM.YYYY' &amp; chr(39) &amp; ')', 'PPAKET_PKDTDI', '', '', '', '', '', '', '', '', '..')";
+
+            textBoxAggregationSourceFolder.Text = @"..\15 - Interface\PPAKET\90 - CUBES";
+            textBoxAggregationSourceFilename.Text = "SHIPPING*";
+            textBoxAggregationTargetFolder.Text = @"..\35 - QVD Aggregated";
+            textBoxAggregationTargetFilename.Text = "SHIPPING_312_006_$(vCurrentParam)";
+
+            textBoxAggregationSelectStatement.Text = "PPAKET_PKDTVE_DATUM AS SHIPPING_STOCK_ARTICLE_PKDTVE,\r\nPPAKET_PKKONZ AS SHIPPING_STOCK_ARTICLE_PKKONZ,\r\nPPAKET_PKFIRM AS SHIPPING_STOCK_ARTICLE_PKFIRM, \r\nHour(PPAKET_PKTIVE_TIME) AS SHIPPING_STOCK_ARTICLE_PKTIVE_HOUR,\r\nPPAKET_PKIDEN AS SHIPPING_STOCK_ARTICLE_PKIDEN,\r\nSUM(if (len(trim(PPAKET_PKPTYP)) = 0, PPAKET_PKPMEN)) AS SHIPPING_STOCK_ARTICLE_UNITS_SHIPPED";
+            textBoxAggregationWhereStatement.Text = "Match(PPAKET_PKPSTS,'E') AND Match(PPAKET_PKVART, 'RTV') = 0 and PPAKET_PKPMEN &gt; 0 and len(trim(PPAKET_PKIDEN)) &gt; 0 and match(PPAKET_PKKONZ, '312') AND MATCH(PPAKET_PKFIRM, '006')\r\nGROUP BY PPAKET_PKDTVE_DATUM,Hour(PPAKET_PKTIVE_TIME),PPAKET_PKIDEN, PPAKET_PKKONZ, PPAKET_PKFIRM";
+            textBoxAggregationConcatenateStatement.Text = "";
+
+            checkBoxAggregationActive.Checked = true;
+            checkBoxAggregationIncremental.Checked = true;
+
+        }
+
+        private void createGeneratorItem()
         {
             //if (validate_control(this.Controls.OfType<TextBox>(), ""))
             //{
@@ -1381,7 +1613,7 @@ namespace XML_Configurator
             string object_reload_minutes = textBox_object_reload_minutes.Text;
             string object_comment = textBox_object_comment.Text;
             string object_primary_key = textBox_object_primary_key.Text;
-            string object_select_statement = generator_object_id.ConstructSelectStatement(textBox_object_select_statement.Text);
+            string object_select_statement = generatorObject.ConstructSelectStatement(textBox_object_select_statement.Text);
 
             string select_statement_for_display = textBox_object_select_statement.Text;
             //String select_statement_for_display_string_array = object_id.ConstructSelectStatement(this.textBox_object_select_statement);
@@ -1391,18 +1623,18 @@ namespace XML_Configurator
             string object_datetime_format = textBox_object_datetime_format.Text;
             string object_date_format = textBox_object_date_format.Text;
             string object_time_format = textBox_object_time_format.Text;
-            string object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
+            string object_where_statement = generatorObject.ConstructSelectStatement(textBox_object_where_statement.Text);
 
             char object_active = checkBox_object_active.Checked ? 'Y' : 'N';
 
             string object_load_type = comboBox_object_load_type.SelectedItem.ToString();
-            string object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
+            string object_fieldstoload_statement = generatorObject.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
             string object_reorganization = textBox_object_reorganization.Text;
-            string object_transformation_statement = generator_object_id.ConstructSelectStatement(textBox_object_transformation_statement.Text);
+            string object_transformation_statement = generatorObject.ConstructSelectStatement(textBox_object_transformation_statement.Text);
             string object_target_extraction_folder = textBox_object_target_extraction_folder.Text;
             string object_target_extraction_filename = textBox_object_target_extraction_filename.Text;
 
-            generator_object_id newItem = new generator_object_id(object_name, object_reload_minutes, object_comment, object_primary_key, select_statement_for_display_string_array,
+            generatorObject newItem = new generatorObject(object_name, object_reload_minutes, object_comment, object_primary_key, select_statement_for_display_string_array,
                 object_datetime_format, object_date_format, object_time_format, object_where_statement, object_active, object_load_type, object_fieldstoload_statement, object_reorganization,
                 object_transformation_statement, object_target_extraction_folder, object_target_extraction_filename, select_statement_for_display, select_statement_for_display_string_array);
 
@@ -1418,7 +1650,7 @@ namespace XML_Configurator
                 listView_all_objects.Select();
             }
         }
-        private void create_transformation_item()
+        private void createTransformationItem()
         {
             //if (validate_control(this.Controls.OfType<TextBox>(), ""))
             //{
@@ -1441,7 +1673,7 @@ namespace XML_Configurator
             string transformation_name = textBox_transformation_name.Text;
 
             string transformation_primary_key = textBox_transformation_primary_key.Text;
-            string transformation_statement = generator_object_id.ConstructSelectStatement(textBox_transformation_statement.Text);
+            string transformation_statement = generatorObject.ConstructSelectStatement(textBox_transformation_statement.Text);
 
             //String transformation_statement_for_display = this.textBox_transformation_statement.Text;
             //String select_statement_for_display_string_array = object_id.ConstructSelectStatement(this.textBox_object_select_statement);
@@ -1451,17 +1683,17 @@ namespace XML_Configurator
             string additional_transformation_number_of_days = textBox_additional_transformation_number_of_days.Text;
             string additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
             string additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
-            string additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
+            string additional_transformation_where_statement = generatorObject.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
             string transformation_active = checkBox_object_active.Checked ? "Y" : "N";
             string transformation_incremental = checkBox_transformation_incremental.Checked ? "Y" : "N";
             string additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
             string transformation_source_folder = textBox_transformation_source_folder.Text;
-            string transformation_split_parameter = generator_object_id.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
+            string transformation_split_parameter = generatorObject.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
             string transformation_source_filename = textBox_transformation_source_filename.Text;
             string transformation_target_folder = textBox_transformation_target_folder.Text;
             string transformation_target_filename = textBox_transformation_target_filename.Text;
 
-            transformator_object_id newItem = new transformator_object_id(transformation_name, transformation_active, transformation_incremental, transformation_statement,
+            transformationObject newItem = new transformationObject(transformation_name, transformation_active, transformation_incremental, transformation_statement,
                 transformation_split_parameter, transformation_primary_key, additional_transformation_split_parameters, additional_transformation_where_statement,
                 additional_transformation_number_of_days, additional_transformation_number_of_months, additional_transformation_number_of_years, transformation_source_folder,
                 transformation_source_filename, transformation_target_folder, transformation_target_filename);
@@ -1469,23 +1701,83 @@ namespace XML_Configurator
             //LIST_OBJECTS.Add(newItem);
 
             ListViewItem ListItem = (ListViewItem)newItem;
-            listView_all_transformations.Items.Add(ListItem);
+            listViewAllTransformations.Items.Add(ListItem);
 
-            listview_check_colors(listView_all_transformations);
-            if (listView_all_transformations.Items.Count > 0)
+            listview_check_colors(listViewAllTransformations);
+            if (listViewAllTransformations.Items.Count > 0)
             {
-                listView_all_transformations.Items[listView_all_transformations.Items.Count - 1].Selected = true;
-                listView_all_transformations.Select();
+                listViewAllTransformations.Items[listViewAllTransformations.Items.Count - 1].Selected = true;
+                listViewAllTransformations.Select();
             }
         }
-        private void update_generator_item()
+        private void createAggregationItem()
+        {
+            //if (validate_control(this.Controls.OfType<TextBox>(), ""))
+            //{
+            //    return;
+            //}
+
+            //if (this.textBox_transformation_name.Text == "")
+            //{
+            //    MessageBox.Show("Name of the object must be filled!");
+            //    return;
+            //}
+
+            //if (!check_select_statement(textBox_transformation_statement.Text.Trim().ToUpper()))
+            //{
+            //    MessageBox.Show("SELECT statement must not contain STAR (*)! Please insert columns from database!");
+            //    return;
+            //}
+
+            //String object_name = new Random().Next().ToString();
+            string aggregationName = textBoxAggregationName.Text;
+            string aggregationPrimaryKey = textBoxAggregationPrimaryKey.Text;
+
+            string aggregationSelectStatement = generatorObject.ConstructSelectStatement(textBoxAggregationSelectStatement.Text);
+            string aggregationWhereStatement = generatorObject.ConstructSelectStatement(textBoxAggregationWhereStatement.Text);
+            string aggregationConcatenateStatement = generatorObject.ConstructSelectStatement(textBoxAggregationConcatenateStatement.Text);
+
+            string aggregationByDay = checkBoxAggregationByDay.Checked ? "Y" : "N";
+            string aggregationByWeek = checkBoxAggregationByWeek.Checked ? "Y" : "N";
+            string aggregationByMonth = checkBoxAggregationByMonth.Checked ? "Y" : "N";
+            string aggregationByYear = checkBoxAggregationByYear.Checked ? "Y" : "N";
+
+            string aggregationActive = checkBoxAggregationActive.Checked ? "Y" : "N";
+            string aggregationIncremental = checkBoxAggregationIncremental.Checked ? "Y" : "N";
+
+            string aggregationNumberOfMonths = numericUpDownAggregationNumberOfMonths.Value.ToString();
+            string aggregationByProcedure = textBoxAggregationProcedure.Text;
+
+            string aggregationSourceFolder = textBoxAggregationSourceFolder.Text;
+            string aggregationSourceFilename = textBoxAggregationSourceFilename.Text;
+            string aggregationTargetFolder = textBoxAggregationTargetFolder.Text;
+            string aggregationTargetFilename = textBoxAggregationTargetFilename.Text;
+
+            aggregationObject newItem = new aggregationObject(aggregationName, aggregationActive, aggregationIncremental, aggregationByYear, aggregationByMonth, aggregationByWeek,
+                aggregationByDay, aggregationNumberOfMonths, aggregationByProcedure, aggregationSelectStatement, aggregationWhereStatement, aggregationPrimaryKey,
+                aggregationConcatenateStatement, aggregationSourceFolder, aggregationSourceFilename, aggregationTargetFolder, aggregationTargetFilename);
+
+            //LIST_OBJECTS.Add(newItem);
+
+            ListViewItem ListItem = (ListViewItem)newItem;
+            listViewAllAggregations.Items.Add(ListItem);
+
+            listview_check_colors(listViewAllAggregations);
+            if (listViewAllAggregations.Items.Count > 0)
+            {
+                listViewAllAggregations.Items[listViewAllAggregations.Items.Count - 1].Selected = true;
+                listViewAllAggregations.Select();
+            }
+        }
+
+        private void updateGeneratorItem()
         {
             if (textBox_object_name.Text == "") // check how to fusion into single method this and create/ same for Transofmration 
             {
                 MessageBox.Show("Name of the object must be filled!");
                 return;
             }
-            generator_object_id obj = new generator_object_id();
+            generatorObject obj = new generatorObject();
 
             obj.Object_name = textBox_object_name.Text;
             obj.Object_reload_minutes = textBox_object_reload_minutes.Text;
@@ -1493,16 +1785,16 @@ namespace XML_Configurator
             obj.Object_primary_key = textBox_object_primary_key.Text;
             obj.select_statement_for_display = textBox_object_select_statement.Text;
             //obj.Object_select_statement = this.textBox_object_select_statement.Text;
-            obj.Object_select_statement = generator_object_id.ConstructSelectStatement(textBox_object_select_statement.Text);
+            obj.Object_select_statement = generatorObject.ConstructSelectStatement(textBox_object_select_statement.Text);
             obj.Object_datetime_format = textBox_object_datetime_format.Text;
             obj.Object_date_format = textBox_object_date_format.Text;
             obj.Object_time_format = textBox_object_time_format.Text;
-            obj.Object_where_statement = generator_object_id.ConstructSelectStatement(textBox_object_where_statement.Text);
+            obj.Object_where_statement = generatorObject.ConstructSelectStatement(textBox_object_where_statement.Text);
             obj.Object_active = checkBox_object_active.Checked ? 'Y' : 'N';
             obj.Object_load_type = comboBox_object_load_type.SelectedItem.ToString();
-            obj.Object_fieldstoload_statement = generator_object_id.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
+            obj.Object_fieldstoload_statement = generatorObject.ConstructSelectStatement(textBox_object_fieldstoload_statement.Text);
             obj.Object_reorganization = textBox_object_reorganization.Text;
-            obj.Object_transformation_statement = generator_object_id.ConstructSelectStatement(textBox_object_transformation_statement.Text);
+            obj.Object_transformation_statement = generatorObject.ConstructSelectStatement(textBox_object_transformation_statement.Text);
             obj.Object_target_extraction_folder = textBox_object_target_extraction_folder.Text;
             obj.Object_target_extraction_filename = textBox_object_target_extraction_filename.Text;
             obj.Select_statement_for_display_string_array = textBox_object_select_statement.Text;
@@ -1511,39 +1803,79 @@ namespace XML_Configurator
 
             listview_check_colors(listView_all_objects);
         }
-        private void update_transformation_item()
+        private void updateTransformationItem()
         {
             if (textBox_transformation_name.Text == "")
             {
                 MessageBox.Show("Name of the object must be filled!");
                 return;
             }
-            transformator_object_id obj = new transformator_object_id();
+            transformationObject obj = new transformationObject();
 
             obj.Transformation_name = textBox_transformation_name.Text;
             obj.Transformation_primary_key = textBox_transformation_primary_key.Text;
             obj.Transformation_statement = textBox_transformation_statement.Text;
             //obj.Object_select_statement = this.textBox_object_select_statement.Text;
-            obj.Transformation_statement = generator_object_id.ConstructSelectStatement(textBox_transformation_statement.Text);
+            obj.Transformation_statement = generatorObject.ConstructSelectStatement(textBox_transformation_statement.Text);
             obj.Additional_transformation_number_of_days = textBox_additional_transformation_number_of_days.Text;
             obj.Additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
             obj.Additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
-            obj.Additional_transformation_where_statement = generator_object_id.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
+            obj.Additional_transformation_where_statement = generatorObject.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
             obj.Transformation_active = checkBox_transformation_active.Checked ? "Y" : "N";
             obj.Transformation_incremental = checkBox_transformation_incremental.Checked ? "Y" : "N";
             obj.Additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
             obj.Transformation_source_folder = textBox_transformation_source_folder.Text;
-            obj.Transformation_split_parameter = generator_object_id.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
+            obj.Transformation_split_parameter = generatorObject.ConstructSelectStatement(textBox_transformation_split_parameter.Text);
             obj.Transformation_source_folder = textBox_transformation_target_folder.Text;
             obj.Transformation_source_filename = textBox_transformation_source_filename.Text;
             obj.Transformation_target_folder = textBox_transformation_target_folder.Text;
             obj.Transformation_target_filename = textBox_transformation_target_filename.Text;
 
-            listView_all_transformations.Items[listView_all_transformations.SelectedItems[0].Index] = (ListViewItem)obj;
+            listViewAllTransformations.Items[listViewAllTransformations.SelectedItems[0].Index] = (ListViewItem)obj;
 
-            listview_check_colors(listView_all_transformations);
+            listview_check_colors(listViewAllTransformations);
         }
-        private void create_generator_xml()
+        private void updateAggregationItem()
+        {
+            if (textBoxAggregationName.Text == "")
+            {
+                MessageBox.Show("Name of the object must be filled!");
+                return;
+            }
+            string aggregationName = textBoxAggregationName.Text;
+            string aggregationPrimaryKey = textBoxAggregationPrimaryKey.Text;
+
+            string aggregationSelectStatement = generatorObject.ConstructSelectStatement(textBoxAggregationSelectStatement.Text);
+            string aggregationWhereStatement = generatorObject.ConstructSelectStatement(textBoxAggregationWhereStatement.Text);
+            string aggregationConcatenateStatement = generatorObject.ConstructSelectStatement(textBoxAggregationConcatenateStatement.Text);
+
+            string aggregationByDay = checkBoxAggregationByDay.Checked ? "Y" : "N";
+            string aggregationByWeek = checkBoxAggregationByWeek.Checked ? "Y" : "N";
+            string aggregationByMonth = checkBoxAggregationByMonth.Checked ? "Y" : "N";
+            string aggregationByYear = checkBoxAggregationByYear.Checked ? "Y" : "N";
+
+            string aggregationActive = checkBoxAggregationActive.Checked ? "Y" : "N";
+            string aggregationIncremental = checkBoxAggregationIncremental.Checked ? "Y" : "N";
+
+            string aggregationNumberOfMonths = numericUpDownAggregationNumberOfMonths.Value.ToString();
+            string aggregationByProcedure = textBoxAggregationProcedure.Text;
+
+            string aggregationSourceFolder = textBoxAggregationSourceFolder.Text;
+            string aggregationSourceFilename = textBoxAggregationSourceFilename.Text;
+            string aggregationTargetFolder = textBoxAggregationTargetFolder.Text;
+            string aggregationTargetFilename = textBoxAggregationTargetFilename.Text;
+
+            aggregationObject newItem = new aggregationObject(aggregationName, aggregationActive, aggregationIncremental, aggregationByYear, aggregationByMonth, aggregationByWeek,
+                aggregationByDay, aggregationNumberOfMonths, aggregationByProcedure, aggregationSelectStatement, aggregationWhereStatement, aggregationPrimaryKey,
+                aggregationConcatenateStatement, aggregationSourceFolder, aggregationSourceFilename, aggregationTargetFolder, aggregationTargetFilename);
+
+
+            listViewAllAggregations.Items[listViewAllAggregations.SelectedItems[0].Index] = (ListViewItem)newItem;
+
+            listview_check_colors(listViewAllAggregations);
+        }
+
+        private void createGeneratorXml()
         {
             //TO DO validation
             try
@@ -1577,7 +1909,7 @@ namespace XML_Configurator
 
                     foreach (ListViewItem list_item in listView_all_objects.Items)
                     {
-                        generator_object_id item = (generator_object_id)list_item;
+                        generatorObject item = (generatorObject)list_item;
                         writer.WriteStartElement("object_id");
                         writer.Formatting = Formatting.None;
                         writer.WriteComment(XMLBuilder.CommentBuilder.ItemCommentBuilder(item));
@@ -1634,7 +1966,7 @@ namespace XML_Configurator
                 return;
             }
         }
-        private void create_tranformation_xml()
+        private void createTranformationXml()
         {
             //TO DO validation
             try
@@ -1665,9 +1997,9 @@ namespace XML_Configurator
                     //}
                     //writer.WriteFullEndElement(); //pise pun tag kad zatvara <ABC></ABC>
 
-                    foreach (ListViewItem list_item in listView_all_transformations.Items)
+                    foreach (ListViewItem list_item in listViewAllTransformations.Items)
                     {
-                        transformator_object_id item = (transformator_object_id)list_item;
+                        transformationObject item = (transformationObject)list_item;
                         writer.WriteStartElement("transformation_id");
                         writer.Formatting = Formatting.None;
                         writer.WriteComment(XMLBuilder.CommentBuilder.ItemCommentBuilder(item));
@@ -1717,6 +2049,90 @@ namespace XML_Configurator
                 return;
             }
         }
+        private void createAggregationXml()
+        {
+            //TO DO validation
+            try
+            {
+                if (textBoxAggregationFileName.Text != "" && toolStripTextBox_folder_path.Text != "")
+                {
+
+                    archive_file(textBoxAggregationFileName.Text, toolStripTextBox_folder_path.Text);
+
+                    XmlTextWriter writer = new XmlTextWriter(toolStripTextBox_folder_path.Text + "\\" + textBoxAggregationFileName.Text, Encoding.UTF8);
+
+                    writer.WriteStartDocument();
+
+                    writer.Formatting = Formatting.Indented;
+
+                    writer.WriteComment(XMLBuilder.CommentBuilder.comment);
+
+                    writer.WriteStartElement("aggregations");
+
+                    //writer.WriteStartElement("datasource_name");
+                    //if (comboBox_loaded_datasources.SelectedIndex != -1)
+                    //{
+                    //    writer.WriteString(comboBox_loaded_datasources.SelectedItem.ToString());
+                    //}
+                    //else
+                    //{
+                    //    writer.WriteString(" ");
+                    //}
+                    //writer.WriteFullEndElement(); //pise pun tag kad zatvara <ABC></ABC>
+
+                    foreach (ListViewItem list_item in listViewAllAggregations.Items)
+                    {
+                        aggregationObject item = (aggregationObject)list_item;
+                        writer.WriteStartElement("aggregation_id");
+                        writer.Formatting = Formatting.None;
+                        writer.WriteComment(XMLBuilder.CommentBuilder.ItemCommentBuilder(item));
+                        writer.Formatting = Formatting.Indented;
+                        var properties = item.GetType().GetProperties();
+                        foreach (var property in properties)
+                        {
+                            writer.WriteStartElement(property.Name.ToLower());
+                            if (property.GetValue(item).ToString() != "")
+                            {
+                                if (property.Name == "aggregation_select_statement" || property.Name == "aggregation_where_statement" || property.Name == "aggregation_concatenation_statement") //moze se skratiti
+                                {
+                                    writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
+                                }
+                                else
+                                {
+                                    writer.WriteString(property.GetValue(item).ToString().Trim()); //dodati, 1x tab 2x space za SELECT deo skripte
+                                }
+                                //writer.WriteString(property.GetValue(item).ToString()); //dodati, 1x tab 2x space za SELECT deo skripte
+                            }
+                            else
+                            {
+                                writer.WriteString(" ");
+                            }
+                            writer.WriteFullEndElement(); //pise pun tag kad zatvara <ABC></ABC>
+                        }
+                        writer.WriteEndElement();
+                    }
+
+                    writer.WriteEndElement();
+
+                    writer.WriteEndDocument();
+
+                    writer.Close();
+
+                    MessageBox.Show("File successfully saved!");
+                }
+                else
+                {
+                    MessageBox.Show("Enter folder path and filename!");
+                    return;
+                }
+            }
+            catch (System.IO.DirectoryNotFoundException)
+            {
+                MessageBox.Show("Please enter correct directory!");
+                return;
+            }
+        }
+
         private void test_statement()
         {
             if (toolStripComboBox_loaded_datasources.SelectedIndex == -1)
@@ -1828,6 +2244,211 @@ namespace XML_Configurator
                     RichTextBox.SelectionColor = Color.Black;
                 }
             }
+        }
+
+        private void buttonNextAggregation_Click(object sender, EventArgs e)
+        {
+            nextTabAggregation();
+        }
+
+        private void nextTabAggregation()
+        {
+            {
+                if (listViewAllAggregations.Items.Count > 0)
+                {
+                    DialogResult dr = MessageBox.Show("Aggregation list already contains objects. Do you want to remove them and add objects defined in transformation object list?", "Alert", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                    if (dr == DialogResult.Yes)
+                    {
+                        List<ListViewItem> object_list = new List<ListViewItem>();
+                        foreach (ListViewItem item in listViewAllTransformations.Items)
+                        {
+                            object_list.Add((ListViewItem)(aggregationObject)(transformationObject)item);
+                        }
+                        listViewAllAggregations.Items.Clear();
+                        listViewAllAggregations.Items.AddRange(object_list.ToArray());
+                        tabControl.SelectedTab = tabAggregation;
+                    }
+                    else if (dr == DialogResult.No)
+                    {
+                        tabControl.SelectedTab = tabAggregation;
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    List<ListViewItem> object_list = new List<ListViewItem>();
+                    foreach (ListViewItem item in listViewAllTransformations.Items)
+                    {
+                        object_list.Add((ListViewItem)(aggregationObject)(transformationObject)item);
+                    }
+                    listViewAllAggregations.Items.Clear();
+                    listViewAllAggregations.Items.AddRange(object_list.ToArray());
+                    tabControl.SelectedTab = tabAggregation;
+                }
+            }
+        }
+
+        private void listViewAllAggregations_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewAllAggregations.SelectedItems.Count != 0)
+            {
+                var obj = (aggregationObject)listViewAllAggregations.SelectedItems[0];
+                textBoxAggregationName.Text = obj.aggregation_name;
+                textBoxAggregationPrimaryKey.Text = obj.aggregation_primary_key;
+
+                textBoxAggregationSelectStatement.Text = ""; //obrisem prvo pre nego sto pocne da pise tekst. dodje do dupliranja zbog +=
+                foreach (var item in obj.aggregation_select_statement)
+                {
+                    textBoxAggregationSelectStatement.Text += item;
+                }
+                textBoxAggregationWhereStatement.Text = ""; //obrisem prvo pre nego sto pocne da pise tekst. dodje do dupliranja zbog +=
+                foreach (var item in obj.aggregation_where_statement)
+                {
+                    textBoxAggregationWhereStatement.Text += item;
+                }
+                textBoxAggregationConcatenateStatement.Text = ""; //obrisem prvo pre nego sto pocne da pise tekst. dodje do dupliranja zbog +=
+                foreach (var item in obj.aggregation_concatenation_statement)
+                {
+                    textBoxAggregationSelectStatement.Text += item;
+                }
+
+                checkBoxAggregationByDay.Checked = obj.aggregation_by_day.ToUpper() == "Y" ? true : false;
+                checkBoxAggregationByWeek.Checked = obj.aggregation_by_week.ToUpper() == "Y" ? true : false;
+                checkBoxAggregationByMonth.Checked = obj.aggregation_by_month.ToUpper() == "Y" ? true : false;
+                checkBoxAggregationByYear.Checked = obj.aggregation_by_year.ToUpper() == "Y" ? true : false;
+                checkBoxAggregationActive.Checked = obj.aggregation_active.ToUpper() == "Y" ? true : false;
+                checkBoxAggregationIncremental.Checked = obj.aggregation_incremental.ToUpper() == "Y" ? true : false;
+                int result;
+                int.TryParse(obj.aggregation_number_of_months, out result);
+                numericUpDownAggregationNumberOfMonths.Value = result;
+
+                textBoxAggregationSourceFolder.Text = obj.aggregation_source_folder;
+                textBoxAggregationSourceFilename.Text = obj.aggregation_source_filename;
+                textBoxAggregationTargetFolder.Text = obj.aggregation_target_folder;
+                textBoxAggregationTargetFilename.Text = obj.aggregation_target_filename;
+
+                enable_disable_toolstrip_item(toolStripMain, "toolStripButton_update_object", true);
+            }
+            else
+            {
+                textBox_transformation_name.Text = null;
+                textBox_transformation_primary_key.Text = null;
+                textBox_transformation_statement.Text = null;
+                textBox_additional_transformation_number_of_days.Text = null;
+                textBox_additional_transformation_number_of_months.Text = null;
+                textBox_additional_transformation_number_of_years.Text = null;
+                textBox_additional_transformation_where_statement.Text = null;
+                checkBox_object_active.Checked = false;
+                textBox_additional_transformation_split_parameters.Text = null;
+                textBox_transformation_source_folder.Text = null;
+                textBox_transformation_split_parameter.Text = null;
+                textBox_transformation_source_filename.Text = null;
+                textBox_transformation_target_folder.Text = null;
+
+                enable_disable_toolstrip_item(toolStripMain, "toolStripButton_update_object", false);
+            }
+        }
+
+        private void button_list_item_move_up_3_Click(object sender, EventArgs e)
+        {
+            if (listViewAllAggregations.Items.Count > 0)
+            {
+                var currentIndex = listViewAllAggregations.SelectedItems[0].Index;
+                var item = listViewAllAggregations.SelectedItems[0];
+                if (currentIndex > 0)
+                {
+                    listViewAllAggregations.Items.RemoveAt(currentIndex);
+                    listViewAllAggregations.Items.Insert(currentIndex - 1, item);
+                    listViewAllAggregations.Select();
+                }
+            }
+        }
+
+        private void button_list_item_move_down_3_Click(object sender, EventArgs e)
+        {
+            if (listViewAllAggregations.Items.Count > 0)
+            {
+                var currentIndex = listViewAllAggregations.SelectedItems[0].Index;
+                var item = listViewAllAggregations.SelectedItems[0];
+                if (currentIndex < listViewAllAggregations.Items.Count - 1)
+                {
+                    listViewAllAggregations.Items.RemoveAt(currentIndex);
+                    listViewAllAggregations.Items.Insert(currentIndex + 1, item);
+                    listViewAllAggregations.Select();
+                }
+            }
+        }
+
+        private void button_delete_list_item_3_Click(object sender, EventArgs e)
+        {
+            if (listViewAllAggregations.SelectedItems.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Do you want to remove " + listViewAllAggregations.SelectedItems[0].ToString() + " from the list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+
+                    var currentIndex = listViewAllAggregations.SelectedItems[0].Index;
+                    if (currentIndex != 0)
+                    {
+                        listViewAllAggregations.Items[currentIndex - 1].Selected = true; //ako izbrisani element nije prvi u listi, selektuj prethodni element 
+                    }
+                    else if (currentIndex != listViewAllAggregations.Items.Count - 1)
+                    {
+                        listViewAllAggregations.Items[currentIndex + 1].Selected = true; //ako je izbrisani element prvi u listi, selektuj sledecti element
+                    }
+                    listViewAllAggregations.Items.RemoveAt(currentIndex);
+                    listViewAllAggregations.Select();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        private void button_remove_all_listviewitems_3_Click(object sender, EventArgs e)
+        {
+            if (listViewAllAggregations.SelectedItems.Count > 0)
+            {
+                DialogResult result = MessageBox.Show("Do you want to remove all items from the list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    listViewAllAggregations.Items.Clear();
+                }
+                else
+                {
+                    return;
+                }
+            }
+        }
+
+        private void button_set_all_active_3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listViewAllAggregations.Items.Count; i++)
+            {
+                ListViewItem item = listViewAllAggregations.Items[i];
+                aggregationObject object_item = (aggregationObject)item;
+                object_item.aggregation_active = "Y";
+                item = (ListViewItem)object_item;
+                listViewAllAggregations.Items[i] = item;
+            }
+            listview_check_colors(listViewAllAggregations);
+        }
+
+        private void button_set_all_notactive_3_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listViewAllAggregations.Items.Count; i++)
+            {
+                ListViewItem item = listViewAllAggregations.Items[i];
+                aggregationObject object_item = (aggregationObject)item;
+                object_item.aggregation_active = "N";
+                item = (ListViewItem)object_item;
+                listViewAllAggregations.Items[i] = item;
+            }
+            listview_check_colors(listViewAllAggregations);
         }
     }
 }
