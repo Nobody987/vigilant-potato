@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
-using System.Data.SqlClient;
 using System.Data.OracleClient;
+using System.Data.SqlClient;
 using XML_Configurator.DataModel;
 
 namespace XML_Configurator.DatabaseConnect

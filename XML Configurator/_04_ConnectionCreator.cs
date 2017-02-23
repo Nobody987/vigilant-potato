@@ -29,6 +29,10 @@ namespace XML_Configurator
             foreach (Control control in list_controls)
             {
                 Controls.Add(control);
+                //if (control is TextBox)
+                //{
+                //    control.KeyPress += controlKeyPressed;
+                //}
             }
             loadConnections();
             Refresh();
@@ -43,12 +47,34 @@ namespace XML_Configurator
             foreach (Control control in list_controls)
             {
                 Controls.Add(control);
+                //if (control is TextBox)
+                //{
+                //    control.KeyPress += controlKeyPressed;
+                //}
             }
             loadConnections();
             addToList(datasourceName);
             listBox_connections.SelectedIndex = listBox_connections.Items.Count - 1;
             Refresh();
         }
+
+        //private void controlKeyPressed(object sender, EventArgs e)
+        //{
+            //var textBox = (TextBox)sender;
+
+            //datasource ds = (datasource)listBox_connections.SelectedItem;
+            //var props = new List<PropertyInfo>(ds.GetType().GetProperties());
+
+            //foreach (PropertyInfo prop in props)
+            //{
+            //    if (prop.Name == textBox.Name)
+            //    {
+            //        prop.SetValue(ds, textBox.Text);
+            //        break;
+            //    }
+            //}
+            //list_datasource[list_datasource.IndexOf(ds)] = ds;
+        //}
 
         private void button_load_connections_Click(object sender, EventArgs e)
         {
@@ -68,9 +94,9 @@ namespace XML_Configurator
             {
                 datasource ds = (datasource)listBox_connections.SelectedItem;
 
-                IList<PropertyInfo> props = new List<PropertyInfo>(ds.GetType().GetProperties());
+                var props = new List<PropertyInfo>(ds.GetType().GetProperties());
 
-                clear_all_controls();
+                ClearTextBox();
 
                 foreach (PropertyInfo prop in props)
                 {
@@ -97,7 +123,7 @@ namespace XML_Configurator
             Refresh();
         }
 
-        private void clear_all_controls()
+        private void ClearTextBox()
         {
             foreach (Control item in list_controls)
             {
@@ -153,7 +179,7 @@ namespace XML_Configurator
 
         private void button_create_new_Click(object sender, EventArgs e)
         {
-            clear_all_controls();
+            ClearTextBox();
             addToList("New Connection");
             listBox_connections.SelectedIndex = listBox_connections.Items.Count - 1;
         }
@@ -161,7 +187,7 @@ namespace XML_Configurator
         private void button_update_Click(object sender, EventArgs e)
         {
             datasource ds = (datasource)listBox_connections.SelectedItem;
-            IList<PropertyInfo> props = new List<PropertyInfo>(ds.GetType().GetProperties());
+            var props = new List<PropertyInfo>(ds.GetType().GetProperties());
 
             foreach (var control in list_controls)
             {
