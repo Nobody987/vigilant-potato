@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 using XML_Configurator.DataModel;
 
 namespace XML_Configurator
@@ -40,13 +41,18 @@ namespace XML_Configurator
                 enable_disable_toolstrip_item(toolStripMain, "toolStripButton_update_object", false);
             }
             textBox_file_name.Text = "XML_FILE.xml";
+            textBox_file_name_2.Text = "XML_FILE_2.xml";
+            textBoxAggregationFileName.Text = "XML_FILE_3.xml";
             toolStripTextBox_folder_path.Text = AppDomain.CurrentDomain.BaseDirectory;
+
+            button_select_columns.Visible = false;
         }
 
         private void populateComboBox()
         {
             toolStripComboBox_loaded_datasources.Items.Clear();
             toolStripComboBox_loaded_datasources.Items.AddRange(datasource.read_datasource_file().ToArray());
+            toolStripComboBox_loaded_datasources.SelectedIndex = -1;
         }
 
         private void populate_listview_all_objects()
@@ -946,155 +952,34 @@ namespace XML_Configurator
                 {
                     listView_all_objects.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
-                    XmlDocument document = new XmlDocument();
-                    document.Load(openFileDialogLocation.FileName.ToString());
+                    XDocument document = XDocument.Load(openFileDialogLocation.FileName.ToString());
 
-                    XmlNode node = document.DocumentElement.SelectSingleNode("/datasource/objects");
-                    foreach (XmlNode new_object in node)
+                    var node = document.Descendants("object_id");
+                    foreach (XElement new_object in node)
                     {
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
                             generatorObject object_id_instance = new generatorObject();
 
-                            try
-                            {
-                                object_id_instance.Object_name = new_object["object_name"].InnerText;
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_reload_minutes = new_object["object_reload_minutes"].InnerText;
+                            object_id_instance.Object_name = new_object.Element("object_name") != null ? new_object.Element("object_name").Value : "";
+                            object_id_instance.Object_reload_minutes = new_object.Element("object_reload_minutes") != null ? new_object.Element("object_reload_minutes").Value : "";
+                            object_id_instance.Object_comment = new_object.Element("object_comment") != null ? new_object.Element("object_comment").Value : "";
+                            object_id_instance.Object_primary_key = new_object.Element("object_name") != null ? new_object.Element("object_name").Value : "";
+                            object_id_instance.Object_select_statement = new_object.Element("object_select_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_primary_key").Value) : "";
+                            object_id_instance.Select_statement_for_display_string_array = new_object.Element("object_select_statement") != null ? new_object.Element("object_select_statement").Value : "";
+                            object_id_instance.Object_datetime_format = new_object.Element("object_datetime_format") != null ? new_object.Element("object_datetime_format").Value : "";
+                            object_id_instance.Object_date_format = new_object.Element("object_date_format") != null ? new_object.Element("object_date_format").Value : "";
+                            object_id_instance.Object_time_format = new_object.Element("object_time_format") != null ? new_object.Element("object_time_format").Value : "";
+                            object_id_instance.Object_where_statement = new_object.Element("object_where_statement") != null ? new_object.Element("object_where_statement").Value : "";
+                            object_id_instance.Object_active = new_object.Element("object_active") != null ? Char.Parse(new_object.Element("object_active").Value) : ' ';
+                            object_id_instance.Object_load_type = new_object.Element("object_load_type") != null ? new_object.Element("object_load_type").Value : "";
+                            object_id_instance.Object_fieldstoload_statement = new_object.Element("object_fieldstoload_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_fieldstoload_statement").Value) : "";
+                            object_id_instance.Object_reorganization = new_object.Element("object_reorganization") != null ? new_object.Element("object_reorganization").Value : "";
+                            object_id_instance.Object_transformation_statement = new_object.Element("object_transformation_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_transformation_statement").Value) : "";
+                            object_id_instance.Object_target_extraction_folder = new_object.Element("object_target_extraction_folder") != null ? new_object.Element("object_target_extraction_folder").Value : "";
+                            object_id_instance.Object_target_extraction_filename = new_object.Element("object_target_extraction_filename") != null ? new_object.Element("object_target_extraction_filename").Value : "";
 
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_comment = new_object["object_comment"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_primary_key = new_object["object_primary_key"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_select_statement = generatorObject.ConstructSelectStatement(new_object["object_select_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Select_statement_for_display_string_array = new_object["object_select_statement"].InnerText.Trim();
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_datetime_format = new_object["object_datetime_format"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_date_format = new_object["object_date_format"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_time_format = new_object["object_time_format"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_where_statement = generatorObject.ConstructSelectStatement(new_object["object_where_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_active = Char.Parse(new_object["object_active"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_load_type = new_object["object_load_type"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_fieldstoload_statement = generatorObject.ConstructSelectStatement(new_object["object_fieldstoload_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_reorganization = new_object["object_reorganization"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_transformation_statement = generatorObject.ConstructSelectStatement(new_object["object_transformation_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_target_extraction_folder = new_object["object_target_extraction_folder"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Object_target_extraction_filename = new_object["object_target_extraction_filename"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-
-                            ListViewItem ListItem = (ListViewItem)object_id_instance;
-                            listView_all_objects.Items.Add(ListItem);
-
+                            listView_all_objects.Items.Add((ListViewItem)object_id_instance);
                             listview_check_colors(listView_all_objects);
                         }
                     }
@@ -1104,23 +989,20 @@ namespace XML_Configurator
                         listView_all_objects.Select();
                     }
 
-                    if (document.DocumentElement.SelectSingleNode("/datasource/datasource_name") != null)
+                    var datasource_node = document.Descendants("datasource_name").ElementAt(0);
+                    if (!string.IsNullOrEmpty(datasource_node.Value))
                     {
-                        XmlNode datasource_node = document.DocumentElement.SelectSingleNode("/datasource/datasource_name");
-                        if (!string.IsNullOrEmpty(datasource_node.InnerText))
+                        toolStripComboBox_loaded_datasources.SelectedIndex = toolStripComboBox_loaded_datasources.FindString(datasource_node.Value); //prepraviti ako moze na lepsi nacin...
+                        if (toolStripComboBox_loaded_datasources.SelectedIndex == -1)
                         {
-                            toolStripComboBox_loaded_datasources.SelectedIndex = toolStripComboBox_loaded_datasources.FindString(datasource_node.InnerText); //prepraviti ako moze na lepsi nacin...
-                            if (toolStripComboBox_loaded_datasources.SelectedIndex == -1)
+                            DialogResult dialog = MessageBox.Show("Warning! Datasource definition for " + datasource_node.Value + " does not exists. \n\nDo you want to create datasource definition now?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (dialog == DialogResult.Yes)
                             {
-                                DialogResult dialog = MessageBox.Show("Warning! Datasource definition for " + datasource_node.InnerText + " does not exists. \n\nDo you want to create datasource definition now?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                                if (dialog == DialogResult.Yes)
-                                {
-                                    var connectionCreator = new _04_ConnectionCreator(datasource_node.InnerText);
-                                    connectionCreator.Show();
+                                var connectionCreator = new _04_ConnectionCreator(datasource_node.Value);
+                                connectionCreator.Show();
 
-                                    //add subsciption to ConnectionListUpdated
-                                    connectionCreator.ConnectionListUpdated += OnConnectionListUpdated;
-                                }
+                                //add subsciption to ConnectionListUpdated
+                                connectionCreator.ConnectionListUpdated += OnConnectionListUpdated;
                             }
                         }
                     }
@@ -1165,134 +1047,30 @@ namespace XML_Configurator
                 {
                     listViewAllTransformations.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
-                    XmlDocument document = new XmlDocument();
-                    document.Load(openFileDialogLocation.FileName.ToString());
+                    XDocument document = XDocument.Load(openFileDialogLocation.FileName.ToString());
 
-                    XmlNode node = document.DocumentElement.SelectSingleNode("/transformations");
-                    foreach (XmlNode new_object in node)
+                    var node = document.Descendants("transformation_id");
+                    foreach (XElement new_object in node)
                     {
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
-                            transformationObject object_id_instance = new transformationObject();
-                            try
-                            {
-                                object_id_instance.Transformation_name = new_object["transformation_name"].InnerText;
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_active = new_object["transformation_active"].InnerText;
+                            var object_id_instance = new transformationObject();
 
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_incremental = new_object["transformation_incremental"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_statement = generatorObject.ConstructSelectStatement(new_object["transformation_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_split_parameter = new_object["transformation_split_parameter"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_primary_key = new_object["transformation_primary_key"].InnerText.Trim();
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Additional_transformation_split_parameters = new_object["additional_transformation_split_parameters"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Additional_transformation_where_statement = new_object["additional_transformation_where_statement"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Additional_transformation_number_of_days = new_object["additional_transformation_number_of_days"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Additional_transformation_number_of_months = new_object["additional_transformation_number_of_months"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Additional_transformation_number_of_years = new_object["additional_transformation_number_of_years"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_source_folder = new_object["transformation_source_folder"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_source_filename = new_object["transformation_source_filename"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_target_folder = new_object["transformation_target_folder"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.Transformation_target_filename = new_object["transformation_target_filename"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
+                            object_id_instance.Transformation_name = new_object.Element("transformation_name") != null ? new_object.Element("transformation_name").Value : "";
+                            object_id_instance.Transformation_active = new_object.Element("transformation_active") != null ? new_object.Element("transformation_active").Value : "";
+                            object_id_instance.Transformation_incremental = new_object.Element("transformation_incremental") != null ? new_object.Element("transformation_incremental").Value : "";
+                            object_id_instance.Transformation_statement = new_object.Element("transformation_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("transformation_statement").Value) : "";
+                            object_id_instance.Transformation_split_parameter = new_object.Element("transformation_split_parameter") != null ? new_object.Element("transformation_split_parameter").Value : "";
+                            object_id_instance.Transformation_primary_key = new_object.Element("transformation_primary_key") != null ? new_object.Element("transformation_primary_key").Value : "";
+                            object_id_instance.Additional_transformation_split_parameters = new_object.Element("additional_transformation_split_parameters") != null ? new_object.Element("additional_transformation_split_parameters").Value : "";
+                            object_id_instance.Additional_transformation_where_statement = new_object.Element("additional_transformation_where_statement") != null ? new_object.Element("additional_transformation_where_statement").Value : "";
+                            object_id_instance.Additional_transformation_number_of_days = new_object.Element("additional_transformation_number_of_days") != null ? new_object.Element("additional_transformation_number_of_days").Value : "";
+                            object_id_instance.Additional_transformation_number_of_months = new_object.Element("additional_transformation_number_of_months") != null ? new_object.Element("additional_transformation_number_of_months").Value : "";
+                            object_id_instance.Additional_transformation_number_of_years = new_object.Element("additional_transformation_number_of_years") != null ? new_object.Element("additional_transformation_number_of_years").Value : "";
+                            object_id_instance.Transformation_source_folder = new_object.Element("transformation_source_folder") != null ? new_object.Element("transformation_source_folder").Value : "";
+                            object_id_instance.Transformation_source_filename = new_object.Element("transformation_source_filename") != null ? new_object.Element("transformation_source_filename").Value : "";
+                            object_id_instance.Transformation_target_folder = new_object.Element("transformation_target_folder") != null ? new_object.Element("transformation_target_folder").Value : "";
+                            object_id_instance.Transformation_target_filename = new_object.Element("transformation_target_filename") != null ? new_object.Element("transformation_target_filename").Value : "";
 
                             ListViewItem ListItem = (ListViewItem)object_id_instance;
                             listViewAllTransformations.Items.Add(ListItem);
@@ -1359,150 +1137,32 @@ namespace XML_Configurator
                 {
                     listViewAllAggregations.Items.Clear(); //clear list before use
                     Console.WriteLine(openFileDialogLocation.FileName.ToString());
-                    XmlDocument document = new XmlDocument();
-                    document.Load(openFileDialogLocation.FileName.ToString());
+                    XDocument document = XDocument.Load(openFileDialogLocation.FileName.ToString());
 
-                    XmlNode node = document.DocumentElement.SelectSingleNode("/aggregations");
-                    foreach (XmlNode new_object in node)
+                    var node = document.Descendants("aggregation_id");
+                    foreach (XElement new_object in node)
                     {
                         if (new_object.NodeType != XmlNodeType.Comment)
                         {
                             aggregationObject object_id_instance = new aggregationObject();
-                            try
-                            {
-                                object_id_instance.aggregation_name = new_object["aggregation_name"].InnerText;
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_active = new_object["aggregation_active"].InnerText;
 
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_incremental = new_object["aggregation_incremental"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_select_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_select_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_concatenation_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_concatenation_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_where_statement = generatorObject.ConstructSelectStatement(new_object["aggregation_where_statement"].InnerText);
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_primary_key = new_object["aggregation_primary_key"].InnerText.Trim();
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_by_day = new_object["aggregation_by_day"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_by_week = new_object["aggregation_by_week"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_by_month = new_object["aggregation_by_month"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_by_year = new_object["aggregation_by_year"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_number_of_months = new_object["aggregation_number_of_months"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_by_procedure = new_object["aggregation_by_procedure"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_source_folder = new_object["aggregation_source_folder"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_source_filename = new_object["aggregation_source_filename"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_target_folder = new_object["aggregation_target_folder"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
-                            try
-                            {
-                                object_id_instance.aggregation_target_filename = new_object["aggregation_target_filename"].InnerText;
-
-                            }
-                            catch (NullReferenceException)
-                            {
-                            }
+                            object_id_instance.aggregation_name = new_object.Element("aggregation_name") != null ? new_object.Element("aggregation_name").Value : "";
+                            object_id_instance.aggregation_active = new_object.Element("aggregation_active") != null ? new_object.Element("aggregation_active").Value : "";
+                            object_id_instance.aggregation_incremental = new_object.Element("aggregation_incremental") != null ? new_object.Element("aggregation_incremental").Value : "";
+                            object_id_instance.aggregation_select_statement = new_object.Element("aggregation_select_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("aggregation_select_statement").Value) : "";
+                            object_id_instance.aggregation_concatenation_statement = new_object.Element("aggregation_concatenation_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("aggregation_concatenation_statement").Value) : "";
+                            object_id_instance.aggregation_where_statement = new_object.Element("aggregation_where_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("aggregation_where_statement").Value) : "";
+                            object_id_instance.aggregation_primary_key = new_object.Element("aggregation_primary_key") != null ? new_object.Element("aggregation_primary_key").Value : "";
+                            object_id_instance.aggregation_by_day = new_object.Element("aggregation_by_day") != null ? new_object.Element("aggregation_by_day").Value : "";
+                            object_id_instance.aggregation_by_week = new_object.Element("aggregation_by_week") != null ? new_object.Element("aggregation_by_week").Value : "";
+                            object_id_instance.aggregation_by_month = new_object.Element("aggregation_by_month") != null ? new_object.Element("aggregation_by_month").Value : "";
+                            object_id_instance.aggregation_by_year = new_object.Element("aggregation_by_year") != null ? new_object.Element("aggregation_by_year").Value : "";
+                            object_id_instance.aggregation_number_of_months = new_object.Element("aggregation_number_of_months") != null ? new_object.Element("aggregation_number_of_months").Value : "";
+                            object_id_instance.aggregation_by_procedure = new_object.Element("aggregation_by_procedure") != null ? new_object.Element("aggregation_by_procedure").Value : "";
+                            object_id_instance.aggregation_source_folder = new_object.Element("aggregation_source_folder") != null ? new_object.Element("aggregation_source_folder").Value : "";
+                            object_id_instance.aggregation_source_filename = new_object.Element("aggregation_source_filename") != null ? new_object.Element("aggregation_source_filename").Value : "";
+                            object_id_instance.aggregation_target_folder = new_object.Element("aggregation_target_folder") != null ? new_object.Element("aggregation_target_folder").Value : "";
+                            object_id_instance.aggregation_target_filename = new_object.Element("aggregation_target_filename") != null ? new_object.Element("aggregation_target_filename").Value : "";
 
                             ListViewItem ListItem = (ListViewItem)object_id_instance;
                             listViewAllAggregations.Items.Add(ListItem);
@@ -1554,7 +1214,7 @@ namespace XML_Configurator
             textBox_additional_transformation_number_of_months.Text = "1";
             textBox_additional_transformation_number_of_years.Text = "0";
             textBox_additional_transformation_where_statement.Text = "PSAVEAK_AKDTB_DATUM <= date#('$(v_Additional_Load_Date_formated)', 'DD.MM.YYYY')";
-            checkBox_object_active.Checked = true;
+            checkBox_transformation_active.Checked = true;
             checkBox_transformation_incremental.Checked = false;
             textBox_additional_transformation_split_parameters.Text = "PSAVEAK_AKKONZ; PSAVEAK_AKFIRM; PSAVEAK_AKAPN; PSAVEAK_AKDTDI; PSAVEAK_AKDTB_DATUM; PSAVEAK_AKANR1";
             textBox_transformation_source_folder.Text = @"..\15 - Interface\PSAVEAK\10 - DELTA";
@@ -1684,7 +1344,7 @@ namespace XML_Configurator
             string additional_transformation_number_of_months = textBox_additional_transformation_number_of_months.Text;
             string additional_transformation_number_of_years = textBox_additional_transformation_number_of_years.Text;
             string additional_transformation_where_statement = generatorObject.ConstructSelectStatement(textBox_additional_transformation_where_statement.Text);
-            string transformation_active = checkBox_object_active.Checked ? "Y" : "N";
+            string transformation_active = checkBox_transformation_active.Checked ? "Y" : "N";
             string transformation_incremental = checkBox_transformation_incremental.Checked ? "Y" : "N";
             string additional_transformation_split_parameters = textBox_additional_transformation_split_parameters.Text;
             string transformation_source_folder = textBox_transformation_source_folder.Text;
@@ -2058,7 +1718,7 @@ namespace XML_Configurator
                 {
 
                     archive_file(textBoxAggregationFileName.Text, toolStripTextBox_folder_path.Text);
-
+                    
                     XmlTextWriter writer = new XmlTextWriter(toolStripTextBox_folder_path.Text + "\\" + textBoxAggregationFileName.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
@@ -2213,14 +1873,14 @@ namespace XML_Configurator
 
         private void button_select_columns_Click(object sender, EventArgs e)
         {
-            //_0202_PopupColumns popup = new _0202_PopupColumns((generator_object_id)listView_all_objects.SelectedItems[0]);
-            //popup.Visible = true;
+            _0202_PopupColumns.Instance.PopupColumns((generatorObject)listView_all_objects.SelectedItems[0]);
+            _0202_PopupColumns.Instance.Visible = true;
         }
 
         public void OnConnectionListUpdated(object source, EventArgs e)
         {
-            populateComboBox();
-            Console.WriteLine("ComboBox repopulated!");
+            //populateComboBox();
+            //Console.WriteLine("ComboBox repopulated!");
         }
 
         //private void textBox_object_select_statement_TextChanged(object sender, EventArgs e)

@@ -38,7 +38,6 @@
             this.button_set_all_notactive = new System.Windows.Forms.Button();
             this.button_set_all_active = new System.Windows.Forms.Button();
             this.button_go_back_database_connector = new System.Windows.Forms.Button();
-            this.button_select_columns = new System.Windows.Forms.Button();
             this.button_next_transform = new System.Windows.Forms.Button();
             this.button_remove_all_listviewitems = new System.Windows.Forms.Button();
             this.button_delete_list_item = new System.Windows.Forms.Button();
@@ -192,6 +191,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel_database = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBox_loaded_datasources = new System.Windows.Forms.ToolStripComboBox();
+            this.button_select_columns = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.EP)).BeginInit();
             this.tabTransformation.SuspendLayout();
             this.tabGenerator.SuspendLayout();
@@ -267,18 +267,6 @@
             this.toolTips.SetToolTip(this.button_go_back_database_connector, "Return to database connection screen");
             this.button_go_back_database_connector.UseVisualStyleBackColor = true;
             this.button_go_back_database_connector.Click += new System.EventHandler(this.button_go_back_database_connector_Click);
-            // 
-            // button_select_columns
-            // 
-            this.button_select_columns.BackgroundImage = global::XML_Configurator.Properties.Resources._1487105202_Database_copy_DynamoDB_Table;
-            this.button_select_columns.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.button_select_columns.Location = new System.Drawing.Point(885, 269);
-            this.button_select_columns.Name = "button_select_columns";
-            this.button_select_columns.Size = new System.Drawing.Size(32, 32);
-            this.button_select_columns.TabIndex = 66;
-            this.toolTips.SetToolTip(this.button_select_columns, "Select columns for load");
-            this.button_select_columns.UseVisualStyleBackColor = true;
-            this.button_select_columns.Click += new System.EventHandler(this.button_select_columns_Click);
             // 
             // button_next_transform
             // 
@@ -572,27 +560,30 @@
             this.textBox_transformation_split_parameter.Location = new System.Drawing.Point(574, 386);
             this.textBox_transformation_split_parameter.Multiline = true;
             this.textBox_transformation_split_parameter.Name = "textBox_transformation_split_parameter";
-            this.textBox_transformation_split_parameter.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_transformation_split_parameter.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_transformation_split_parameter.Size = new System.Drawing.Size(319, 125);
             this.textBox_transformation_split_parameter.TabIndex = 107;
+            this.textBox_transformation_split_parameter.WordWrap = false;
             // 
             // textBox_additional_transformation_split_parameters
             // 
             this.textBox_additional_transformation_split_parameters.Location = new System.Drawing.Point(574, 237);
             this.textBox_additional_transformation_split_parameters.Multiline = true;
             this.textBox_additional_transformation_split_parameters.Name = "textBox_additional_transformation_split_parameters";
-            this.textBox_additional_transformation_split_parameters.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_additional_transformation_split_parameters.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_additional_transformation_split_parameters.Size = new System.Drawing.Size(319, 130);
             this.textBox_additional_transformation_split_parameters.TabIndex = 106;
+            this.textBox_additional_transformation_split_parameters.WordWrap = false;
             // 
             // textBox_additional_transformation_where_statement
             // 
             this.textBox_additional_transformation_where_statement.Location = new System.Drawing.Point(574, 84);
             this.textBox_additional_transformation_where_statement.Multiline = true;
             this.textBox_additional_transformation_where_statement.Name = "textBox_additional_transformation_where_statement";
-            this.textBox_additional_transformation_where_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_additional_transformation_where_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_additional_transformation_where_statement.Size = new System.Drawing.Size(319, 134);
             this.textBox_additional_transformation_where_statement.TabIndex = 105;
+            this.textBox_additional_transformation_where_statement.WordWrap = false;
             // 
             // textBox_file_name_2
             // 
@@ -658,9 +649,10 @@
             this.textBox_transformation_statement.Location = new System.Drawing.Point(234, 134);
             this.textBox_transformation_statement.Multiline = true;
             this.textBox_transformation_statement.Name = "textBox_transformation_statement";
-            this.textBox_transformation_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_transformation_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_transformation_statement.Size = new System.Drawing.Size(320, 202);
             this.textBox_transformation_statement.TabIndex = 82;
+            this.textBox_transformation_statement.WordWrap = false;
             // 
             // textBox_transformation_primary_key
             // 
@@ -992,18 +984,20 @@
             this.textBox_object_where_statement.Location = new System.Drawing.Point(554, 77);
             this.textBox_object_where_statement.Multiline = true;
             this.textBox_object_where_statement.Name = "textBox_object_where_statement";
-            this.textBox_object_where_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_object_where_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_object_where_statement.Size = new System.Drawing.Size(325, 170);
             this.textBox_object_where_statement.TabIndex = 25;
+            this.textBox_object_where_statement.WordWrap = false;
             // 
             // textBox_object_fieldstoload_statement
             // 
             this.textBox_object_fieldstoload_statement.Location = new System.Drawing.Point(554, 269);
             this.textBox_object_fieldstoload_statement.Multiline = true;
             this.textBox_object_fieldstoload_statement.Name = "textBox_object_fieldstoload_statement";
-            this.textBox_object_fieldstoload_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_object_fieldstoload_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_object_fieldstoload_statement.Size = new System.Drawing.Size(325, 164);
             this.textBox_object_fieldstoload_statement.TabIndex = 28;
+            this.textBox_object_fieldstoload_statement.WordWrap = false;
             // 
             // textBox_object_name
             // 
@@ -1032,9 +1026,10 @@
             this.textBox_object_transformation_statement.Location = new System.Drawing.Point(554, 456);
             this.textBox_object_transformation_statement.Multiline = true;
             this.textBox_object_transformation_statement.Name = "textBox_object_transformation_statement";
-            this.textBox_object_transformation_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_object_transformation_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_object_transformation_statement.Size = new System.Drawing.Size(325, 127);
             this.textBox_object_transformation_statement.TabIndex = 30;
+            this.textBox_object_transformation_statement.WordWrap = false;
             // 
             // textBox_object_primary_key
             // 
@@ -1049,9 +1044,10 @@
             this.textBox_object_select_statement.Location = new System.Drawing.Point(181, 200);
             this.textBox_object_select_statement.Multiline = true;
             this.textBox_object_select_statement.Name = "textBox_object_select_statement";
-            this.textBox_object_select_statement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox_object_select_statement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBox_object_select_statement.Size = new System.Drawing.Size(329, 202);
             this.textBox_object_select_statement.TabIndex = 21;
+            this.textBox_object_select_statement.WordWrap = false;
             // 
             // textBox_object_target_extraction_filename
             // 
@@ -1327,10 +1323,15 @@
             this.checkBoxAggregationByDay.TabIndex = 168;
             this.checkBoxAggregationByDay.UseVisualStyleBackColor = true;
             // 
-            // numericUpDownNumberOfMonths
+            // numericUpDownAggregationNumberOfMonths
             // 
             this.numericUpDownAggregationNumberOfMonths.Location = new System.Drawing.Point(234, 454);
-            this.numericUpDownAggregationNumberOfMonths.Name = "numericUpDownNumberOfMonths";
+            this.numericUpDownAggregationNumberOfMonths.Maximum = new decimal(new int[] {
+            120,
+            0,
+            0,
+            0});
+            this.numericUpDownAggregationNumberOfMonths.Name = "numericUpDownAggregationNumberOfMonths";
             this.numericUpDownAggregationNumberOfMonths.Size = new System.Drawing.Size(47, 20);
             this.numericUpDownAggregationNumberOfMonths.TabIndex = 167;
             // 
@@ -1409,18 +1410,20 @@
             this.textBoxAggregationConcatenateStatement.Location = new System.Drawing.Point(574, 237);
             this.textBoxAggregationConcatenateStatement.Multiline = true;
             this.textBoxAggregationConcatenateStatement.Name = "textBoxAggregationConcatenateStatement";
-            this.textBoxAggregationConcatenateStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationConcatenateStatement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxAggregationConcatenateStatement.Size = new System.Drawing.Size(319, 130);
             this.textBoxAggregationConcatenateStatement.TabIndex = 150;
+            this.textBoxAggregationConcatenateStatement.WordWrap = false;
             // 
             // textBoxAggregationWhereStatement
             // 
             this.textBoxAggregationWhereStatement.Location = new System.Drawing.Point(574, 84);
             this.textBoxAggregationWhereStatement.Multiline = true;
             this.textBoxAggregationWhereStatement.Name = "textBoxAggregationWhereStatement";
-            this.textBoxAggregationWhereStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationWhereStatement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxAggregationWhereStatement.Size = new System.Drawing.Size(319, 134);
             this.textBoxAggregationWhereStatement.TabIndex = 149;
+            this.textBoxAggregationWhereStatement.WordWrap = false;
             // 
             // textBoxAggregationFileName
             // 
@@ -1465,9 +1468,10 @@
             this.textBoxAggregationSelectStatement.Location = new System.Drawing.Point(234, 134);
             this.textBoxAggregationSelectStatement.Multiline = true;
             this.textBoxAggregationSelectStatement.Name = "textBoxAggregationSelectStatement";
-            this.textBoxAggregationSelectStatement.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxAggregationSelectStatement.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.textBoxAggregationSelectStatement.Size = new System.Drawing.Size(320, 202);
             this.textBoxAggregationSelectStatement.TabIndex = 132;
+            this.textBoxAggregationSelectStatement.WordWrap = false;
             // 
             // textBoxAggregationPrimaryKey
             // 
@@ -1781,6 +1785,18 @@
             this.toolStripComboBox_loaded_datasources.Name = "toolStripComboBox_loaded_datasources";
             this.toolStripComboBox_loaded_datasources.Size = new System.Drawing.Size(121, 25);
             // 
+            // button_select_columns
+            // 
+            this.button_select_columns.BackgroundImage = global::XML_Configurator.Properties.Resources._1487105202_Database_copy_DynamoDB_Table;
+            this.button_select_columns.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button_select_columns.Location = new System.Drawing.Point(885, 269);
+            this.button_select_columns.Name = "button_select_columns";
+            this.button_select_columns.Size = new System.Drawing.Size(32, 32);
+            this.button_select_columns.TabIndex = 66;
+            this.toolTips.SetToolTip(this.button_select_columns, "Select columns for load");
+            this.button_select_columns.UseVisualStyleBackColor = true;
+            this.button_select_columns.Click += new System.EventHandler(this.button_select_columns_Click);
+            // 
             // _02_ObjectCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1924,7 +1940,6 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox_loaded_datasources;
         private System.Windows.Forms.ToolStripButton toolStripButton_load_xml;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.Button button_select_columns;
         private System.Windows.Forms.TabPage tabAggregation;
         private System.Windows.Forms.Button button_set_all_notactive_3;
         private System.Windows.Forms.Button button_set_all_active_3;
@@ -1973,6 +1988,7 @@
         private System.Windows.Forms.CheckBox checkBoxAggregationByDay;
         private System.Windows.Forms.NumericUpDown numericUpDownAggregationNumberOfMonths;
         private System.Windows.Forms.Button buttonNextAggregation;
+        private System.Windows.Forms.Button button_select_columns;
     }
 }
 
