@@ -126,6 +126,10 @@ namespace XML_Configurator.DatabaseConnect
                 command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE OWNER = '" + datasource.Datasource_library + "'", connection);//mora to_char, baca overflow ex
                                                                                                                                                                         //                command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE TABLE_NAME = 'XXAZP'", connection);//mora to_char, baca overflow ex
             }
+            else if (datasource.Datasource_database.ToUpper() == "AS400")
+            {
+                command = new OdbcCommand("SELECT TABLE_NAME FROM SYSIBM.TABLES WHERE TABLE_SCHEMA = '" + datasource.Datasource_library + "'", connection);
+            }
             else
             {
                 command = new OdbcCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" + datasource.Datasource_library + "'", connection);
