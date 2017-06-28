@@ -85,16 +85,16 @@
     <datasource_catalog>324</datasource_catalog>
     <datasource_database>543</datasource_database>
   </datasource>
-  <datasource><!--F40004DE.F191                                                                   -->
+  <datasource><!--F40010DE                                          AS400                         -->
     <connection_string> </connection_string>
-    <datasource_name>F40004DE.F191</datasource_name>
-    <database_ip_address> </database_ip_address>
-    <datasource_username> </datasource_username>
-    <datasource_password> </datasource_password>
-    <datasource_encrypted_credentials> </datasource_encrypted_credentials>
-    <datasource_connection_type> </datasource_connection_type>
-    <datasource_library> </datasource_library>
-    <datasource_catalog> </datasource_catalog>
-    <datasource_database> </datasource_database>
+    <datasource_name>F40010DE</datasource_name>
+    <database_ip_address>10.64.17.110</database_ip_address>
+    <datasource_username>QV_SQL</datasource_username>
+    <datasource_password>kl987zzvtr</datasource_password>
+    <datasource_encrypted_credentials>N</datasource_encrypted_credentials>
+    <datasource_connection_type>ODBC</datasource_connection_type>
+    <datasource_library>F23DATV7</datasource_library>
+    <datasource_catalog>F23DATV7</datasource_catalog>
+    <datasource_database>AS400</datasource_database>
   </datasource>
 </datasources>

@@ -101,6 +101,8 @@ namespace XML_Configurator.DatabaseConnect
             List<string> list_database_table = new List<string>();
             SqlConnection connection = database_open_connection_SQLSERVER(datasource);
 
+            Console.WriteLine("SQL SERVER OPCIJA 1");
+
             SqlCommand command = new SqlCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" + datasource.Datasource_library + "'", connection);
 
             Console.WriteLine(command.CommandText);
@@ -123,15 +125,21 @@ namespace XML_Configurator.DatabaseConnect
 
             if (datasource.Datasource_database.ToUpper() == "ORACLE")
             {
+                Console.WriteLine("ORACLE OPCIJA 1");
+
                 command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE OWNER = '" + datasource.Datasource_library + "'", connection);//mora to_char, baca overflow ex
                                                                                                                                                                         //                command = new OdbcCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE TABLE_NAME = 'XXAZP'", connection);//mora to_char, baca overflow ex
             }
             else if (datasource.Datasource_database.ToUpper() == "AS400")
             {
+                Console.WriteLine("ORACLE OPCIJA 2");
+
                 command = new OdbcCommand("SELECT TABLE_NAME FROM SYSIBM.TABLES WHERE TABLE_SCHEMA = '" + datasource.Datasource_library + "'", connection);
             }
             else
             {
+                Console.WriteLine("ORACLE OPCIJA 3");
+
                 command = new OdbcCommand("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '" + datasource.Datasource_library + "'", connection);
             }
 
@@ -152,6 +160,8 @@ namespace XML_Configurator.DatabaseConnect
         {
             List<string> list_database_table = new List<string>();
             OracleConnection connection = database_open_connection_OLEDB(datasource);
+
+            Console.WriteLine("OLEDB OPCIJA 1");
 
             OracleCommand command = new OracleCommand("SELECT TO_CHAR(TABLE_NAME) AS TABLE_NAME FROM ALL_TABLES WHERE OWNER = '" + datasource.Datasource_library + "'", connection);//mora to_char, baca overflow ex
 
@@ -176,7 +186,7 @@ namespace XML_Configurator.DatabaseConnect
             List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
 
             SqlConnection connection = database_open_connection_SQLSERVER(ds);
-            SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_name = '" + table_name + "'; ", connection);
+            SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from " + ds.Database_schama_name + ".columns where table_name = '" + table_name + "'; ", connection);
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -189,16 +199,16 @@ namespace XML_Configurator.DatabaseConnect
             reader.Close();
             return list_table_columns;
         } //should be obsolete
-        internal static ResultSetInstance[][] database_table_SQLSERVER(datasource datasource, List<database_table> list_selected_tables)
+        internal static ResultSetInstance[][] database_table_SQLSERVER(datasource ds, List<database_table> list_selected_tables)
         {
             ResultSetInstance[][] array_tables = new ResultSetInstance[list_selected_tables.Count][];
 
-            SqlConnection connection = database_open_connection_SQLSERVER(datasource);
+            SqlConnection connection = database_open_connection_SQLSERVER(ds);
             foreach (database_table table in list_selected_tables)
             {
                 List<ResultSetInstance> array_table_columns = new List<ResultSetInstance>();
 
-                SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_name = '" + table + "'; ", connection);
+                SqlCommand command = new SqlCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from " + ds.Database_schama_name + ".columns where table_name = '" + table + "'; ", connection);
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
@@ -219,7 +229,7 @@ namespace XML_Configurator.DatabaseConnect
             List<ResultSetInstance> list_table_columns = new List<ResultSetInstance>();
 
             OdbcConnection connection = database_open_connection_ODBC(ds);
-            OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_schema = '" + schema_name + "' and table_name = '" + table_name + "'", connection);
+            OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from " + ds.Database_schama_name + ".columns where table_schema = '" + schema_name + "' and table_name = '" + table_name + "'", connection);
             OdbcDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
@@ -240,7 +250,7 @@ namespace XML_Configurator.DatabaseConnect
             {
                 List<ResultSetInstance> array_table_columns = new List<ResultSetInstance>();
 
-                OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from information_schema.columns where table_schema = '" + schema_name + "' and table_name = '" + table + "'", connection);
+                OdbcCommand command = new OdbcCommand("select COLUMN_NAME, DATA_TYPE, IS_NULLABLE from  " + ds.Database_schama_name + ".columns where table_schema = '" + schema_name + "' and table_name = '" + table + "'", connection);
                 OdbcDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {

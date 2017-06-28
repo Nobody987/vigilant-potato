@@ -18,6 +18,7 @@ namespace XML_Configurator.DataModel
         string datasource_library;
         string datasource_catalog;
         string database_ip_address;
+        string database_schema_name;
 
         public datasource()
         {
@@ -78,6 +79,31 @@ namespace XML_Configurator.DataModel
             set
             {
                 database_ip_address = value;
+            }
+        }
+
+        public string Database_schama_name
+        {
+            get
+            {
+                switch (datasource_database)
+                {
+                    case "AS400":
+                        database_schema_name = "SYSIBM";
+                        break;
+                    case "OLEDB":
+                        database_schema_name = "ALL_TAB_COLUMNS";
+                        break;
+                    default:
+                        database_schema_name = "information_schema";
+                        break;
+                }
+                return database_schema_name;
+            }
+
+            set
+            {
+                database_schema_name = value;
             }
         }
 

@@ -1577,28 +1577,31 @@ namespace XML_Configurator
                         var properties = item.GetType().GetProperties();
                         foreach (var property in properties)
                         {
-                            if (property.Name != "Select_statement_for_display_string_array") // za sada je hardcodded. morma da nadjem resenje kako da ne ucitavam ovaj property jer ne treba da se upisuje u xml.
+                            if (property.GetValue(item) != null) //ovo je ovde dodato da bi se izbegao null pointer koji se vraca kada se prolazi kroz sve properties a posto se nasledjuje property koji je null, table_name
                             {
-                                writer.WriteStartElement(property.Name.ToLower());
-                                if (property.GetValue(item).ToString() != "")
+                                if (property.Name != "Select_statement_for_display_string_array") // za sada je hardcodded. morma da nadjem resenje kako da ne ucitavam ovaj property jer ne treba da se upisuje u xml.
                                 {
-                                    if (property.Name == "Object_select_statement" || property.Name == "Object_where_statement"
-                                        || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement") //moze se skratiti?
+                                    writer.WriteStartElement(property.Name.ToLower());
+                                    if (property.GetValue(item).ToString() != "")
                                     {
-                                        writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
+                                        if (property.Name == "Object_select_statement" || property.Name == "Object_where_statement"
+                                            || property.Name == "Object_fieldstoload_statement" || property.Name == "Object_transformation_statement") //moze se skratiti?
+                                        {
+                                            writer.WriteString(write_multiline_statement(property.GetValue(item).ToString())); //dodati, 1x tab 2x space za SELECT deo skripte
+                                        }
+                                        else
+                                        {
+                                            writer.WriteString(property.GetValue(item).ToString()); //dodati, 1x tab 2x space za SELECT deo skripte
+                                        }
+                                        //writer.WriteString(property.GetValue(item).ToString()); //dodati, 1x tab 2x space za SELECT deo skripte
                                     }
                                     else
                                     {
-                                        writer.WriteString(property.GetValue(item).ToString()); //dodati, 1x tab 2x space za SELECT deo skripte
+                                        writer.WriteString(" ");
                                     }
-                                    //writer.WriteString(property.GetValue(item).ToString()); //dodati, 1x tab 2x space za SELECT deo skripte
-                                }
-                                else
-                                {
-                                    writer.WriteString(" ");
-                                }
 
-                                writer.WriteFullEndElement(); //pise pun tag kad zatvara <ABC></ABC>
+                                    writer.WriteFullEndElement(); //pise pun tag kad zatvara <ABC></ABC>
+                                }
                             }
                         }
                         writer.WriteEndElement();
@@ -1718,7 +1721,7 @@ namespace XML_Configurator
                 {
 
                     archive_file(textBoxAggregationFileName.Text, toolStripTextBox_folder_path.Text);
-                    
+
                     XmlTextWriter writer = new XmlTextWriter(toolStripTextBox_folder_path.Text + "\\" + textBoxAggregationFileName.Text, Encoding.UTF8);
 
                     writer.WriteStartDocument();
