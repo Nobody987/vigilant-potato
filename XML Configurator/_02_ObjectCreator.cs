@@ -965,12 +965,12 @@ namespace XML_Configurator
                             object_id_instance.Object_reload_minutes = new_object.Element("object_reload_minutes") != null ? new_object.Element("object_reload_minutes").Value : "";
                             object_id_instance.Object_comment = new_object.Element("object_comment") != null ? new_object.Element("object_comment").Value : "";
                             object_id_instance.Object_primary_key = new_object.Element("object_name") != null ? new_object.Element("object_name").Value : "";
-                            object_id_instance.Object_select_statement = new_object.Element("object_select_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_primary_key").Value) : "";
+                            object_id_instance.Object_select_statement = new_object.Element("object_select_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_select_statement").Value) : "";
                             object_id_instance.Select_statement_for_display_string_array = new_object.Element("object_select_statement") != null ? new_object.Element("object_select_statement").Value : "";
                             object_id_instance.Object_datetime_format = new_object.Element("object_datetime_format") != null ? new_object.Element("object_datetime_format").Value : "";
                             object_id_instance.Object_date_format = new_object.Element("object_date_format") != null ? new_object.Element("object_date_format").Value : "";
                             object_id_instance.Object_time_format = new_object.Element("object_time_format") != null ? new_object.Element("object_time_format").Value : "";
-                            object_id_instance.Object_where_statement = new_object.Element("object_where_statement") != null ? new_object.Element("object_where_statement").Value : "";
+                            object_id_instance.Object_where_statement = new_object.Element("object_where_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_where_statement").Value) : "";
                             object_id_instance.Object_active = new_object.Element("object_active") != null ? Char.Parse(new_object.Element("object_active").Value) : ' ';
                             object_id_instance.Object_load_type = new_object.Element("object_load_type") != null ? new_object.Element("object_load_type").Value : "";
                             object_id_instance.Object_fieldstoload_statement = new_object.Element("object_fieldstoload_statement") != null ? generatorObject.ConstructSelectStatement(new_object.Element("object_fieldstoload_statement").Value) : "";
@@ -989,9 +989,9 @@ namespace XML_Configurator
                         listView_all_objects.Select();
                     }
 
-                    var datasource_node = document.Descendants("datasource_name").ElementAt(0);
-                    if (!string.IsNullOrEmpty(datasource_node.Value))
+                    if (document.Descendants("datasource_name").Count() > 0)
                     {
+                        var datasource_node = document.Descendants("datasource_name").ElementAt(0);
                         toolStripComboBox_loaded_datasources.SelectedIndex = toolStripComboBox_loaded_datasources.FindString(datasource_node.Value); //prepraviti ako moze na lepsi nacin...
                         if (toolStripComboBox_loaded_datasources.SelectedIndex == -1)
                         {
